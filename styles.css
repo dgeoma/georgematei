@@ -264,3 +264,40 @@ img { display: block; max-width: 100%; height: auto; }
 .statue--hero .statue__frame, .statue--side .statue__frame { background: #EFE6D6; }
 .statue--hero .statue__frame img, .statue--side .statue__frame img { mix-blend-mode: multiply; filter: grayscale(.5) sepia(.25) brightness(1.12) contrast(1.05); }
 .booking--page { min-height: calc(100vh - 72px); }
+
+/* Numeri */
+.stats { border-bottom: 1px solid var(--hairline); }
+.stats__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.stat { padding: 44px 28px 44px 0; display: flex; flex-direction: column; gap: 10px; }
+.stat + .stat { padding-left: 28px; border-left: 1px solid var(--hairline); }
+.stat__num { font-family: var(--serif); font-size: clamp(38px, 4.4vw, 56px); line-height: 1; color: var(--espresso); font-variant-numeric: tabular-nums; }
+.stat__label { font-size: 14px; color: var(--ink-soft); max-width: 22ch; }
+
+/* Chi sono con foto */
+.about { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(40px, 7vw, 104px); align-items: center; }
+.about:has(.about__photo[hidden]) { grid-template-columns: 1fr; }
+.about__photo { margin: 0; position: relative; background: linear-gradient(180deg, #EAE1D2, #DCCFBB); border-radius: 2px; overflow: hidden; aspect-ratio: 4 / 5; }
+.about__photo::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 19px, rgba(138,106,62,.07) 19px 20px), repeating-linear-gradient(90deg, transparent 0 19px, rgba(138,106,62,.07) 19px 20px); pointer-events: none; }
+.about__photo img { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 92%; height: auto; z-index: 1; }
+
+/* Percorso */
+.timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hairline); }
+.timeline li { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding: 30px 0; border-bottom: 1px solid var(--hairline); }
+.timeline__year { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--bronze); padding-top: 6px; }
+.timeline h3 { font-size: 22px; margin-bottom: 8px; }
+.timeline p { color: var(--ink-soft); font-size: 16px; max-width: 46em; }
+.creds { margin-top: clamp(48px, 6vw, 72px); }
+.creds__label { font-family: var(--serif); font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: var(--bronze); margin-bottom: 18px; }
+.creds ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.creds li { font-size: 14px; color: var(--ink-soft); padding: 8px 16px; border: 1px solid var(--hairline); border-radius: 999px; background: var(--travertine); }
+
+@media (max-width: 900px) {
+  .stats__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat, .stat + .stat { padding: 28px 16px 28px 0; border-left: 0; }
+  .stat:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--hairline); }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+  .about { grid-template-columns: 1fr; }
+  .about__photo { max-width: 420px; }
+  .timeline li { grid-template-columns: 1fr; gap: 8px; }
+}
+.booking--bare { padding: clamp(24px, 5vw, 64px) 0; min-height: calc(100vh - 72px - 110px); }
