@@ -303,3 +303,31 @@ img { display: block; max-width: 100%; height: auto; }
 .booking--bare { padding: clamp(24px, 5vw, 64px) 0; min-height: calc(100vh - 72px - 110px); }
 /* ritratto sempre intero: si adatta all'altezza del riquadro */
 .about__photo img { width: auto; height: 96%; max-width: 100%; object-fit: contain; object-position: bottom center; }
+
+/* Affresco hero */
+.statue--fresco .statue__frame { background: #6F8794; }
+.statue--fresco .statue__frame img { mix-blend-mode: normal; filter: saturate(.72) sepia(.12) contrast(1.02); }
+
+/* Emblemi alchemici */
+.emblem { margin: 0; }
+.emblem img { width: 100%; height: auto; }
+.manifesto .emblem { max-width: 380px; justify-self: center; }
+.emblem--light img { mix-blend-mode: multiply; filter: sepia(.35) contrast(1.05); border-radius: 2px; }
+
+/* I tre poli */
+.poles { list-style: none; margin: clamp(64px, 8vw, 104px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid rgba(247, 244, 238, .14); }
+.pole { padding: 40px 32px 8px 0; }
+.pole + .pole { padding-left: 32px; border-left: 1px solid rgba(247, 244, 238, .14); }
+.pole__glyph { width: 40px; height: 40px; margin-bottom: 22px; fill: none; stroke: var(--bronze-light); stroke-width: 1.3; }
+.pole__glyph .fill { fill: var(--bronze-light); stroke: none; }
+.pole h3 { color: var(--marble); margin-bottom: 12px; }
+.pole p { color: #CFC4B5; font-size: 16px; }
+.pole em { color: var(--bronze-light); }
+
+@media (max-width: 900px) {
+  .poles { grid-template-columns: 1fr; }
+  .pole, .pole + .pole { padding: 32px 0; border-left: 0; }
+  .pole + .pole { border-top: 1px solid rgba(247, 244, 238, .14); }
+  .manifesto .emblem { max-width: 260px; justify-self: start; }
+  .emblem--light { max-width: 340px; }
+}
