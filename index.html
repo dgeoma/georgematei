@@ -20,7 +20,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#F2EDE4">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="stylesheet" href="/styles.css?v=12">
+<link rel="stylesheet" href="/styles.css?v=13">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -49,6 +49,10 @@
       "sameAs": [
         "https://www.linkedin.com/in/georgematei"
       ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AE"
+      },
       "alumniOf": {
         "@type": "CollegeOrUniversity",
         "name": "Università IULM"
@@ -553,10 +557,10 @@
       </header>
       <div class="booking__widget reveal" id="calendario">
         <div class="booking__gate">
-          <a class="btn" href="/calendario/" data-calendar="XoUDzFvsAE1NSZguCrWy">Scegli giorno e ora</a>
+          <a class="btn" href="/calendario/" data-calendar="zxAZSoKOYjuvrf698mJJ">Scegli giorno e ora</a>
         </div>
       </div>
-      <p class="booking__note booking__note--below">Il calendario è un servizio esterno (HighLevel) e si carica solo quando lo apri.</p>
+      <p class="booking__note booking__note--below">Il calendario è un servizio esterno (HighLevel) e si carica solo quando lo apri. <a href="/privacy/">Come tratto i tuoi dati</a>.</p>
       <p class="booking__partner reveal">Sei un commercialista o un consulente e segui attività che perdono ore tra Excel e WhatsApp? Prenota gli stessi trenta minuti: ti mostro come lavoro, così sai quando mandarmi qualcuno. E se a un mio cliente servi tu, so a chi mandarlo.</p>
     </div>
   </section>
@@ -565,9 +569,10 @@
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <span>© 2026 George Dragos Matei · Gestionali su misura e assistenti AI</span>
+    <span>© 2026 George Dragos Matei · Gestionali su misura e assistenti AI · Sede negli Emirati Arabi Uniti</span>
     <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
     <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
+    <a href="/privacy/">Privacy</a>
     <span class="footer__credits">Immagini: Dedalo e Icaro, affresco da Pompei, Museo Archeologico Nazionale di Napoli (inv. 9506), foto di Sailko, <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.it">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/wiki/File:Dedalo_assiste_alla_morte_di_icaro,_da_pompei,_9506.JPG">fonte</a>, immagine ritagliata · Ouroboros dalla Crisopea di Cleopatra, pubblico dominio · Ruote disegnate per questo sito, ispirate al meccanismo di Anticitera</span>
   </div>
 </footer>
@@ -599,7 +604,7 @@
       frame.title = 'Calendario prenotazioni di George Matei';
       frame.setAttribute('allow', 'payment');
       frame.setAttribute('scrolling', 'no');
-      frame.id = id + '_1791239184874';
+      frame.id = id + '_1793121711485';
       frame.style.cssText = 'width:100%;border:none;overflow:hidden;min-height:620px';
       box.classList.add('is-open');
       box.replaceChildren(frame);
