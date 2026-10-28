@@ -8,29 +8,31 @@
 <meta name="description" content="Quali dati raccoglie georgematei.com, perché, a chi li affida e come puoi chiedere di vederli o cancellarli.">
 <link rel="canonical" href="https://georgematei.com/privacy/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#F2EDE4">
-<link rel="stylesheet" href="/styles.css?v=13">
+<meta name="theme-color" content="#0f1e3a">
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=15">
 </head>
 <body>
+<a class="skip" href="#testo">Vai al testo</a>
 
-<header class="nav" id="top">
+<header class="nav">
   <div class="wrap nav__inner">
-    <a class="wordmark" href="/">George Matei</a>
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
     <nav class="nav__links" aria-label="Sezioni">
-      <a href="/#cosa">Cosa faccio</a>
       <a href="/#metodo">Come lavoro</a>
-      <a href="/#domande">Domande</a>
+      <a href="/#cosa">Cosa faccio</a>
       <a href="/#chi">Chi sono</a>
+      <a href="/#domande">Domande</a>
     </nav>
     <a class="btn btn--small" href="/">Torna al sito</a>
   </div>
 </header>
 
-<main class="section">
-  <article class="wrap legal">
+<main class="section section--soft">
+  <article class="wrap legal" id="testo">
     <p class="eyebrow">Privacy</p>
     <h1>Informativa privacy</h1>
-    <p class="legal__updated">Aggiornata il 27 ottobre 2026</p>
+    <p class="legal__updated">Aggiornata il 28 ottobre 2026</p>
     <p class="legal__intro">Qui trovi quali dati raccolgo tramite georgematei.com, perché li uso, a chi li affido e come puoi chiedermi di vederli o cancellarli. Se qualcosa non è chiaro, scrivimi.</p>
 
     <h2>Chi tratta i tuoi dati</h2>
@@ -60,7 +62,7 @@
     <p>Mi appoggio ad alcuni servizi esterni che trattano i dati per conto mio e solo per questi scopi:</p>
     <ul>
       <li><strong>GitHub, Inc.</strong> (Stati Uniti), che ospita il sito.</li>
-      <li><strong>HighLevel, Inc.</strong> (Stati Uniti), che gestisce il calendario delle prenotazioni e i promemoria. Il calendario gira sull'account HighLevel di un'agenzia con cui collaboro, che per questo può vedere le prenotazioni. Nella home si carica solo quando lo apri, nella pagina del calendario subito: da quel momento HighLevel salva nel tuo browser cookie e identificativi, per funzionare e per le sue statistiche, e registra da quale pagina arrivi.</li>
+      <li><strong>HighLevel, Inc.</strong> (Stati Uniti), che gestisce il calendario delle prenotazioni e i promemoria. Il calendario gira sull'account HighLevel di un'agenzia con cui collaboro, che per questo può vedere le prenotazioni. Si carica solo quando lo apri: da quel momento HighLevel salva nel tuo browser cookie e identificativi, per funzionare e per le sue statistiche, registra da quale pagina arrivi e carica caratteri da Google Fonts e risorse tramite Cloudflare.</li>
       <li><strong>Google</strong> per l'email e l'archivio dei documenti, <strong>Zoom</strong> per la videochiamata e <strong>Anthropic</strong>, se uso il suo assistente AI sulla trascrizione della chiamata.</li>
       <li>Se diventi cliente, il commercialista che tiene la contabilità.</li>
     </ul>
@@ -92,10 +94,13 @@
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <span>© 2026 George Dragos Matei · Gestionali su misura e assistenti AI · Sede negli Emirati Arabi Uniti</span>
-    <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
-    <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
-    <a href="/privacy/" aria-current="page">Privacy</a>
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+    <nav class="footer__links" aria-label="Contatti">
+      <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
+      <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
+      <a href="/privacy/" aria-current="page">Privacy</a>
+    </nav>
+    <p class="footer__legal">© 2026 George Dragos Matei · AI e automazioni per imprenditori · Sede negli Emirati Arabi Uniti</p>
   </div>
 </footer>
 

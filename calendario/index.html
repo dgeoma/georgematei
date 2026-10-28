@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Prenota 30 minuti · George Matei</title>
-<meta name="description" content="Prenota una chiamata gratuita di trenta minuti con George Matei: parliamo della tua attività e alla fine sai se ha senso andare avanti.">
+<meta name="description" content="Prenota una chiamata conoscitiva gratuita di trenta minuti: mi racconti come lavorate e alla fine sai se e da dove conviene partire con l'AI.">
 <meta property="og:title" content="Prenota 30 minuti con George Matei">
-<meta property="og:description" content="Trenta minuti gratis, in videochiamata. Parliamo della tua attività e alla fine sai se ha senso andare avanti.">
+<meta property="og:description" content="Trenta minuti in videochiamata, gratis. Alla fine sai se e da dove conviene partire con l'AI.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="George Matei">
@@ -15,50 +15,57 @@
 <meta property="og:image" content="https://georgematei.com/assets/og-george.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="George Matei, gestionali su misura e assistenti AI">
+<meta property="og:image:alt" content="George Matei, AI e automazioni per imprenditori">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://georgematei.com/calendario/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#F2EDE4">
-<link rel="stylesheet" href="/styles.css?v=13">
+<meta name="theme-color" content="#0f1e3a">
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=15">
 </head>
 <body>
+<a class="skip" href="#prenota">Vai al calendario</a>
 
-<header class="nav" id="top">
+<header class="nav">
   <div class="wrap nav__inner">
-    <a class="wordmark" href="/">George Matei</a>
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
     <nav class="nav__links" aria-label="Sezioni">
-      <a href="/#cosa">Cosa faccio</a>
       <a href="/#metodo">Come lavoro</a>
-      <a href="/#domande">Domande</a>
+      <a href="/#cosa">Cosa faccio</a>
       <a href="/#chi">Chi sono</a>
+      <a href="/#domande">Domande</a>
     </nav>
     <a class="btn btn--small" href="/">Torna al sito</a>
   </div>
 </header>
 
-<main class="booking-page">
-  <section class="booking booking--page booking--bare" id="prenota">
+<main>
+  <section class="page-hero">
     <div class="wrap">
-      <header class="booking__head booking__head--page">
-        <p class="eyebrow eyebrow--light">Prenota</p>
-        <h1>Trenta minuti, gratis.</h1>
-        <p>In videochiamata, niente slide. Parliamo della tua attività e alla fine sai se ha senso andare avanti. Se è un no, va bene: non ti richiamo per insistere.</p>
-      </header>
-      <div class="booking__widget is-open">
-        <iframe src="https://api.leadconnectorhq.com/widget/booking/zxAZSoKOYjuvrf698mJJ" title="Calendario prenotazioni di George Matei" allow="payment" style="width:100%;border:none;overflow:hidden;min-height:620px" scrolling="no" id="zxAZSoKOYjuvrf698mJJ_1793121711485"></iframe>
-      </div>
-      <p class="booking__partner">Il calendario è un servizio esterno (HighLevel). <a href="/privacy/">Come tratto i tuoi dati</a>.</p>
+      <p class="eyebrow eyebrow--face"><img src="/assets/foto/george-volto.webp" width="240" height="240" alt="">Prenota · Il metodo dei piccoli passi</p>
+      <h1>Trenta minuti per conoscerci.</h1>
+      <p>In videochiamata, gratis, niente slide. Mi racconti come lavorate e dove vuoi arrivare; alla fine sai se e da dove conviene partire. Se dopo la chiamata è un no, va bene: non ti richiamo per insistere.</p>
+      <p>Hai già un preventivo per un progetto di AI o di software? Portalo: ti dico se vale la pena guardarlo a fondo.</p>
+    </div>
+  </section>
+  <section class="cal-page" id="prenota">
+    <div class="wrap">
+      <p class="cal-page__note">Il calendario è un servizio esterno (HighLevel): aprendolo, HighLevel salva nel tuo browser cookie e identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, per qualunque cosa scrivi al tuo referente lì.</p>
+      <a class="btn cal-page__open" href="https://api.leadconnectorhq.com/widget/booking/zxAZSoKOYjuvrf698mJJ" data-calendar="zxAZSoKOYjuvrf698mJJ"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Apri il calendario</a>
+      <div class="cal-page__box" id="calendario" hidden></div>
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <span>© 2026 George Dragos Matei · Gestionali su misura e assistenti AI · Sede negli Emirati Arabi Uniti</span>
-    <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
-    <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
-    <a href="/privacy/">Privacy</a>
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+    <nav class="footer__links" aria-label="Contatti">
+      <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
+      <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+    <p class="footer__legal">© 2026 George Dragos Matei · AI e automazioni per imprenditori · Sede negli Emirati Arabi Uniti</p>
   </div>
 </footer>
 
@@ -68,6 +75,28 @@
     addEventListener('scroll', function () { nav.classList.toggle('is-scrolled', scrollY > 12); }, { passive: true });
   })();
 </script>
-<script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+<script>
+  (function () {
+    var gate = document.querySelector('[data-calendar]'), box = document.getElementById('calendario');
+    if (!gate || !box) return;
+    gate.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      var id = gate.getAttribute('data-calendar');
+      var frame = document.createElement('iframe');
+      frame.src = 'https://api.leadconnectorhq.com/widget/booking/' + id;
+      frame.title = 'Calendario prenotazioni di George Matei';
+      frame.setAttribute('allow', 'payment');
+      frame.setAttribute('scrolling', 'no');
+      frame.id = id + '_1793121711485';
+      frame.style.cssText = 'width:100%;border:none;overflow:hidden;min-height:620px';
+      box.hidden = false;
+      box.replaceChildren(frame);
+      gate.hidden = true;
+      var sc = document.createElement('script');
+      sc.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(sc);
+    });
+  })();
+</script>
 </body>
 </html>
