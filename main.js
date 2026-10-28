@@ -66,10 +66,11 @@
   }
 
   /* Loghi: si possono fermare (WCAG 2.2.2) */
-  var mq = document.querySelector('.marquee'), mt = document.querySelector('.marquee__toggle');
+  var mq = document.querySelector('.marquee'), mt = document.querySelector('.marquee__pause');
   if (mq && mt) mt.addEventListener('click', function () {
     var on = mq.classList.toggle('is-paused');
-    mt.textContent = on ? 'Fai ripartire lo scorrimento' : 'Ferma lo scorrimento';
+    mt.setAttribute('aria-label', on ? 'Fai ripartire i loghi' : 'Ferma i loghi che scorrono');
+    mt.innerHTML = on ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>';
   });
 
   /* Calendario: si carica solo quando lo apri, poi la pagina scorre fin lì */
