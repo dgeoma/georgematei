@@ -896,3 +896,10 @@ a.chip:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 @media (max-width: 700px) { .marquee__pause { right: 10px; bottom: 10px; } }
 .try__after:not(.is-on) { visibility: hidden; }
 .phone__chat:focus { outline: none; }
+/* il primo logo parte fuori dalla sfumatura, spazi tutti uguali, il giro parte quando la fascia compare */
+@media (prefers-reduced-motion: no-preference) {
+  .marquee { --m: 64px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--m), #000 calc(100% - var(--m)), transparent); mask-image: linear-gradient(90deg, transparent, #000 var(--m), #000 calc(100% - var(--m)), transparent); }
+  .marquee__group { padding: 0 0 0 var(--m); }
+  .js .loghi__box:not(.is-in) .marquee__track { animation-play-state: paused; }
+}
+@media (max-width: 700px) { .marquee { --m: 44px; } }
