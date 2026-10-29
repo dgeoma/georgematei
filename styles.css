@@ -914,3 +914,4 @@ a.chip:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
   .lg-cap span { font-size: 10px; }
   .marquee__group .lg-iulm { height: 25px; }
 }
+.marquee__group img.lg-col { opacity: 1; }
