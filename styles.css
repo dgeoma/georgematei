@@ -915,3 +915,19 @@ a.chip:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
   .marquee__group .lg-iulm { height: 25px; }
 }
 .marquee__group img.lg-col { opacity: 1; }
+
+/* ---------- v8 · 29/10: foto dal vivo al posto delle foto in studio ripetute ---------- */
+/* chi sono: la foto vera dentro l'arco; su desktop segue il testo mentre scorri */
+.about__photo { margin: 0; width: 100%; max-width: 470px; justify-self: center; aspect-ratio: auto; }
+.about__photo::before { content: none; }
+.about__photo img { position: static; transform: none; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; border-radius: 240px 240px 28px 28px; -webkit-mask-image: none; mask-image: none; box-shadow: 0 0 0 7px #fff, 0 0 0 9px rgba(201, 161, 74, 0.55), var(--shadow); }
+.about__photo figcaption { margin-top: 18px; font-size: 13.5px; color: var(--muted); text-align: center; }
+@media (min-width: 981px) and (min-height: 760px) { .about__grid { align-items: start; } .about__photo { position: sticky; top: calc(var(--nav-h) + 40px); } }
+@media (max-width: 700px) {
+  .about__photo { max-width: 340px; }
+  .about__photo img { aspect-ratio: 3 / 4; }
+}
+/* prenota: la sfumatura parte più in basso, così la mano aperta verso il bottone resta piena */
+.book__photo img { -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent); mask-image: linear-gradient(180deg, #000 88%, transparent); }
+/* metodo: la frase in grassetto restava blu su blu (regola generale strong → --ink) */
+.method__lead strong { color: #fff; }
