@@ -927,7 +927,34 @@ a.chip:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
   .about__photo { max-width: 340px; }
   .about__photo img { aspect-ratio: 3 / 4; }
 }
-/* prenota: la sfumatura parte più in basso, così la mano aperta verso il bottone resta piena */
-.book__photo img { -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent); mask-image: linear-gradient(180deg, #000 88%, transparent); }
+/* prenota: foto dello shooting in blu; un alone chiaro dietro stacca il completo dallo sfondo blu */
+.book__photo::before { content: ""; position: absolute; left: 50%; top: 2%; width: min(100%, 400px); aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(150, 178, 232, 0.24), rgba(150, 178, 232, 0.08) 60%, transparent); pointer-events: none; }
+.book__photo img { position: relative; }
 /* metodo: la frase in grassetto restava blu su blu (regola generale strong → --ink) */
 .method__lead strong { color: #fff; }
+/* calendario subito sotto l'apertura, già aperto con le date */
+.cal-top { position: relative; padding: 8px 0 72px; }
+.cal-top__box { max-width: 980px; margin: 0 auto; padding: 34px 34px 24px; border-radius: 28px; background: #fff; border: 1px solid rgba(201, 161, 74, 0.28); box-shadow: var(--shadow); }
+.cal-top__head { text-align: center; }
+.cal-top__head .eyebrow { justify-content: center; }
+.cal-top__head h2 { margin-top: 12px; }
+.cal-top__head h2:focus { outline: none; }
+.cal-top__widget { margin-top: 18px; border-radius: 18px; overflow: hidden; }
+.cal-top__note { margin-top: 14px; font-size: 13.5px; color: var(--muted); text-align: center; }
+.cal-top__note a { color: var(--ink); text-underline-offset: 3px; }
+@media (max-width: 700px) {
+  .cal-top { padding: 0 0 52px; }
+  .cal-top__box { padding: 24px 10px 16px; border-radius: 22px; }
+}
+/* il riquadro del calendario sale sul fondo dell'apertura, come prima i loghi; i loghi vengono dopo */
+.cal-top { z-index: 3; margin-top: -78px; padding-bottom: 56px; }
+.cal-top + .loghi { margin-top: 0; }
+.cal-top__widget { position: relative; min-height: 620px; }
+.cal-top__widget iframe { position: relative; z-index: 1; display: block; }
+.cal-top__wait { position: absolute; left: 0; right: 0; top: 110px; z-index: 0; margin: 0; text-align: center; font-size: 15px; color: var(--muted); pointer-events: none; transition: opacity 0.3s ease; }
+.cal-top__widget.is-ready .cal-top__wait { opacity: 0; }
+@media (max-width: 700px) { .cal-top { margin-top: -70px; padding-bottom: 40px; } }
+/* sotto i 380 px il widget chiede 297 px di larghezza: il riquadro lascia più spazio al calendario */
+@media (max-width: 380px) { .cal-top .wrap { padding: 0 8px; } .cal-top__box { padding-left: 0; padding-right: 0; } .cal-top__head, .cal-top__note { padding: 0 12px; } }
+/* pagina del calendario: stesso spazio in più sotto i 380 px */
+@media (max-width: 380px) { .cal-page .wrap { padding: 0 8px; } .cal-page__note { padding: 0 10px; } }

@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#0f1e3a">
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.gmPronto)document.documentElement.classList.remove('js')},3000)</script>
-<link rel="stylesheet" href="/styles.css?v=20">
+<link rel="stylesheet" href="/styles.css?v=21">
 <!--JSONLD-->
 <script type="application/ld+json">
 {
@@ -294,6 +294,24 @@
   </div>
 </section>
 
+<!-- CALENDARIO -->
+<section class="cal-top" id="prenota" aria-labelledby="cal-top-t">
+  <div class="wrap">
+    <div class="cal-top__box">
+      <div class="cal-top__head">
+        <p class="eyebrow">Prenota · 30 minuti</p>
+        <h2 id="cal-top-t" tabindex="-1">Scegli giorno e ora.</h2>
+      </div>
+      <div class="cal-top__widget" id="calendario">
+        <p class="cal-top__wait" aria-hidden="true">Carico le date libere…</p>
+        <iframe data-src="https://api.leadconnectorhq.com/widget/booking/zxAZSoKOYjuvrf698mJJ" title="Calendario prenotazioni di George Matei" id="zxAZSoKOYjuvrf698mJJ_1793121711485" scrolling="no" allow="payment" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe>
+      </div>
+      <noscript><p class="cal-top__note"><a href="/calendario/">Apri il calendario</a></p></noscript>
+      <p class="cal-top__note">Il calendario è di HighLevel e si carica con la pagina: registra la visita e salva nel browser identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, per qualunque cosa scrivi al tuo referente lì. Non vedi il calendario? Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p>
+    </div>
+  </div>
+</section>
+
 <!-- LOGHI -->
 <section class="loghi" aria-label="Lavorato a progetti con">
   <div class="wrap">
@@ -358,7 +376,7 @@
     </div>
     <div class="hello reveal">
       <img src="/assets/foto/george-sorriso.webp" width="240" height="240" alt="" loading="lazy">
-      <p>Ciao, sono <strong>George Matei</strong>. Prima dell'AI ho aiutato ad aprire una sede a Bergamo, con le persone da scegliere e formare, e ho costruito da zero un reparto IT. Ho avviato aziende mie: la prima, a Londra, si è fermata presto. Oggi porto l'AI dove il lavoro pesa di più. <a href="#prova">Qui sotto vedi come.</a></p>
+      <p>Ciao, sono <strong>George Matei</strong>. Ho fatto il commerciale e ho aiutato ad aprire una sede a Bergamo, formando la squadra. La mia prima azienda, a Londra, si è fermata al prototipo di un'app. Poi, in un'altra azienda, ho costruito da zero il reparto IT. Oggi con l'AI parto da una cosa sola: quella che ti fa perdere più clienti o più ore. <a href="#prova">Qui sotto trovi tre esempi.</a></p>
     </div>
   </div>
 </section>
@@ -521,8 +539,8 @@
     <div class="about__copy">
       <p class="eyebrow reveal">Chi sono</p>
       <h2 class="reveal">George Dragos Matei</h2>
-      <p class="reveal">Ho iniziato dalle persone: affianco titolari e manager, sulla persona e sul business.</p>
-      <p class="reveal">Poi ho aggiunto i sistemi: da responsabile IT ho messo in piedi un reparto partendo da zero, e con quella squadra abbiamo consegnato cinque software su misura.</p>
+      <p class="reveal">Ho iniziato dalle persone: ho affiancato titolari e manager, sulla persona e sul business.</p>
+      <p class="reveal">Poi ho aggiunto i sistemi: da responsabile IT ho messo in piedi un reparto partendo da zero e ho seguito cinque software su misura, dallo sviluppo al rilascio.</p>
       <p class="reveal">Oggi guido il reparto AI e Automazione di Marketing Genius. In proprio seguo pochi imprenditori alla volta, e li seguo io, dalla prima chiamata alla consegna.</p>
       <blockquote class="about__quote reveal"><p>Solo l'AI non funziona. Solo le persone, nemmeno.</p><footer>George</footer></blockquote>
       <ul class="creds reveal" aria-label="Formazione e certificazioni">
@@ -597,18 +615,16 @@
 </section>
 
 <!-- PRENOTA -->
-<section class="book" id="prenota">
+<section class="book" id="chiamata">
   <div class="wrap book__grid">
-    <div class="book__photo" aria-hidden="true"><img src="/assets/foto/george-invito.webp" width="720" height="1218" alt="" loading="lazy"></div>
+    <div class="book__photo" aria-hidden="true"><img src="/assets/foto/george-prenota.webp" width="720" height="1183" alt="" loading="lazy"></div>
     <div class="book__copy">
-      <img class="book__face" src="/assets/foto/george-sorriso.webp" width="240" height="240" alt="" loading="lazy">
+      <img class="book__face" src="/assets/foto/george-volto-blu.webp" width="240" height="240" alt="" loading="lazy">
       <p class="eyebrow eyebrow--light reveal">Prenota · Si comincia da qui</p>
       <h2 class="reveal">Trenta minuti per conoscerci.</h2>
       <p class="reveal">In videochiamata, niente slide. Prima della chiamata scegli un'attività che vi porta via ore ogni settimana: partiamo da lì. Poi decidi tu, e ti richiamo solo se me lo chiedi.</p>
       <p class="reveal">Hai già un preventivo per un progetto di AI o di software? Portalo.</p>
-      <p class="book__note">Il calendario è un servizio esterno (HighLevel) e si carica solo quando lo apri. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, per qualunque cosa scrivi al tuo referente lì.</p>
-      <a class="btn" href="/calendario/" data-calendar="zxAZSoKOYjuvrf698mJJ"><svg aria-hidden="true"><use href="#i-cal"/></svg>Scegli giorno e ora</a>
-      <div class="book__widget" id="calendario"></div>
+      <a class="btn" href="#prenota"><svg aria-hidden="true"><use href="#i-cal"/></svg>Scegli giorno e ora</a>
     </div>
   </div>
 </section>
@@ -628,7 +644,7 @@
   </div>
 </footer>
 
-<script src="/main.js?v=17" defer></script>
+<script src="/main.js?v=19" defer></script>
 <script src="/demo.js?v=21" defer></script>
 </body>
 </html>

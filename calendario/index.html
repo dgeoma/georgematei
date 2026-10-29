@@ -21,7 +21,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0f1e3a">
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=20">
+<link rel="stylesheet" href="/styles.css?v=21">
 </head>
 <body>
 <a class="skip" href="#prenota">Vai al calendario</a>
@@ -44,15 +44,16 @@
     <div class="wrap">
       <p class="eyebrow eyebrow--face"><img src="/assets/foto/george-sorriso.webp" width="240" height="240" alt="">Prenota · Si comincia da qui</p>
       <h1>Trenta minuti per conoscerci.</h1>
-      <p>In videochiamata, gratis, niente slide. Mi racconti come lavorate e dove vuoi arrivare; alla fine sai da dove partire. Alla fine decidi tu, e ti richiamo solo se me lo chiedi.</p>
+      <p>In videochiamata, gratis, niente slide. Mi racconti come lavorate e dove vuoi arrivare; alla fine sai da dove partire. Poi decidi tu, e ti richiamo solo se me lo chiedi.</p>
       <p>Hai già un preventivo per un progetto di AI o di software? Portalo: ti dico se vale la pena guardarlo a fondo.</p>
     </div>
   </section>
   <section class="cal-page" id="prenota">
     <div class="wrap">
-      <p class="cal-page__note">Il calendario è un servizio esterno (HighLevel): aprendolo, HighLevel salva nel tuo browser cookie e identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, per qualunque cosa scrivi al tuo referente lì.</p>
-      <a class="btn cal-page__open" href="https://api.leadconnectorhq.com/widget/booking/zxAZSoKOYjuvrf698mJJ" data-calendar="zxAZSoKOYjuvrf698mJJ"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Apri il calendario</a>
-      <div class="cal-page__box" id="calendario" hidden></div>
+      <p class="cal-page__note">Il calendario è di HighLevel e si carica con la pagina: registra la visita e salva nel browser identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, per qualunque cosa scrivi al tuo referente lì. Non vedi il calendario? Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p>
+      <div class="cal-page__box" id="calendario">
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/zxAZSoKOYjuvrf698mJJ" title="Calendario prenotazioni di George Matei" id="zxAZSoKOYjuvrf698mJJ_1793121711485" scrolling="no" allow="payment" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe>
+      </div>
     </div>
   </section>
 </main>
@@ -75,28 +76,6 @@
     addEventListener('scroll', function () { nav.classList.toggle('is-scrolled', scrollY > 12); }, { passive: true });
   })();
 </script>
-<script>
-  (function () {
-    var gate = document.querySelector('[data-calendar]'), box = document.getElementById('calendario');
-    if (!gate || !box) return;
-    gate.addEventListener('click', function (ev) {
-      ev.preventDefault();
-      var id = gate.getAttribute('data-calendar');
-      var frame = document.createElement('iframe');
-      frame.src = 'https://api.leadconnectorhq.com/widget/booking/' + id;
-      frame.title = 'Calendario prenotazioni di George Matei';
-      frame.setAttribute('allow', 'payment');
-      frame.setAttribute('scrolling', 'no');
-      frame.id = id + '_1793121711485';
-      frame.style.cssText = 'width:100%;border:none;overflow:hidden;min-height:620px';
-      box.hidden = false;
-      box.replaceChildren(frame);
-      gate.hidden = true;
-      var sc = document.createElement('script');
-      sc.src = 'https://link.msgsndr.com/js/form_embed.js';
-      document.body.appendChild(sc);
-    });
-  })();
-</script>
+<script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
 </body>
 </html>

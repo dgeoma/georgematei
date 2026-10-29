@@ -73,37 +73,28 @@
     mt.innerHTML = on ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>';
   });
 
-  /* Calendario: si carica solo quando lo apri, poi la pagina scorre fin lì */
-  var gate = document.querySelector('[data-calendar]');
-  function openCalendar() {
-    var box = document.getElementById('calendario');
-    if (!gate || !box) return;
-    if (!box.classList.contains('is-open')) {
-      var id = gate.getAttribute('data-calendar');
-      var frame = document.createElement('iframe');
-      frame.src = 'https://api.leadconnectorhq.com/widget/booking/' + id;
-      frame.title = 'Calendario prenotazioni di George Matei';
-      frame.setAttribute('allow', 'payment');
-      frame.setAttribute('scrolling', 'no');
-      frame.id = id + '_1793121711485';
-      frame.style.cssText = 'width:100%;border:none;overflow:hidden;min-height:620px';
-      box.classList.add('is-open');
-      box.replaceChildren(frame);
-      gate.hidden = true;
-      var sc = document.createElement('script');
-      sc.src = 'https://link.msgsndr.com/js/form_embed.js';
-      document.body.appendChild(sc);
-    }
-    var target = document.querySelector('.book__note') || box;
-    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-    target.setAttribute('tabindex', '-1');
-    target.focus({ preventScroll: true });
+  /* Calendario: parte dopo il caricamento della pagina (l'apertura resta veloce);
+     «Carico le date libere…» finché HighLevel non lo disegna */
+  var calBox = document.getElementById('calendario'), calFrame = calBox && calBox.querySelector('iframe[data-src]');
+  if (calFrame) {
+    var calPronto = function () { calBox.classList.add('is-ready'); };
+    var calAvvia = function () {
+      calFrame.addEventListener('load', function () { setTimeout(calPronto, 2500); });
+      calFrame.src = calFrame.getAttribute('data-src');
+      var s = document.createElement('script'); s.src = 'https://link.msgsndr.com/js/form_embed.js'; s.async = true;
+      document.body.appendChild(s);
+      setTimeout(calPronto, 10000);
+    };
+    if (document.readyState === 'complete') calAvvia(); else addEventListener('load', calAvvia);
   }
-  if (gate) gate.addEventListener('click', function (ev) { ev.preventDefault(); openCalendar(); });
-  document.querySelectorAll('a[href="#prenota"]').forEach(function (a) {
+
+  /* Calendario: è già aperto sotto l'apertura; ogni «Prenota» porta lì e ci sposta il focus */
+  var cal = document.getElementById('prenota'), calTitle = document.getElementById('cal-top-t');
+  if (cal) document.querySelectorAll('a[href="#prenota"]').forEach(function (a) {
     a.addEventListener('click', function (ev) {
       ev.preventDefault();
-      openCalendar();
+      cal.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      if (calTitle) calTitle.focus({ preventScroll: true });
       if (history.replaceState) history.replaceState(null, '', '#prenota');
     });
   });
