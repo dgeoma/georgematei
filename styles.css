@@ -903,3 +903,14 @@ a.chip:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
   .js .loghi__box:not(.is-in) .marquee__track { animation-play-state: paused; }
 }
 @media (max-width: 700px) { .marquee { --m: 44px; } }
+
+/* Barça a colori con il nome sotto; IULM solo monogramma */
+.marquee__group li.lg-cap { flex-direction: column; justify-content: center; gap: 4px; }
+.marquee__group .lg-cap .lg-fcb { height: 44px; opacity: 1; }
+.lg-cap span { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); line-height: 1; white-space: nowrap; }
+.marquee__group .lg-iulm { height: 30px; }
+@media (max-width: 700px) {
+  .marquee__group .lg-cap .lg-fcb { height: 38px; }
+  .lg-cap span { font-size: 10px; }
+  .marquee__group .lg-iulm { height: 25px; }
+}
