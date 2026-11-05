@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0f1e3a">
+<title>Conosci il tuo lavoro, immagina il prossimo passo · George Matei</title>
+<meta name="description" content="Una ricerca tra Funky Lancers senza richiesta di dati identificativi, su problemi, desideri e modi di usare AI e software nel lavoro.">
+<link rel="canonical" href="https://georgematei.com/funkylancers/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=21">
+<style>
+  :root{--fl-ink:#0f1e3a;--fl-muted:#58647b;--fl-gold:#c9a14a;--fl-gold-soft:#f7edda;--fl-paper:#fffdf8;--fl-line:#e5e8ed;--fl-red:#c83e37;--fl-shadow:0 22px 70px rgba(8,18,42,.12)}
+  body.fl-body{background:#f3f5f9;color:var(--fl-ink);min-height:100vh}
+  .fl-shell{width:min(1240px,100%);margin:0 auto;padding:clamp(14px,3vw,34px);display:grid;grid-template-columns:minmax(320px,.86fr) minmax(420px,1fr);gap:clamp(18px,3vw,42px);align-items:start}
+  .fl-scene{position:sticky;top:24px;aspect-ratio:4/5;min-height:520px;overflow:hidden;border-radius:28px;background:#d6dfeb;box-shadow:var(--fl-shadow);isolation:isolate}
+  .fl-scene-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center 47%;animation:fl-pan 28s ease-in-out infinite alternate}
+  .fl-scene::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,18,42,.03),transparent 38%,rgba(8,18,42,.72))}
+  .fl-brand{position:absolute;z-index:2;top:22px;left:24px;color:#fff;text-decoration:none;font-weight:800;letter-spacing:.02em;text-shadow:0 2px 12px #0b1733a0}
+  .fl-scene-copy{position:absolute;z-index:2;left:clamp(20px,3vw,36px);right:clamp(20px,3vw,36px);bottom:clamp(24px,4vw,42px);color:#fff;text-shadow:0 2px 20px rgba(8,18,42,.36)}
+  .fl-scene-copy .fl-greek{font-family:Georgia,"Times New Roman",serif;font-size:clamp(19px,2vw,25px);letter-spacing:.05em;color:#fff5d8;margin-bottom:8px}
+  .fl-scene-copy p{max-width:360px;font-size:15px;line-height:1.55;color:#fff}
+  @keyframes fl-pan{from{transform:scale(1.02) translate3d(-.4%,0,0)}to{transform:scale(1.08) translate3d(.5%,-.5%,0)}}
+  .fl-main{min-width:0;background:var(--fl-paper);border:1px solid #e7e9ee;border-radius:28px;box-shadow:var(--fl-shadow);overflow:hidden}
+  .fl-progress-wrap{position:sticky;top:0;z-index:5;background:rgba(255,253,248,.96);backdrop-filter:blur(12px);padding:20px clamp(20px,4vw,42px) 14px;border-bottom:1px solid var(--fl-line)}
+  .fl-progress-top{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--fl-muted);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .fl-progress{height:7px;margin-top:10px;background:#e9eaf0;border-radius:99px;overflow:hidden}
+  .fl-progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,#c9a14a,#e6c877);border-radius:inherit;transition:width .35s ease}
+  .fl-content{padding:clamp(22px,4vw,42px);min-height:640px;display:flex;flex-direction:column}
+  .fl-kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#927129;margin:0 0 13px}
+  .fl-content h1{font-size:clamp(29px,4vw,43px);line-height:1.08;letter-spacing:-.04em;margin:0 0 16px}
+  .fl-content h2{font-size:clamp(24px,3.3vw,34px);line-height:1.15;letter-spacing:-.035em;margin:0 0 14px}
+  .fl-lede{font-size:16px;color:#3e4a61;line-height:1.65;margin:0 0 20px}
+  .fl-note{font-size:13px;line-height:1.55;color:var(--fl-muted);padding:14px 15px;border-radius:14px;background:#f4f5f8;border:1px solid var(--fl-line);margin:8px 0 18px}
+  .fl-note strong{color:var(--fl-ink)}
+  .fl-note a{color:#3a527e;text-decoration:underline;text-underline-offset:3px}
+  .fl-duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+  .fl-mini{padding:17px;border-radius:17px;background:#fff;border:1px solid var(--fl-line)}
+  .fl-mini b{display:block;margin-bottom:6px}
+  .fl-mini p{color:var(--fl-muted);font-size:13px;line-height:1.5}
+  .fl-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:13px 23px;border:0;border-radius:999px;background:linear-gradient(135deg,#f3dc98,#c9a14a);color:#0b1733;font:inherit;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 12px 25px rgba(160,122,44,.2);transition:transform .2s ease,filter .2s ease;text-decoration:none}
+  .fl-button:hover{transform:translateY(-1px);filter:brightness(1.03)}
+  .fl-button:disabled{opacity:.55;cursor:wait;transform:none}
+  .fl-button--quiet{background:#fff;border:1px solid var(--fl-line);box-shadow:none;color:var(--fl-ink)}
+  .fl-start{margin-top:6px;width:100%}
+  .fl-q{font-size:16px;font-weight:700;line-height:1.45;margin:0 0 8px}
+  .fl-help{font-size:13px;color:var(--fl-muted);line-height:1.55;margin:0 0 18px}
+  .fl-field{margin:0 0 18px}
+  .fl-field label,.fl-label{display:block;font-size:13px;font-weight:700;margin:0 0 7px}
+  .fl-required{color:var(--fl-red);font-size:16px;margin-left:3px}
+  .fl-input,.fl-textarea{box-sizing:border-box;width:100%;border:1px solid #cfd5df;border-radius:13px;background:#fff;color:var(--fl-ink);font:inherit;font-size:15px;line-height:1.5;padding:13px 14px;outline:none;transition:border-color .18s,box-shadow .18s}
+  .fl-input:focus,.fl-textarea:focus{border-color:#b58a34;box-shadow:0 0 0 3px rgba(201,161,74,.18)}
+  .fl-textarea{min-height:112px;resize:vertical}
+  .fl-textarea[rows="3"]{min-height:88px}
+  .fl-picks{display:flex;flex-wrap:wrap;gap:8px;margin:9px 0 17px}
+  .fl-pick{box-sizing:border-box;min-height:40px;padding:9px 13px;border:1px solid #d9dee7;border-radius:999px;background:#fff;color:#26334d;font:inherit;font-size:13px;line-height:1.25;cursor:pointer;transition:background .16s,border-color .16s,transform .16s,box-shadow .16s}
+  .fl-pick:hover{border-color:#c8a757;transform:translateY(-1px)}
+  .fl-pick[aria-pressed="true"]{border-color:#a67c2b;background:#f8edcf;color:#36290f;box-shadow:0 0 0 2px #f2e2b7}
+  .fl-pick:focus-visible{outline:3px solid #927129;outline-offset:2px}
+  .fl-pick--small{min-width:42px;padding:8px 10px;text-align:center;font-weight:800}
+  .fl-pick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:9px 0 17px}
+  .fl-pick-grid .fl-pick{min-height:48px;border-radius:13px;text-align:left}
+  .fl-rank-picks{display:flex;flex-direction:column;gap:5px}
+  .fl-rank-picks .fl-pick{min-width:54px;padding:7px 9px;text-align:center}
+  .fl-cost-card{margin:12px 0;border:1px solid var(--fl-line);border-radius:15px;background:#fff;overflow:hidden}
+  .fl-cost-card summary{padding:14px 16px;cursor:pointer;font-size:14px;font-weight:800;color:var(--fl-ink);list-style:none}
+  .fl-cost-card summary::-webkit-details-marker{display:none}
+  .fl-cost-card summary::after{content:"+";float:right;color:#927129;font-size:19px;line-height:1}
+  .fl-cost-card[open] summary::after{content:"−"}
+  .fl-cost-card-body{padding:0 15px 15px}
+  .fl-costs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .fl-costs .fl-input{font-variant-numeric:tabular-nums}
+  .fl-inline-note{font-size:12px;color:var(--fl-muted);margin:8px 0 0;line-height:1.5}
+  .fl-choice-list{display:grid;gap:9px}
+  .fl-choice{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--fl-line);background:#fff;border-radius:13px;padding:12px 13px;cursor:pointer;font-size:14px;line-height:1.45}
+  .fl-choice input{margin:3px 0 0;accent-color:#a77b2c;flex:0 0 auto}
+  .fl-ideas{border:1px solid #ead8af;background:#fffaf0;border-radius:15px;padding:14px;margin:15px 0 20px}
+  .fl-ideas-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .fl-ideas-head strong{font-size:13px}
+  .fl-ideas-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .fl-idea-chip{border:1px solid #dfc789;background:#fff;border-radius:999px;padding:8px 11px;color:#4a3a1b;font:inherit;font-size:12px;cursor:pointer;text-align:left}
+  .fl-idea-chip:hover{background:#f8edcf}
+  .fl-offers{display:grid;gap:12px;margin:14px 0 20px}
+  .fl-offer{border:1px solid var(--fl-line);border-radius:17px;padding:17px;background:#fff;display:grid;grid-template-columns:1fr 86px;gap:14px;align-items:start}
+  .fl-offer h3{font-size:17px;line-height:1.3;margin:0 0 6px}
+  .fl-offer p{font-size:13px;line-height:1.55;color:var(--fl-muted);margin:0}
+  .fl-offer small{display:block;color:#86651f;font-weight:700;margin-top:8px}
+  .fl-ranks{display:flex;gap:5px;margin-top:6px}
+  .fl-ranks .fl-pick{min-width:32px;min-height:34px;padding:6px 8px}
+  .fl-error{padding:11px 13px;border-radius:12px;background:#fff0ef;color:#912e27;border:1px solid #f0c6c2;font-size:13px;margin:0 0 14px}
+  .fl-nav{display:flex;justify-content:space-between;gap:12px;margin-top:auto;padding-top:25px}
+  .fl-nav .fl-button{min-width:132px}
+  .fl-footer{border-top:1px solid var(--fl-line);padding:15px clamp(20px,4vw,42px);font-size:11px;color:var(--fl-muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .fl-footer a{color:inherit}
+  .fl-honeypot{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important}
+  .fl-thanks{padding:34px 0}
+  .fl-thanks .fl-stamp{font-size:36px;margin-bottom:14px}
+  .fl-hidden{display:none!important}
+  :focus-visible{outline:3px solid #927129;outline-offset:3px}
+  @media(max-width:900px){.fl-shell{grid-template-columns:minmax(0,1fr);max-width:700px}.fl-scene{position:relative;top:auto;min-height:0;aspect-ratio:4/2.8;border-radius:22px}.fl-scene-copy{bottom:18px}.fl-scene-copy p{max-width:480px}.fl-main{border-radius:22px}.fl-content{min-height:560px}}
+  @media(max-width:560px){.fl-shell{padding:12px;gap:12px}.fl-scene{aspect-ratio:4/4.4;min-height:300px;max-height:390px;border-radius:18px}.fl-scene-bg{object-fit:contain;object-position:center;background:#d6dfeb}.fl-brand{top:13px;left:15px;font-size:13px}.fl-scene-copy{left:15px;right:15px;bottom:18px}.fl-scene-copy .fl-greek{font-size:15px;margin-bottom:3px}.fl-scene-copy p{font-size:12px;max-width:280px}.fl-progress-wrap{padding:15px 18px 12px}.fl-content{padding:23px 19px;min-height:0}.fl-content h1{font-size:31px}.fl-content h2{font-size:27px}.fl-duo{grid-template-columns:1fr}.fl-costs{grid-template-columns:1fr}.fl-offer{grid-template-columns:1fr 78px;gap:10px}.fl-pick-grid{grid-template-columns:1fr}.fl-nav .fl-button{min-width:0;flex:1;padding:12px 16px}.fl-footer{padding:13px 18px}}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body class="fl-body">
+<main class="fl-shell">
+  <aside class="fl-scene" aria-label="Tempio di Delfi in costruzione con piccoli robot assistenti">
+    <img class="fl-scene-bg" src="/assets/funkylancers-delphi-robot-builders.jpg" alt="Robot costruttori al lavoro intorno al tempio di Delfi">
+    <a class="fl-brand" href="/" aria-label="George Matei, torna al sito">GEORGE MATEI</a>
+    <div class="fl-scene-copy">
+      <div class="fl-greek" lang="grc">γνῶθι σεαυτόν <span aria-hidden="true">·</span> conosci te stesso</div>
+      <p>Prima facciamo chiarezza su ciò che conta. Poi immaginiamo cosa può costruire l’AI per aiutarti a farlo.</p>
+    </div>
+  </aside>
+
+  <section class="fl-main" aria-live="polite">
+    <div class="fl-progress-wrap" id="progressWrap" hidden>
+      <div class="fl-progress-top"><span>Ricerca Funky Lancers</span><span id="stepCount">1 di 12</span></div>
+      <div class="fl-progress" role="progressbar" aria-label="Avanzamento del questionario" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progressFill"></i></div>
+    </div>
+    <div class="fl-content" id="content"></div>
+    <div class="fl-footer"><span>Una domanda alla volta · Nessuna risposta viene pubblicata singolarmente</span><a href="/privacy/" target="_blank" rel="noopener">Privacy e dati</a></div>
+  </section>
+</main>
+<script>
+(() => {
+  "use strict";
+  const API = "https://questionari-production.up.railway.app/q/funkylancers-ricerca-ai";
+  const KEY = "gm-funky-survey-v1";
+  const content = document.getElementById("content");
+  const progressWrap = document.getElementById("progressWrap");
+  const progressFill = document.getElementById("progressFill");
+  const stepCount = document.getElementById("stepCount");
+  const progressBar = document.querySelector(".fl-progress");
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { return {}; } };
+  let answers = read();
+  let current = -1;
+  let sending = false;
+  const sectors = ["Servizi professionali", "Freelance e consulenza", "Agenzie e studi", "Commercio ed e-commerce", "Sanità e benessere", "Ospitalità e turismo", "Produzione e distribuzione", "Edilizia e immobiliare", "Altro / preferisco non dire"];
+  const roles = ["Freelance", "Titolare o socio", "Manager", "Collaboratore o dipendente", "Consulente per aziende", "Altro / preferisco non dire"];
+  const bank = {
+    "Freelance e consulenza": { pain:["Passo da un cliente all’altro senza un sistema chiaro per priorità e follow-up.","Preparo a mano materiali e report che si assomigliano ogni volta.","Ho richieste e idee, ma fatico a trasformarle in progetti consegnati."], desire:["Una settimana con priorità chiare e più tempo per il lavoro che conta.","Un team di AI che prepara il lavoro e mi lascia decisioni e controllo.","Un’offerta digitale che posso vendere o usare con i clienti."], fear:["Delegare all’AI e perdere qualità o controllo.","Pagare strumenti e formazione che poi non entrano nel mio lavoro.","Non sapere da dove iniziare o come valutare una soluzione."], ideas:["Un assistente che trasforma note e richieste in brief, task e prossimi passi.","Un team AI personalizzato che prepara bozze, riepiloghi e follow-up per cliente.","Un prodotto digitale riutilizzabile che integra il tuo metodo e fa risparmiare lavoro ripetitivo."] },
+    "Agenzie e studi": { pain:["Le informazioni dei clienti passano a mano fra persone e strumenti.","Le attività ricorrenti dipendono da una o due persone esperte.","Il team rifà più volte raccolta dati, brief, report o controlli."], desire:["Un passaggio di consegne chiaro anche quando il team cresce.","Ridurre i colli di bottiglia senza abbassare qualità e relazione.","Avere un’offerta AI concreta da vendere ai clienti."], fear:["Aggiungere un altro software che nessuno usa.","Esporre dati dei clienti o fare brutte figure con una risposta automatica.","Dipendere da un fornitore per ogni cambiamento."], ideas:["Un intake intelligente che controlla brief e prepara il progetto per il team.","Un copilota per account/clienti che raccoglie stato, decisioni e prossime azioni.","Un agente di delivery che prepara report e materiali, con approvazione umana."] },
+    "Commercio ed e-commerce": { pain:["Ordini, richieste, disponibilità e aggiornamenti sono sparsi tra canali.","Il cliente aspetta una risposta perché il team deve cercare i dati.","Resi, preventivi o assistenza richiedono molti passaggi manuali."], desire:["Rispondere prima senza perdere il tono umano.","Sapere cosa accade a ogni richiesta e ordine.","Ridurre il lavoro manuale nei picchi senza perdere controllo."], fear:["Un agente che promette disponibilità o condizioni sbagliate.","Integrare sistemi senza poter tornare indietro.","Non vedere un ritorno chiaro rispetto al costo."], ideas:["Un assistente che legge richieste, trova i dati e prepara una risposta da approvare.","Un flusso ordini che segnala eccezioni e assegna il prossimo passo.","Un sistema che riconnette richieste, stock, assistenza e consegna."] },
+    "Sanità e benessere": { pain:["La segreteria ricopia le stesse informazioni in più strumenti.","Le richieste e i follow-up richiedono troppo lavoro amministrativo.","Il professionista perde tempo a ricostruire il contesto prima di ogni appuntamento."], desire:["Più tempo di qualità con le persone e meno lavoro amministrativo.","Informazioni ordinate e disponibili quando servono.","Un flusso affidabile per appuntamenti e follow-up."], fear:["Privacy e gestione di informazioni delicate.","Automazioni che comunicano in modo inappropriato.","Un sistema che aggiunge complessità al lavoro di cura."], ideas:["Un assistente amministrativo che prepara documenti e promemoria, senza decidere sul percorso clinico.","Un flusso di appuntamenti e richiami con controllo del professionista.","Un riepilogo di contesto e attività, con accessi e approvazioni per ruolo."] },
+    "Ospitalità e turismo": { pain:["Le richieste arrivano in orari e canali diversi.","Il personale ripete le stesse risposte su disponibilità e servizi.","Le informazioni di prenotazione e operatività non sono allineate."], desire:["Rispondere più rapidamente anche fuori orario.","Ridurre gli errori nei passaggi fra prenotazione e servizio.","Liberare il team per l’esperienza dell’ospite."], fear:["Dare informazioni sbagliate su prezzi o disponibilità.","Perdere il tocco umano nell’accoglienza.","Pagare un sistema che non si integra con le prenotazioni."], ideas:["Un assistente che risponde alle domande frequenti usando informazioni approvate.","Un flusso che raccoglie richieste speciali e le assegna al reparto giusto.","Un pannello operativo che evidenzia arrivi, attività e cose da confermare."] },
+    "Produzione e distribuzione": { pain:["Le informazioni di ordine e produzione vengono reinserite a mano.","Controllare dati mancanti o incoerenti richiede tempo e attenzione.","Il reparto dipende da file, messaggi e conoscenze non documentate."], desire:["Più controllo su input, eccezioni e passaggi di consegna.","Meno errori e meno tempo speso a cercare informazioni.","Dati operativi affidabili per decidere prima."], fear:["Fermare la produzione durante la migrazione.","Un errore automatico che si propaga nei reparti.","Perdere la conoscenza accumulata nel software attuale."], ideas:["Un agente che controlla ordini e segnala dati mancanti prima della lavorazione.","Un flusso che collega richiesta, preventivo, produzione e consegna.","Un pannello che prepara alert e report, lasciando al responsabile l’approvazione."] },
+    "Edilizia e immobiliare": { pain:["Preventivi, documenti e aggiornamenti vivono in luoghi diversi.","I sopralluoghi generano note che poi vanno ricopiate.","È difficile sapere a che punto è ogni pratica o cantiere."], desire:["Avere il prossimo passo visibile per ogni pratica o commessa.","Preparare preventivi e aggiornamenti con meno lavoro ripetitivo.","Ridurre i ritardi dovuti a informazioni che mancano."], fear:["Una stima AI errata che crea problemi economici o contrattuali.","Un software rigido che non rispecchia come lavora il team.","Costi e tempi di sviluppo che si allungano."], ideas:["Un assistente che trasforma note di sopralluogo in attività e verbali da confermare.","Un flusso offerte che raccoglie dati, prepara documenti e ricorda follow-up.","Una vista unica di commesse, documenti e prossime decisioni."] },
+    "Servizi professionali": { pain:["Le stesse informazioni vengono cercate o ricopiate in più strumenti.","Il lavoro si blocca quando manca una persona o un dato.","È difficile vedere cosa è in ritardo e quale decisione serve."], desire:["Un flusso più semplice, con meno passaggi manuali.","Sapere cosa è stato fatto, da chi e cosa manca.","Usare l’AI senza consegnarle decisioni che spettano alle persone."], fear:["Spendere senza un risultato misurabile.","Non riuscire a integrare il sistema nel lavoro quotidiano.","Perdere dati, controllo o qualità."], ideas:["Un assistente che prepara pratiche e controlla i campi mancanti.","Un flusso che trasforma richieste in task, approvazioni e consegne.","Una vista operativa che collega dati, responsabili ed eccezioni."] }
+  };
+  const generic = {pain:["Un’attività ripetitiva che torna ogni settimana.","Un’informazione che si perde fra persone o strumenti.","Un passaggio che si blocca se una persona non è disponibile."],desire:["Avere più tempo per un progetto importante.","Vedere con chiarezza cosa succede e cosa fare dopo.","Delegare attività senza rinunciare al controllo."],fear:["Spendere soldi senza vedere un risultato concreto.","Aggiungere un sistema che il team non utilizza.","Perdere controllo, qualità o riservatezza."],ideas:["Un agente AI che prepara il lavoro e chiede conferma prima di inviare o modificare dati.","Un sistema che controlla input e segnala eccezioni prima che diventino problemi.","Un flusso che collega richiesta, lavoro, consegna e apprendimento."]};
+  const sectorBank = () => bank[answers.settore] || generic;
+  const ideaExtras = {
+    pain:["Rincorro persone o clienti per ottenere informazioni che dovrebbero essere già disponibili.","Ripeto controlli manuali perché non mi fido dei dati o dei passaggi automatici.","Perdo opportunità perché rispondo tardi o dimentico il passo successivo.","Lavoro in strumenti scollegati e ricostruisco il contesto ogni volta.","Le attività si accumulano quando arrivano più richieste del solito.","Solo una persona sa come completare un passaggio importante."],
+    desire:["Sapere ogni giorno qual è il prossimo passo utile.","Rispondere prima alle richieste senza restare incollato allo schermo.","Consegnare con più costanza senza allungare le giornate.","Avere informazioni affidabili senza rincorrerle tra chat e file.","Far crescere il lavoro senza far crescere allo stesso ritmo le ore.","Passare più tempo con clienti, colleghi o progetti che contano."],
+    fear:["Che il sistema faccia un errore e nessuno se ne accorga in tempo.","Che il progetto parta bene ma poi resti fermo o venga abbandonato.","Che ogni modifica richieda sempre l’intervento di uno specialista.","Che i dati finiscano in strumenti o mani non adatte.","Che il costo reale superi quello previsto senza un risultato chiaro.","Che automatizzare renda il rapporto con le persone più freddo."],
+    ideas:["Un assistente che prepara risposte e follow-up a partire dalle conversazioni già avute.","Un sistema che raccoglie dati dai moduli e li trasforma in attività ordinate.","Un agente che riassume riunioni e assegna i prossimi passi alle persone giuste.","Un flusso che controlla documenti, segnala ciò che manca e prepara una bozza.","Una base di conoscenza aziendale interrogabile in linguaggio naturale.","Un assistente che prepara contenuti o materiali riutilizzando il metodo del professionista."]
+  };
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch {} };
+  const field = (id,label,opts={}) => `<div class="fl-field"><label for="${id}">${label}${opts.required?'<span class="fl-required" aria-label="obbligatorio">*</span>':''}</label>${opts.textarea?`<textarea class="fl-textarea" id="${id}" data-field="${id}" ${opts.rows?`rows="${opts.rows}"`:''} ${opts.required?'required':''} maxlength="1600" placeholder="${opts.placeholder||'Scrivi con parole tue…'}">${esc(answers[id]||'')}</textarea>`:`<input class="fl-input" id="${id}" data-field="${id}" type="${opts.type||'text'}" ${opts.required?'required':''} ${opts.min!==undefined?`min="${opts.min}"`:''} ${opts.step?`step="${opts.step}"`:''} ${opts.inputmode?`inputmode="${opts.inputmode}"`:''} maxlength="${opts.maxlength||500}" value="${esc(answers[id]||'')}" placeholder="${opts.placeholder||''}">`}</div>`;
+  const choices = (id,label,options,{grid=true,empty=''}={}) => `<div class="fl-field"><span class="fl-label">${label}</span><input type="hidden" id="${id}" data-field="${id}" value="${esc(answers[id]||'')}"><div class="${grid?'fl-pick-grid':'fl-picks'}" role="group" aria-label="${esc(label)}">${empty?`<button type="button" class="fl-pick" data-choice-field="${id}" data-choice-value="" aria-pressed="${!answers[id]}">${esc(empty)}</button>`:''}${options.map(o=>`<button type="button" class="fl-pick" data-choice-field="${id}" data-choice-value="${esc(o)}" aria-pressed="${answers[id]===o}">${esc(o)}</button>`).join('')}</div></div>`;
+  const generator = (kind,targetId) => `<div class="fl-ideas"><div class="fl-ideas-head"><strong>Ti serve uno spunto? Ecco esempi per il tuo settore.</strong><button type="button" class="fl-button fl-button--quiet" data-generate="${kind}" data-target="${targetId}">Mostrami idee</button></div><div class="fl-ideas-list" id="ideas-${kind}"></div><p class="fl-inline-note">Sono solo spunti: scegli, modifica o ignora. Il generatore funziona nella pagina, senza inviare i tuoi dati a un’AI.</p></div>`;
+  const textareaGroup = (title,help,kind,ids) => `<p class="fl-q">${title}</p><p class="fl-help">${help}</p>${generator(kind,ids[0])}${ids.map((id,i)=>field(id,`Risposta ${i+1}`,{textarea:true,rows:3,required:i===0,placeholder:i===0?'La prima risposta è obbligatoria. Le altre due sono facoltative.':'Facoltativa'})).join('')}`;
+  const costCard = (n) => `<details class="fl-cost-card"><summary>Problema ${n}${answers[`pain${n}`]?`: ${esc(answers[`pain${n}`].slice(0,72))}${answers[`pain${n}`].length>72?'…':''}`:''}</summary><div class="fl-cost-card-body"><div class="fl-field"><span class="fl-label">Stima economica (€ circa)</span><div class="fl-costs"><div><label for="pain${n}_cost_now">Ultimi 12 mesi</label><input class="fl-input" id="pain${n}_cost_now" data-field="pain${n}_cost_now" type="number" min="0" step="100" inputmode="decimal" value="${esc(answers[`pain${n}_cost_now`]||'')}" placeholder="€"></div><div><label for="pain${n}_cost_1y">Prossimi 12 mesi</label><input class="fl-input" id="pain${n}_cost_1y" data-field="pain${n}_cost_1y" type="number" min="0" step="100" inputmode="decimal" value="${esc(answers[`pain${n}_cost_1y`]||'')}" placeholder="€"></div><div><label for="pain${n}_cost_2y">Prossimi 24 mesi</label><input class="fl-input" id="pain${n}_cost_2y" data-field="pain${n}_cost_2y" type="number" min="0" step="100" inputmode="decimal" value="${esc(answers[`pain${n}_cost_2y`]||'')}" placeholder="€"></div></div><p class="fl-inline-note">Se non sai quantificarlo, salta pure. Non inserire dati fiscali o cifre riservate.</p></div><div class="fl-field"><span class="fl-label">Ore coinvolte in una settimana tipica</span><input type="hidden" id="pain${n}_hours" data-field="pain${n}_hours" value="${esc(answers[`pain${n}_hours`]||'')}"><div class="fl-picks" role="group" aria-label="Ore di lavoro coinvolte">${['Meno di 1 ora','1–3 ore','4–8 ore','9–15 ore','Più di 15 ore','Non saprei'].map(x=>`<button type="button" class="fl-pick" data-choice-field="pain${n}_hours" data-choice-value="${esc(x)}" aria-pressed="${answers[`pain${n}_hours`]===x}">${x}</button>`).join('')}</div></div></div></details>`;
+  const costsPage = () => `<p class="fl-q">Quanto pesano i problemi, oggi e nel tempo?</p><p class="fl-help">Per ciascuno, se riesci, stima il costo negli ultimi 12 mesi e nei prossimi 12 e 24 mesi. Considera ore, errori, ritardi, opportunità mancate e spese extra. Apri solo i problemi che sai quantificare; le stime sono facoltative.</p>${[1,2,3].map(costCard).join('')}`;
+  const offerData = [
+    {key:'idea_pm',title:'Project management per guidare il tuo lavoro e il tuo team AI',text:'Un percorso pratico per applicare metodi di project management al lavoro freelance: organizzare sé stessi, i clienti e un team personalizzato di AI, così da gestire progetti e deleghe con più metodo.',sub:'Affiancamento da esplorare in 3, 6 o 12 mesi.'},
+    {key:'idea_coaching',title:'Coaching per reggere l’upgrade',text:'Un percorso di crescita personale sulle capacità che servono per lavorare con l’AI: delega, focus, centratura, gestione dello stato interno, identità, domande e cambi di paradigma. Possibile formato: corso, community e sessione settimanale di gruppo.',sub:'Potrebbe vivere da solo o insieme al percorso di project management.'},
+    {key:'idea_products',title:'Agenti AI e prodotti digitali da usare o vendere',text:'Costruire agenti o prodotti digitali da integrare nel proprio lavoro, offrire ai clienti, vendere con una fee o usare come lead magnet. Si può imparare a farlo, costruirlo insieme o delegarne la realizzazione.',sub:'Modalità possibili: DIY, DWY o DFY.'}
+  ];
+  const baseSteps = [
+    {id:'role',kicker:'Contesto',title:'Da quale prospettiva rispondi?',render:()=>`${choices('ruolo','Il ruolo che descrive meglio la tua esperienza',roles,{empty:'Preferisco non dirlo'})}<p class="fl-inline-note">Non raccogliamo nome, azienda o profilo.</p>`},
+    {id:'sector',kicker:'Contesto',title:'In quale settore lavori?',render:()=>`${choices('settore','Scegli il settore che ti è più vicino',sectors,{empty:'Preferisco non dirlo'})}<div class="fl-field"><label for="settore_altro">Se “Altro”, quale?</label><input class="fl-input" id="settore_altro" data-field="settore_altro" value="${esc(answers.settore_altro||'')}" placeholder="Facoltativo"></div><p class="fl-inline-note">Il settore serve solo a mostrarti esempi pertinenti nel generatore di idee.</p>`},
+    {id:'problems',kicker:'Problemi',title:'Quali sono i tre problemi che pesano di più?',render:()=>`<p class="fl-help">Descrivi situazioni concrete, in ordine di importanza. Per esempio: “ricopio lo stesso dato in tre sistemi”. La prima risposta è obbligatoria; la seconda e la terza sono facoltative.</p>${generator('pain','pain1')}${field('pain1','Problema 1',{textarea:true,rows:3,required:true,placeholder:'Il problema che pesa di più'})}${field('pain2','Problema 2',{textarea:true,rows:3,placeholder:'Facoltativo'})}${field('pain3','Problema 3',{textarea:true,rows:3,placeholder:'Facoltativo'})}`},
+    {id:'costs',kicker:'Problemi',title:'Quanto pesano questi problemi nel tempo?',render:costsPage},
+    {id:'desires',kicker:'Desideri',title:'Se avessi la lampada, cosa vorresti cambiare?',render:()=>textareaGroup('Quali sono i risultati o i cambiamenti che desideri di più?','Immagina di poter togliere gli ostacoli e trasformare il lavoro. Scrivi fino a tre desideri, in ordine di importanza. Almeno il primo è richiesto.','desire',['desiderio1','desiderio2','desiderio3'])},
+    {id:'fears',kicker:'Paure',title:'Che cosa ti preoccupa di questo upgrade?',render:()=>textareaGroup('Quali paure o rischi ti verrebbero in mente?','Per esempio: costo, tempo, privacy, qualità, controllo, adozione del team, dipendenza da chi costruisce. Non servono risposte “giuste”. Almeno la prima è richiesta.','fear',['paura1','paura2','paura3'])},
+    {id:'ideas',kicker:'Tre direzioni per freelance',title:'Quale di queste vorresti esplorare?',render:()=>`<p class="fl-help">Queste sono ipotesi da validare, non offerte definitive. Metti 1 alla più interessante, 2 alla seconda, 3 alla terza. Puoi compilare solo la prima o lasciare tutte e tre vuote. Ogni numero si usa una volta sola.</p>${generator('systems','idea_suggerita')}${field('idea_suggerita','Se vuoi, descrivi un’idea concreta che ti viene in mente',{textarea:true,placeholder:'Facoltativo'})}<div class="fl-offers">${offerData.map((o,i)=>`<article class="fl-offer"><div><h3>${i+1}. ${o.title}</h3><p>${o.text}</p><small>${o.sub}</small></div><div><span class="fl-label">Ordine</span><input type="hidden" id="${o.key}" data-rank="${o.key}" value="${esc(answers[o.key]||'')}"><div class="fl-rank-picks" role="group" aria-label="Ordine di interesse">${['1','2','3'].map(v=>`<button type="button" class="fl-pick fl-pick--small" data-rank-pick="${o.key}" data-rank-value="${v}" aria-pressed="${answers[o.key]===v}">${v}</button>`).join('')}${`<button type="button" class="fl-pick fl-pick--small" data-rank-pick="${o.key}" data-rank-value="" aria-pressed="${!answers[o.key]}">—</button>`}</div></div></article>`).join('')}</div><label class="fl-choice"><input id="noneIdeas" type="checkbox" ${answers.noneIdeas?'checked':''}><span>Nessuna delle tre mi interessa: lascio vuoti i punteggi e valuto l’alternativa per le aziende nella prossima schermata.</span></label><div id="rankError" class="fl-error fl-hidden" role="alert"></div>`},
+    {id:'purchase',kicker:'Decisione',title:'Come preferiresti affrontare questo upgrade?',render:()=>`<p class="fl-help">Immagina che una delle tre direzioni freelance risolva un problema importante per te. Quale formato ti aiuterebbe davvero a portarla nel lavoro quotidiano?</p><div class="fl-choice-list">${[
+      'Un corso pratico da seguire in autonomia, con esempi e strumenti pronti.',
+      'Un percorso di gruppo con esercizi, confronto e una sessione periodica.',
+      'Affiancamento individuale per applicare tutto al mio lavoro e ai miei clienti.',
+      'Un formato ibrido: lo costruiamo insieme e mi insegni come mantenerlo.',
+      'Preferisco delegare la realizzazione e ricevere il sistema pronto, con passaggio di consegne.',
+      'Una singola consulenza per capire da dove partire.',
+      'Nessuno di questi formati mi interesserebbe.'
+    ].map((x,i)=>`<label class="fl-choice"><input type="radio" name="decisione" value="${esc(x)}" data-radio="decisione" ${answers.decisione===x?'checked':''}><span>${esc(x)}</span></label>`).join('')}</div>${field('prova_necessaria','Che cosa vorresti vedere o sapere prima di scegliere?',{textarea:true,placeholder:'Facoltativo: risultati, esempi, competenze, durata, supporto, indipendenza, prezzo…'})}`},
+    {id:'note',kicker:'Ultima cosa',title:'C’è qualcosa che vuoi aggiungere?',render:()=>`${field('nota_finale','Una nota libera per George',{textarea:true,placeholder:'Facoltativa. Per favore non inserire nomi, email, aziende o informazioni riservate.'})}<p class="fl-note">Grazie per aver dedicato tempo a questa ricerca. Le risposte servono a capire quali problemi e desideri meritano davvero di diventare un progetto.</p>`}
+  ];
+  const companyStep = {id:'companyAlternative',kicker:'Alternativa per le aziende',title:'E se il cliente fosse un’azienda con un team?',render:()=>`<p class="fl-help">Un’altra direzione, rivolta alle imprese con reparti e software già in uso: rendere proattivo un gestionale obsoleto o collegare strumenti che oggi non si parlano. L’ipotesi è partire da un’analisi da €3–5 mila, con processi mappati, demo cliccabile e stima economica; l’eventuale realizzazione potrebbe partire da €10 mila, secondo il perimetro. È una direzione diversa dai tre percorsi freelance.</p>${generator('systems','company_idea')}${field('company_idea','Quale problema aziendale o software immagini?',{textarea:true,placeholder:'Facoltativo'})}${choices('idea_company_rating','Quanto ti sembra interessante, da 1 a 10?',Array.from({length:10},(_,i)=>String(i+1)),{grid:false,empty:'Salta'})}<p class="fl-q">Come reagisci all’ipotesi di pagare €3–5 mila per questa analisi?</p><div class="fl-choice-list">${[
+      'La prenderei in considerazione se vedessi la demo cliccabile e le ipotesi economiche prima di avviare lo sviluppo.',
+      'La valuterei solo con un primo progetto pilota più piccolo e circoscritto.',
+      'Potrebbe avere senso se il problema e il ritorno economico fossero dimostrati con chiarezza.',
+      'Preferirei pagare l’analisi solo se poi partisse anche la realizzazione.',
+      'Per me questa fascia di prezzo non avrebbe senso.',
+      'Dipende dal problema, dall’urgenza e da chi decide.',
+      'Non saprei valutarla.'
+    ].map((x)=>`<label class="fl-choice"><input type="radio" name="company_price_reaction" value="${esc(x)}" data-radio="company_price_reaction" ${answers.company_price_reaction===x?'checked':''}><span>${esc(x)}</span></label>`).join('')}</div>${field('idea_company_why','Che cosa la renderebbe più o meno convincente?',{textarea:true,placeholder:'Facoltativo: prezzo, tempi, proprietà del codice, adozione, dati, ritorno atteso…'})}`};
+  const getSteps = () => { const x=[...baseSteps]; if(answers.noneIdeas || ['idea_pm','idea_coaching','idea_products'].every(k=>!answers[k])) x.splice(x.findIndex(s=>s.id==='purchase'),0,companyStep); return x; };
+  const setAnswer = (id,value) => { answers[id]=value; save(); };
+  const next = () => { const steps=getSteps(); if(current<steps.length-1){current++; render();} else submit(); };
+  const back = () => { if(current>=0){current--;render();} };
+  function rankValidate(){
+    const vals=['idea_pm','idea_coaching','idea_products'].map(k=>answers[k]).filter(Boolean);
+    const node=document.getElementById('rankError'); if(!node)return true;
+    const unique=new Set(vals); const numbers=vals.map(Number).sort();
+    let message='';
+    if(unique.size!==vals.length) message='Usa ciascun numero una sola volta.';
+    else if(numbers.some((n,i)=>n!==i+1)) message='Quando assegni un punteggio, compila l’ordine senza salti: 1, poi eventualmente 2, poi 3.';
+    node.textContent=message; node.classList.toggle('fl-hidden',!message); return !message;
+  }
+  function addListeners(){
+    content.querySelectorAll('[data-field]').forEach(el=>{el.addEventListener('input',()=>setAnswer(el.dataset.field,el.value));el.addEventListener('change',()=>setAnswer(el.dataset.field,el.value));});
+    content.querySelectorAll('[data-choice-field]').forEach(btn=>btn.addEventListener('click',()=>{
+      const id=btn.dataset.choiceField,value=btn.dataset.choiceValue,hidden=document.getElementById(id);if(!hidden)return;
+      hidden.value=value;setAnswer(id,value);
+      content.querySelectorAll(`[data-choice-field="${id}"]`).forEach(item=>item.setAttribute('aria-pressed',String(item===btn)));
+    }));
+    content.querySelectorAll('[data-radio]').forEach(el=>el.addEventListener('change',()=>setAnswer(el.dataset.radio,el.value)));
+    content.querySelectorAll('[data-rank-pick]').forEach(btn=>btn.addEventListener('click',()=>{
+      const id=btn.dataset.rankPick,value=btn.dataset.rankValue,hidden=document.getElementById(id);if(!hidden)return;
+      hidden.value=value;setAnswer(id,value);
+      content.querySelectorAll(`[data-rank-pick="${id}"]`).forEach(item=>item.setAttribute('aria-pressed',String(item===btn)));
+      if(value){answers.noneIdeas=false;const c=document.getElementById('noneIdeas');if(c)c.checked=false;save();}
+      rankValidate();
+    }));
+    const none=document.getElementById('noneIdeas'); if(none) none.addEventListener('change',()=>{setAnswer('noneIdeas',none.checked?'Sì':'');if(none.checked){['idea_pm','idea_coaching','idea_products'].forEach(k=>{setAnswer(k,'');const h=document.getElementById(k);if(h)h.value='';content.querySelectorAll(`[data-rank-pick="${k}"]`).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.rankValue==='')));});}});
+    content.querySelectorAll('[data-generate]').forEach(btn=>btn.addEventListener('click',()=>showIdeas(btn.dataset.generate,btn.dataset.target)));
+    const n=document.getElementById('next'); if(n)n.addEventListener('click',()=>{
+      if(steps[current]?.id==='ideas'&&!rankValidate())return;
+      const required=content.querySelectorAll('[data-field][required]');
+      for(const el of required){if(!el.value.trim()){el.focus();el.setAttribute('aria-invalid','true');let msg=content.querySelector('.fl-required-error');if(!msg){msg=document.createElement('p');msg.className='fl-error fl-required-error';msg.setAttribute('role','alert');msg.textContent='Compila almeno il primo campo richiesto per continuare.';content.querySelector('.fl-nav').before(msg);}return;}}
+      next();
+    });
+    const b=document.getElementById('back');if(b)b.addEventListener('click',back);
+  }
+  function showIdeas(kind,target){
+    const dest=kind==='systems'?'ideas-'+kind:'ideas-'+kind;const box=document.getElementById(dest);if(!box)return;
+    const b=sectorBank();const base=kind==='pain'?b.pain:kind==='desire'?b.desire:kind==='fear'?b.fear:b.ideas;const items=[...base,...ideaExtras[kind==='systems'?'ideas':kind]].slice(0,9);
+    box.innerHTML=items.map((t,i)=>`<button type="button" class="fl-idea-chip" data-insert="${esc(t)}" data-target="${esc(target)}"><span aria-hidden="true">${i+1}.</span> ${esc(t)}</button>`).join('');
+    box.querySelectorAll('[data-insert]').forEach(btn=>btn.addEventListener('click',()=>{
+      const id=btn.dataset.target,el=document.getElementById(id);if(el){el.value=btn.dataset.insert;setAnswer(id,btn.dataset.insert);el.focus();}
+    }));
+  }
+  function render(){
+    steps=getSteps();progressWrap.hidden=current<0;
+    if(current<0){
+      content.innerHTML=`<p class="fl-kicker">Una ricerca tra Funky Lancers</p><h1>Conosci il tuo lavoro. Immagina il prossimo passo.</h1><p class="fl-lede">Immagina un coach che, con le domande giuste, ti aiuta a capire cosa vuoi, a togliere ciò che non sei e a scegliere dove mettere energia. E una lampada AI capace di trasformare un bisogno reale in software e impiegati digitali che lavorano con te.</p><div class="fl-duo"><div class="fl-mini"><b>Prima: tu</b><p>Desideri, paure, identità, attenzione e ciò che vuoi smettere di portare.</p></div><div class="fl-mini"><b>Poi: il sistema</b><p>Software, AI e persone che collaborano per rendere possibile quel risultato.</p></div></div><p class="fl-note"><strong>Riservatezza.</strong> Non chiediamo nome, email, azienda o profilo Skool. Il database delle risposte non salva l’indirizzo IP e non collega il tuo account alla compilazione. I servizi che ospitano il sito e l’API possono trattare dati tecnici, come gli IP, per sicurezza: non posso promettere anonimato assoluto dei log infrastrutturali. Evita nomi di clienti, aziende e dati riservati. Le risposte aperte potranno essere analizzate con strumenti AI dopo aver rimosso eventuali dettagli identificativi. <a href="/privacy/" target="_blank" rel="noopener">Leggi l’informativa</a>.</p><p class="fl-help">Circa 8–10 minuti. Puoi saltare le stime che non conosci. Le risposte restano in questo dispositivo fino all’invio.</p><button class="fl-button fl-start" id="start">Inizia la ricerca</button>`;
+      document.getElementById('start').addEventListener('click',()=>{current=0;render();});return;
+    }
+    if(current>=steps.length){current=steps.length-1;}
+    const s=steps[current];const pct=Math.round(((current+1)/steps.length)*100);progressFill.style.width=pct+'%';progressBar.setAttribute('aria-valuenow',String(pct));stepCount.textContent=`${current+1} di ${steps.length}`;
+    content.innerHTML=`<p class="fl-kicker">${s.kicker}</p><h2>${s.title}</h2>${s.render()}<label class="fl-honeypot" aria-hidden="true">Lascia vuoto<input type="text" id="sito" name="sito" tabindex="-1" autocomplete="off"></label><div class="fl-nav"><button type="button" class="fl-button fl-button--quiet" id="back">Indietro</button><button type="button" class="fl-button" id="next">${current===steps.length-1?'Invia le risposte':'Continua'}</button></div>`;
+    document.getElementById('back').style.visibility=current===0?'hidden':'visible';
+    addListeners();
+  }
+  async function submit(){
+    if(sending)return;sending=true;const btn=document.getElementById('next');if(btn){btn.disabled=true;btn.textContent='Invio…';}
+    const payload={risposte:{...answers},sito:document.getElementById('sito')?.value||''};
+    try{
+      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      let j={};try{j=await r.json();}catch{}
+      if(!r.ok)throw new Error(j.errore||'invio non riuscito');
+      try{localStorage.removeItem(KEY);}catch{}
+      progressWrap.hidden=true;
+      content.innerHTML=`<div class="fl-thanks"><div class="fl-stamp" aria-hidden="true">✦</div><p class="fl-kicker">Grazie</p><h2>La tua prospettiva è arrivata.</h2><p class="fl-lede">Le tue risposte aiuteranno a capire quali problemi vale la pena risolvere e quale direzione merita un test concreto.</p><p class="fl-note">Non riceverai richieste di contatto da questa compilazione. Se vuoi aggiungere qualcosa, puoi scrivere una nota facoltativa nella schermata precedente; non inserire dati che ti identifichino.</p><a class="fl-button" href="/">Torna al sito</a></div>`;
+    }catch(e){
+      const err=document.createElement('p');err.className='fl-error';err.setAttribute('role','alert');err.textContent=`Non sono riuscito a inviare le risposte (${e.message}). Sono ancora salvate su questo dispositivo: riprova tra poco.`;content.querySelector('.fl-nav')?.before(err);if(btn){btn.disabled=false;btn.textContent='Riprova invio';}sending=false;
+    }
+  }
+  let steps=getSteps();
+  document.addEventListener('input',e=>{if(e.target?.dataset?.field)setAnswer(e.target.dataset.field,e.target.value);});
+  render();
+})();
+</script>
+</body>
+</html>
