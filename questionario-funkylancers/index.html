@@ -213,7 +213,7 @@
     const n=document.getElementById('next'); if(n)n.addEventListener('click',()=>{
       const required=content.querySelectorAll('[data-field][required]');
       for(const el of required){if(!el.value.trim()){el.focus();el.setAttribute('aria-invalid','true');let msg=content.querySelector('.fl-required-error');if(!msg){msg=document.createElement('p');msg.className='fl-error fl-required-error';msg.setAttribute('role','alert');msg.textContent='Compila almeno il primo campo richiesto per continuare.';content.querySelector('.fl-nav').before(msg);}return;}}
-      celebrate(n);
+      if(current<steps.length-1)celebrate(n);
       next();
     });
     const b=document.getElementById('back');if(b)b.addEventListener('click',back);
@@ -237,18 +237,21 @@
     Object.keys(answers).forEach(k=>{if(typeof answers[k]==='string'&&answers[k].trim())out[k]=answers[k];});
     return out;
   }
+  let invio='';
   async function submit(){
     if(sending)return;sending=true;const btn=document.getElementById('next');if(btn){btn.disabled=true;btn.textContent='Invio…';}
-    const payload={risposte:cleanAnswers(),sito:document.getElementById('sito')?.value||''};
+    invio=invio||(crypto.randomUUID?crypto.randomUUID():Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join(''));
+    const payload={risposte:cleanAnswers(),sito:document.getElementById('sito')?.value||'',invio};
     try{
-      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:AbortSignal.timeout(25000)});
       let j={};try{j=await r.json();}catch{}
       if(!r.ok)throw new Error(j.errore||'il server non ha accettato l’invio');
       try{localStorage.removeItem(KEY);}catch{}
+      if(btn)celebrate(btn);
       progressWrap.hidden=true;
       content.innerHTML=`<div class="fl-thanks"><div class="fl-stamp" aria-hidden="true">✦</div><p class="fl-kicker">Grazie</p><h2>La tua prospettiva è arrivata.</h2><p class="fl-lede">Le tue risposte aiuteranno a capire quali problemi vale la pena risolvere e quale direzione merita un test concreto.</p><p class="fl-note">Non riceverai richieste di contatto da questa compilazione.</p></div>`;
     }catch(e){
-      const err=document.createElement('p');err.className='fl-error';err.setAttribute('role','alert');err.textContent=`Non sono riuscito a inviare le risposte${e instanceof TypeError?'':` (${e.message})`}. Sono ancora salvate su questo dispositivo: riprova tra poco.`;content.querySelector('.fl-error[role=alert]')?.remove();content.querySelector('.fl-nav')?.before(err);if(btn){btn.disabled=false;btn.textContent='Riprova invio';}sending=false;
+      const err=document.createElement('p');err.className='fl-error';err.setAttribute('role','alert');err.textContent=`Non sono riuscito a inviare le risposte${e instanceof TypeError||e.name==='TimeoutError'?'':` (${e.message})`}. Sono ancora salvate su questo dispositivo: riprova tra poco.`;content.querySelector('.fl-error[role=alert]')?.remove();content.querySelector('.fl-nav')?.before(err);if(btn){btn.disabled=false;btn.textContent='Riprova invio';}sending=false;
     }
   }
   let steps=getSteps();
