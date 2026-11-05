@@ -45,7 +45,7 @@
     Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
   }
 
-  /* 105+ che conta, una volta */
+  /* 80+ che conta, una volta */
   var counters = document.querySelectorAll('[data-count]');
   if (counters.length && !reduce && 'IntersectionObserver' in window) {
     var co = new IntersectionObserver(function (entries) {
