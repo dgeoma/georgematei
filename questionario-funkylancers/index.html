@@ -165,7 +165,6 @@
   let started = false;
   const scene = document.getElementById('scene');
   const sectors = ["Servizi professionali", "Freelance e consulenza", "Agenzie e studi", "Commercio ed e-commerce", "Sanità e benessere", "Ospitalità e turismo", "Produzione e distribuzione", "Edilizia e immobiliare", "Altro"];
-  const roles = ["Freelance", "Titolare o socio", "Manager", "Collaboratore o dipendente", "Consulente per aziende", "Altro"];
   const bank = {
     "Freelance e consulenza": { pain:["Passo da un cliente all’altro senza un sistema chiaro per priorità e follow-up.","Preparo a mano materiali e report che si assomigliano ogni volta.","Ho richieste e idee, ma fatico a trasformarle in progetti consegnati."], desire:["Una settimana con priorità chiare e più tempo per il lavoro che conta.","Un team di AI che prepara il lavoro e mi lascia decisioni e controllo.","Un’offerta digitale che posso vendere o usare con i clienti."], fear:["Delegare all’AI e perdere qualità o controllo.","Pagare strumenti e formazione che poi non entrano nel mio lavoro.","Non sapere da dove iniziare o come valutare una soluzione."], ideas:["Un assistente che trasforma note e richieste in brief, task e prossimi passi.","Un team AI personalizzato che prepara bozze, riepiloghi e follow-up per cliente.","Un prodotto digitale riutilizzabile che integra il tuo metodo e fa risparmiare lavoro ripetitivo."] },
     "Agenzie e studi": { pain:["Le informazioni dei clienti passano a mano fra persone e strumenti.","Le attività ricorrenti dipendono da una o due persone esperte.","Il team rifà più volte raccolta dati, brief, report o controlli."], desire:["Un passaggio di consegne chiaro anche quando il team cresce.","Ridurre i colli di bottiglia senza abbassare qualità e relazione.","Avere un’offerta AI concreta da vendere ai clienti."], fear:["Aggiungere un altro software che nessuno usa.","Esporre dati dei clienti o fare brutte figure con una risposta automatica.","Dipendere da un fornitore per ogni cambiamento."], ideas:["Un intake intelligente che controlla brief e prepara il progetto per il team.","Un copilota per account/clienti che raccoglie stato, decisioni e prossime azioni.","Un agente di delivery che prepara report e materiali, con approvazione umana."] },
@@ -200,7 +199,6 @@
   ];
   const offerOrder = [...offerData].sort(()=>Math.random()-.5);
   const baseSteps = [
-    {id:'role',kicker:'Contesto',title:'Da quale prospettiva rispondi?',render:()=>`${choices('ruolo','Il ruolo che descrive meglio la tua esperienza',roles,{empty:'Preferisco non dirlo'})}${choices('team','Quante persone lavorano nella tua attività, te compreso?',['Solo io','2–6','7–20','21–50','Più di 50'],{empty:'Preferisco non dirlo'})}<p class="fl-inline-note">Non raccogliamo nome, azienda o profilo.</p>`},
     {id:'sector',kicker:'Contesto',title:'In quale settore lavori?',render:()=>`${choices('settore','Scegli il settore che ti è più vicino',sectors,{empty:'Preferisco non dirlo'})}<div class="fl-field" id="settoreAltroBox" ${answers.settore==='Altro'?'':'hidden'}><label for="settore_altro">Quale settore?</label><input class="fl-input" id="settore_altro" data-field="settore_altro" value="${esc(answers.settore_altro||'')}" placeholder="Facoltativo"></div><p class="fl-inline-note">Serve a mostrarti esempi pertinenti e a leggere le risposte per settore.</p>`},
     {id:'problems',kicker:'Problemi',title:'Quali sono i tre problemi che pesano di più?',render:()=>`<p class="fl-help">Descrivi situazioni concrete, in ordine di importanza. Per esempio: “i clienti pagano in ritardo” o “ricopio lo stesso dato in tre sistemi”. La prima risposta è obbligatoria; la seconda e la terza sono facoltative.</p>${tagGroup(field('pain1','Problema 1',{textarea:true,rows:3,required:true,placeholder:'Il problema che pesa di più'})+field('pain2','Problema 2',{textarea:true,rows:3,placeholder:'Facoltativo'})+field('pain3','Problema 3',{textarea:true,rows:3,placeholder:'Facoltativo'}),'pain')}`},
     {id:'costs',kicker:'Problemi',title:'Quanto costano questi problemi?',render:costsPage},
@@ -228,9 +226,8 @@
       'Non saprei valutarla.'
     ].map((x)=>`<label class="fl-choice"><input type="radio" name="company_price_reaction" value="${esc(x)}" data-radio="company_price_reaction" ${answers.company_price_reaction===x?'checked':''}><span>${esc(x)}</span></label>`).join('')}</div>${field('idea_company_why','Che cosa la renderebbe più o meno convincente?',{textarea:true,placeholder:'Facoltativo: prezzo, tempi, proprietà del codice, adozione, dati, ritorno atteso…'})}`};
   const noOffer = () => !!answers.none_ideas || RANKS.every(k=>!answers[k]);
-  const isCompany = () => ['7–20','21–50','Più di 50'].includes(answers.team);
-  const showCompany = () => noOffer() || isCompany();
-  const getSteps = () => { const x=[...baseSteps]; const i=x.findIndex(s=>s.id==='purchase'); if(noOffer()) x.splice(i,1,companyStep); else if(isCompany()) x.splice(i+1,0,companyStep); return x; };
+  const showCompany = () => noOffer();
+  const getSteps = () => { const x=[...baseSteps]; const i=x.findIndex(s=>s.id==='purchase'); if(noOffer()) x.splice(i,1,companyStep); return x; };
   const setAnswer = (id,value) => { answers[id]=value; save(); };
   const next = () => { const steps=getSteps(); if(current<steps.length-1){current++; render();} else submit(); };
   const back = () => { if(current>=0){current--;render();} };
@@ -339,7 +336,7 @@
     started=true;
   }
   function cleanAnswers(){
-    const out={...answers};const chips=out._spunti||{};delete out._spunti;
+    const out={...answers};const chips=out._spunti||{};delete out._spunti;delete out.ruolo;delete out.team;
     [1,2,3].forEach(n=>{if(!(out[`pain${n}`]||'').trim())['','_cost_1y','_hours'].forEach(s=>delete out[`pain${n}${s}`]);delete out[`pain${n}_cost_now`];delete out[`pain${n}_cost_2y`];});
     if(out.settore!=='Altro')delete out.settore_altro;
     if(noOffer()){['decisione','prova_necessaria','prezzo_freelance',...RANKS].forEach(k=>delete out[k]);}
