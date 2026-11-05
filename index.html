@@ -23,7 +23,8 @@
 <link rel="preload" href="/assets/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.gmPronto)document.documentElement.classList.remove('js')},3000)</script>
 <link rel="stylesheet" href="/styles.css?v=21">
-<link rel="stylesheet" href="/tempio.css?v=3">
+<link rel="stylesheet" href="/tempio.css?v=4">
+<link rel="stylesheet" href="/metodo.css?v=3">
 <!--JSONLD-->
 <script type="application/ld+json">
 {
@@ -50,7 +51,7 @@
    "url": "https://georgematei.com/",
    "image": "https://georgematei.com/assets/foto/george-hero.webp",
    "jobTitle": "Consulente AI e automazioni",
-   "description": "Affianca imprenditori, CEO e manager per usare l'intelligenza artificiale e le automazioni dove fanno crescere il fatturato, liberano tempo e riducono i costi, partendo da un primo lavoro con il prezzo deciso prima: il metodo Prima mano. Già responsabile IT, con il certificato Google in Project Management e formazione da coach.",
+   "description": "Affianca imprenditori, CEO e manager per usare l'intelligenza artificiale e le automazioni dove fanno crescere il fatturato, liberano tempo e riducono i costi, partendo da un primo lavoro con il prezzo deciso prima: il metodo Prima mano. Già responsabile IT, con formazione da coach.",
    "sameAs": [
     "https://www.linkedin.com/in/georgematei"
    ],
@@ -231,8 +232,7 @@
         <p class="cta-note">Videochiamata gratuita: alla fine sai da dove partire.</p>
       </div>
       <ul class="hero__trust reveal" style="--d:.32s">
-        <li><svg aria-hidden="true"><use href="#i-spark"/></svg>105+ sistemi AI messi in funzione</li>
-        <li><svg aria-hidden="true"><use href="#i-shield"/></svg>Certificato Google in Project Management</li>
+        <li><svg aria-hidden="true"><use href="#i-spark"/></svg>80+ sistemi AI messi in funzione</li>
       </ul>
     </div>
     <div class="hero__photo">
@@ -428,23 +428,65 @@
       </div>
     </div>
 
-    <p class="try__note">Sono simulazioni: nessun dato lascia il tuo browser. Di sistemi così ne ho messi in funzione più di 105.</p>
+    <p class="try__note">Sono simulazioni: nessun dato lascia il tuo browser. Di sistemi così ne ho messi in funzione più di 80.</p>
     <div class="cta-center reveal"><p class="try__ask">Vuoi vederlo sul tuo caso?</p><a class="btn" href="#prenota">Prenota 30 minuti</a></div>
   </div>
 </section>
 
-<!-- COSA CAMBIA -->
-<section class="section section--navy" id="cambia">
+<!-- DA PASSIVO A PROATTIVO -->
+<section class="section section--navy sistema" id="cambia">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="eyebrow eyebrow--light">In pratica</p>
-      <h2>Cosa cambia nella tua settimana.</h2>
+      <p class="eyebrow eyebrow--light">Da passivo a proattivo</p>
+      <h2>Il tuo software aspetta. Un vero sistema lavora.</h2>
+      <p>Il gestionale che hai oggi fa solo quello che qualcuno gli dice di fare, quando si ricorda di aprirlo. Io ci metto dentro degli impiegati AI: leggono, rispondono, ricordano e ti chiamano quando tocca a te.</p>
     </header>
-    <ul class="gains">
-      <li class="reveal">Chi ti scrive la sera riceve subito una prima risposta, e sa quando verrà richiamato.</li>
-      <li class="reveal" style="--d:.06s">Ogni preventivo ha un promemoria e qualcuno che lo segue.</li>
-      <li class="reveal">I numeri per decidere li trovi pronti, senza rincorrerli.</li>
+
+    <div class="sis-due" role="group" aria-label="La stessa settimana in due sistemi, esempio simulato">
+      <article class="sis sis--vecchio" data-sis="vecchio" aria-label="Software passivo: alla fine della settimana contatto e preventivo sono persi e il report si rifà a mano">
+        <header class="sis__bar">
+          <span class="sis__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Il software di oggi</b>
+          <span class="sis__tag">Passivo</span>
+        </header>
+        <div class="sis__ora"><span class="sis__clock" aria-hidden="true"></span><span class="sis__orario">Lunedì, 8:00</span><span class="sis__sospesi"><b>7</b> in sospeso</span></div>
+        <ul class="sis__righe">
+          <li class="sis__riga" data-stato="ko"><span class="sis__nome">Contatto delle 21:40</span><span class="sis__stato">Ha chiamato un altro</span></li>
+          <li class="sis__riga" data-stato="ko"><span class="sis__nome">Preventivo · Laura B.</span><span class="sis__stato">Laura ha scelto un altro</span></li>
+          <li class="sis__riga" data-stato="ko"><span class="sis__nome">Report del lunedì</span><span class="sis__stato">La mattina di qualcuno</span></li>
+        </ul>
+        <p class="sis__piede"><span class="sis__cursore" aria-hidden="true"></span>Si muove solo se qualcuno lo apre.</p>
+      </article>
+
+      <div class="sis-freccia" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 24h27M27 13l11 11-11 11"/></svg></div>
+
+      <article class="sis sis--vivo" data-sis="vivo" aria-label="Sistema proattivo: alla fine della settimana contatto con appuntamento, preventivo accettato e report pronto alle 8">
+        <header class="sis__bar">
+          <span class="sis__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Con gli impiegati AI dentro</b>
+          <span class="sis__tag">Proattivo</span>
+        </header>
+        <div class="sis__ora"><span class="sis__clock" aria-hidden="true"></span><span class="sis__orario">Lunedì, 8:00</span><span class="sis__sospesi"><b>0</b> in sospeso</span></div>
+        <ul class="sis__righe">
+          <li class="sis__riga" data-stato="ok"><span class="sis__nome">Contatto delle 21:40</span><span class="sis__stato">Appuntamento fissato</span><img class="sis__bot" src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt="" loading="lazy"></li>
+          <li class="sis__riga" data-stato="ok"><span class="sis__nome">Preventivo · Laura B.</span><span class="sis__stato">Accettato</span><img class="sis__bot" src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt="" loading="lazy"></li>
+          <li class="sis__riga" data-stato="ok"><span class="sis__nome">Report del lunedì</span><span class="sis__stato">Pronto alle 8</span><img class="sis__bot" src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt="" loading="lazy"></li>
+        </ul>
+        <p class="sis__piede sis__piede--tu"><svg aria-hidden="true"><use href="#i-bell"/></svg><span class="sis__avviso">A te arriva solo quello che tocca a te.</span></p>
+      </article>
+    </div>
+    <div class="sis-note">
+      <p>Esempio simulato: la stessa settimana, due sistemi.</p>
+      <button type="button" class="sis-rivedi" hidden>Rivedi la settimana</button>
+    </div>
+
+    <ul class="sis-utili reveal">
+      <li>Meno lavoro ripetuto</li>
+      <li>Dati più precisi</li>
+      <li>Più controllo su cosa entra e cosa esce</li>
+      <li>Un sistema che i tuoi collaboratori usano davvero</li>
     </ul>
+    <p class="sis-chiusa reveal">Non devi per forza buttare quello che hai: dove si può, gli impiegati AI lavorano dentro il tuo software.</p>
     <div class="cta-center reveal"><a class="btn" href="#prenota">Prenota 30 minuti</a><p class="cta-note">Videochiamata gratuita.</p></div>
   </div>
 </section>
@@ -456,53 +498,137 @@
   </div>
 </section>
 
-<!-- METODO -->
+<!-- METODO: tre slide, una per ogni scorrimento -->
 <section class="section method" id="metodo">
-  <div class="wrap method__grid">
-    <div class="method__side">
-      <figure class="cantiere" role="img" aria-label="Un tempio che si costruisce pezzo dopo pezzo: prima le fondamenta, poi le colonne, infine il frontone.">
-        <div class="cantiere__tavola">
-        <svg viewBox="0 0 640 490" aria-hidden="true" focusable="false">
-          <defs>
-            <pattern id="griglia" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#e2c27a" stroke-opacity=".1"/></pattern>
-            <pattern id="alloro" width="60" height="40" patternUnits="userSpaceOnUse"><path d="M0 20H60" stroke="#d6b05b" stroke-width="1.2"/><g fill="#d6b05b"><path d="M4 20q7-9 17-9q-6 8-17 9zM4 20q7 9 17 9q-6-8-17-9zM24 20q7-9 17-9q-6 8-17 9zM24 20q7 9 17 9q-6-8-17-9zM44 20q7-9 17-9q-6 8-17 9zM44 20q7 9 17 9q-6-8-17-9z"/></g></pattern>
-          </defs>
-          <rect width="640" height="490" fill="url(#griglia)"/>
-          <g class="cantiere__traccia" fill="none" stroke="#e2c27a" stroke-opacity=".42" stroke-width="1" stroke-dasharray="3 4"><rect x="60.0" y="446" width="52.0" height="24"/><rect x="112.0" y="446" width="52.0" height="24"/><rect x="164.0" y="446" width="52.0" height="24"/><rect x="216.0" y="446" width="52.0" height="24"/><rect x="268.0" y="446" width="52.0" height="24"/><rect x="320.0" y="446" width="52.0" height="24"/><rect x="372.0" y="446" width="52.0" height="24"/><rect x="424.0" y="446" width="52.0" height="24"/><rect x="476.0" y="446" width="52.0" height="24"/><rect x="528.0" y="446" width="52.0" height="24"/><rect x="80.0" y="424" width="53.3" height="22"/><rect x="133.3" y="424" width="53.3" height="22"/><rect x="186.7" y="424" width="53.3" height="22"/><rect x="240.0" y="424" width="53.3" height="22"/><rect x="293.3" y="424" width="53.3" height="22"/><rect x="346.7" y="424" width="53.3" height="22"/><rect x="400.0" y="424" width="53.3" height="22"/><rect x="453.3" y="424" width="53.3" height="22"/><rect x="506.7" y="424" width="53.3" height="22"/><rect x="100.0" y="404" width="55.0" height="20"/><rect x="155.0" y="404" width="55.0" height="20"/><rect x="210.0" y="404" width="55.0" height="20"/><rect x="265.0" y="404" width="55.0" height="20"/><rect x="320.0" y="404" width="55.0" height="20"/><rect x="375.0" y="404" width="55.0" height="20"/><rect x="430.0" y="404" width="55.0" height="20"/><rect x="485.0" y="404" width="55.0" height="20"/><path d="M107.0 404L108.2 362L151.8 362L153.0 404Z"/><path d="M183.0 404L184.2 362L227.8 362L229.0 404Z"/><path d="M259.0 404L260.2 362L303.8 362L305.0 404Z"/><path d="M335.0 404L336.2 362L379.8 362L381.0 404Z"/><path d="M411.0 404L412.2 362L455.8 362L457.0 404Z"/><path d="M487.0 404L488.2 362L531.8 362L533.0 404Z"/><path d="M108.2 362L109.4 320L150.6 320L151.8 362Z"/><path d="M184.2 362L185.4 320L226.6 320L227.8 362Z"/><path d="M260.2 362L261.4 320L302.6 320L303.8 362Z"/><path d="M336.2 362L337.4 320L378.6 320L379.8 362Z"/><path d="M412.2 362L413.4 320L454.6 320L455.8 362Z"/><path d="M488.2 362L489.4 320L530.6 320L531.8 362Z"/><path d="M109.4 320L110.6 278L149.4 278L150.6 320Z"/><path d="M185.4 320L186.6 278L225.4 278L226.6 320Z"/><path d="M261.4 320L262.6 278L301.4 278L302.6 320Z"/><path d="M337.4 320L338.6 278L377.4 278L378.6 320Z"/><path d="M413.4 320L414.6 278L453.4 278L454.6 320Z"/><path d="M489.4 320L490.6 278L529.4 278L530.6 320Z"/><path d="M110.6 278L111.8 236L148.2 236L149.4 278Z"/><path d="M186.6 278L187.8 236L224.2 236L225.4 278Z"/><path d="M262.6 278L263.8 236L300.2 236L301.4 278Z"/><path d="M338.6 278L339.8 236L376.2 236L377.4 278Z"/><path d="M414.6 278L415.8 236L452.2 236L453.4 278Z"/><path d="M490.6 278L491.8 236L528.2 236L529.4 278Z"/><path d="M111 236L103 226H157L149 236Z"/><rect x="100" y="216" width="60" height="10"/><path d="M187 236L179 226H233L225 236Z"/><rect x="176" y="216" width="60" height="10"/><path d="M263 236L255 226H309L301 236Z"/><rect x="252" y="216" width="60" height="10"/><path d="M339 236L331 226H385L377 236Z"/><rect x="328" y="216" width="60" height="10"/><path d="M415 236L407 226H461L453 236Z"/><rect x="404" y="216" width="60" height="10"/><path d="M491 236L483 226H537L529 236Z"/><rect x="480" y="216" width="60" height="10"/><rect x="96" y="190" width="448" height="26"/><rect x="96" y="150" width="448" height="40"/><rect x="88" y="138" width="464" height="12"/><path d="M92 138L320 52L548 138Z"/></g>
-          <path d="M20 470.5H620" stroke="#e2c27a" stroke-opacity=".5"/>
-          <g class="p" data-f="0" data-x="86.0" data-y="446"><rect x="60.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="138.0" data-y="446"><rect x="112.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="190.0" data-y="446"><rect x="164.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="242.0" data-y="446"><rect x="216.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="294.0" data-y="446"><rect x="268.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="346.0" data-y="446"><rect x="320.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="398.0" data-y="446"><rect x="372.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="450.0" data-y="446"><rect x="424.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="502.0" data-y="446"><rect x="476.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="554.0" data-y="446"><rect x="528.0" y="446" width="52.0" height="24" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="106.66666666666667" data-y="424"><rect x="80.0" y="424" width="53.3" height="22" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="160.0" data-y="424"><rect x="133.3" y="424" width="53.3" height="22" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="213.33333333333334" data-y="424"><rect x="186.7" y="424" width="53.3" height="22" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="266.6666666666667" data-y="424"><rect x="240.0" y="424" width="53.3" height="22" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="320.00000000000006" data-y="424"><rect x="293.3" y="424" width="53.3" height="22" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="373.33333333333337" data-y="424"><rect x="346.7" y="424" width="53.3" height="22" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="426.6666666666667" data-y="424"><rect x="400.0" y="424" width="53.3" height="22" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="480.00000000000006" data-y="424"><rect x="453.3" y="424" width="53.3" height="22" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="533.3333333333334" data-y="424"><rect x="506.7" y="424" width="53.3" height="22" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="127.5" data-y="404"><rect x="100.0" y="404" width="55.0" height="20" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="182.5" data-y="404"><rect x="155.0" y="404" width="55.0" height="20" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="237.5" data-y="404"><rect x="210.0" y="404" width="55.0" height="20" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="292.5" data-y="404"><rect x="265.0" y="404" width="55.0" height="20" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="347.5" data-y="404"><rect x="320.0" y="404" width="55.0" height="20" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="402.5" data-y="404"><rect x="375.0" y="404" width="55.0" height="20" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="457.5" data-y="404"><rect x="430.0" y="404" width="55.0" height="20" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="0" data-x="512.5" data-y="404"><rect x="485.0" y="404" width="55.0" height="20" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="1" data-x="130" data-y="362"><path d="M107.0 404L108.2 362L151.8 362L153.0 404Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M115.74 404L116.484 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M125.2942 404L125.53972 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M134.7058 404L134.46028 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M144.26 404L143.516 362" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="206" data-y="362"><path d="M183.0 404L184.2 362L227.8 362L229.0 404Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M191.74 404L192.484 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M201.2942 404L201.53972 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M210.7058 404L210.46028 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M220.26 404L219.516 362" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="282" data-y="362"><path d="M259.0 404L260.2 362L303.8 362L305.0 404Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M267.74 404L268.484 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M277.2942 404L277.53972 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M286.7058 404L286.46028 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M296.26 404L295.516 362" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="358" data-y="362"><path d="M335.0 404L336.2 362L379.8 362L381.0 404Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M343.74 404L344.484 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M353.2942 404L353.53972 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M362.7058 404L362.46028 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M372.26 404L371.516 362" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="434" data-y="362"><path d="M411.0 404L412.2 362L455.8 362L457.0 404Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M419.74 404L420.484 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M429.2942 404L429.53972 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M438.7058 404L438.46028 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M448.26 404L447.516 362" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="510" data-y="362"><path d="M487.0 404L488.2 362L531.8 362L533.0 404Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M495.74 404L496.484 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M505.2942 404L505.53972 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M514.7058 404L514.46028 362" stroke="#e7dcc4" stroke-width="1.4"/><path d="M524.26 404L523.516 362" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="130" data-y="320"><path d="M108.2 362L109.4 320L150.6 320L151.8 362Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M116.484 362L117.228 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M125.53972 362L125.78524 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M134.46028 362L134.21476 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M143.516 362L142.772 320" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="206" data-y="320"><path d="M184.2 362L185.4 320L226.6 320L227.8 362Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M192.484 362L193.228 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M201.53972 362L201.78524 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M210.46028 362L210.21476 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M219.516 362L218.772 320" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="282" data-y="320"><path d="M260.2 362L261.4 320L302.6 320L303.8 362Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M268.484 362L269.228 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M277.53972 362L277.78524 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M286.46028 362L286.21476 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M295.516 362L294.772 320" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="358" data-y="320"><path d="M336.2 362L337.4 320L378.6 320L379.8 362Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M344.484 362L345.228 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M353.53972 362L353.78524 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M362.46028 362L362.21476 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M371.516 362L370.772 320" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="434" data-y="320"><path d="M412.2 362L413.4 320L454.6 320L455.8 362Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M420.484 362L421.228 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M429.53972 362L429.78524 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M438.46028 362L438.21476 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M447.516 362L446.772 320" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="510" data-y="320"><path d="M488.2 362L489.4 320L530.6 320L531.8 362Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M496.484 362L497.228 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M505.53972 362L505.78524 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M514.46028 362L514.21476 320" stroke="#e7dcc4" stroke-width="1.4"/><path d="M523.516 362L522.772 320" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="130" data-y="278"><path d="M109.4 320L110.6 278L149.4 278L150.6 320Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M117.228 320L117.97200000000001 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M125.78524 320L126.03076 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M134.21476 320L133.96924 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M142.772 320L142.028 278" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="206" data-y="278"><path d="M185.4 320L186.6 278L225.4 278L226.6 320Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M193.228 320L193.972 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M201.78524 320L202.03076 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M210.21476 320L209.96924 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M218.772 320L218.028 278" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="282" data-y="278"><path d="M261.4 320L262.6 278L301.4 278L302.6 320Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M269.228 320L269.972 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M277.78524 320L278.03076 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M286.21476 320L285.96924 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M294.772 320L294.028 278" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="358" data-y="278"><path d="M337.4 320L338.6 278L377.4 278L378.6 320Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M345.228 320L345.972 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M353.78524 320L354.03076 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M362.21476 320L361.96924 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M370.772 320L370.028 278" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="434" data-y="278"><path d="M413.4 320L414.6 278L453.4 278L454.6 320Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M421.228 320L421.972 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M429.78524 320L430.03076 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M438.21476 320L437.96924 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M446.772 320L446.028 278" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="510" data-y="278"><path d="M489.4 320L490.6 278L529.4 278L530.6 320Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M497.228 320L497.972 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M505.78524 320L506.03076 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M514.21476 320L513.96924 278" stroke="#e7dcc4" stroke-width="1.4"/><path d="M522.772 320L522.028 278" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="130" data-y="236"><path d="M110.6 278L111.8 236L148.2 236L149.4 278Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M117.97200000000001 278L118.71600000000001 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M126.03076 278L126.27628 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M133.96924 278L133.72372000000001 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M142.028 278L141.284 236" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="206" data-y="236"><path d="M186.6 278L187.8 236L224.2 236L225.4 278Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M193.972 278L194.716 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M202.03076 278L202.27627999999999 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M209.96924 278L209.72372000000001 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M218.028 278L217.284 236" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="282" data-y="236"><path d="M262.6 278L263.8 236L300.2 236L301.4 278Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M269.972 278L270.716 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M278.03076 278L278.27628 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M285.96924 278L285.72372 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M294.028 278L293.284 236" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="358" data-y="236"><path d="M338.6 278L339.8 236L376.2 236L377.4 278Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M345.972 278L346.716 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M354.03076 278L354.27628 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M361.96924 278L361.72372 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M370.028 278L369.284 236" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="434" data-y="236"><path d="M414.6 278L415.8 236L452.2 236L453.4 278Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M421.972 278L422.716 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M430.03076 278L430.27628 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M437.96924 278L437.72372 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M446.028 278L445.284 236" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="510" data-y="236"><path d="M490.6 278L491.8 236L528.2 236L529.4 278Z" fill="#f6f0e2" stroke="#e7dcc4"/><path d="M497.972 278L498.716 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M506.03076 278L506.27628 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M513.96924 278L513.72372 236" stroke="#e7dcc4" stroke-width="1.4"/><path d="M522.028 278L521.284 236" stroke="#e7dcc4" stroke-width="1.4"/></g><g class="p" data-f="1" data-x="130" data-y="216"><path d="M111 236L103 226L157 226L149 236Z" fill="#d6b05b"/><rect x="100" y="216" width="60" height="10" fill="#d6b05b"/></g><g class="p" data-f="1" data-x="206" data-y="216"><path d="M187 236L179 226L233 226L225 236Z" fill="#d6b05b"/><rect x="176" y="216" width="60" height="10" fill="#d6b05b"/></g><g class="p" data-f="1" data-x="282" data-y="216"><path d="M263 236L255 226L309 226L301 236Z" fill="#d6b05b"/><rect x="252" y="216" width="60" height="10" fill="#d6b05b"/></g><g class="p" data-f="1" data-x="358" data-y="216"><path d="M339 236L331 226L385 226L377 236Z" fill="#d6b05b"/><rect x="328" y="216" width="60" height="10" fill="#d6b05b"/></g><g class="p" data-f="1" data-x="434" data-y="216"><path d="M415 236L407 226L461 226L453 236Z" fill="#d6b05b"/><rect x="404" y="216" width="60" height="10" fill="#d6b05b"/></g><g class="p" data-f="1" data-x="510" data-y="216"><path d="M491 236L483 226L537 226L529 236Z" fill="#d6b05b"/><rect x="480" y="216" width="60" height="10" fill="#d6b05b"/></g><g class="p" data-f="2" data-x="171.0" data-y="190"><rect x="96.0" y="190" width="149.3" height="26" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="2" data-x="320.3" data-y="190"><rect x="245.3" y="190" width="149.3" height="26" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="2" data-x="469.6" data-y="190"><rect x="394.6" y="190" width="149.3" height="26" fill="#f6f0e2" stroke="#e7dcc4" stroke-width="1" /></g><g class="p" data-f="2" data-x="320" data-y="150"><rect x="96" y="150" width="448" height="40" fill="#0b1733" stroke="#d6b05b"/><rect x="96" y="150" width="448" height="40" fill="url(#alloro)"/></g><g class="p" data-f="2" data-x="320" data-y="138"><rect x="88" y="138" width="464" height="12" fill="#d6b05b"/></g><g class="p" data-f="2" data-x="320" data-y="60"><path d="M92 138L320 52L548 138Z" fill="#f6f0e2" stroke="#d6b05b" stroke-width="3" stroke-linejoin="round"/><path d="M130 130L320 66L510 130Z" fill="#e7dcc4" opacity=".55"/></g><g class="p" data-f="2" data-x="320" data-y="30"><path d="M320 18c-5 8-14 12-14 24 0 6 7 10 14 10s14-4 14-10c0-12-9-16-14-24z" fill="#d6b05b"/><path d="M302 52c-10-2-16-9-17-18 8 1 15 6 19 13M338 52c10-2 16-9 17-18-8 1-15 6-19 13" fill="#d6b05b"/></g>
-        </svg>
-        <img class="cantiere__robot" src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt="" aria-hidden="true" loading="lazy">
-        <img class="cantiere__capo" src="/assets/tempio/robot-progetto.webp" width="290" height="270" alt="" aria-hidden="true" loading="lazy">
+  <div class="metodo__pista">
+    <span class="metodo__snap" style="--k:0" aria-hidden="true"></span><span class="metodo__snap" style="--k:1" aria-hidden="true"></span><span class="metodo__snap" style="--k:2" aria-hidden="true"></span>
+    <div class="wrap metodo__palco">
+      <header class="metodo__testa">
+        <p class="eyebrow">Come lavoro</p>
+        <h2>Perché il mio metodo è unico.</h2>
+        <p class="metodo__lead"><strong>Prima tocchi con mano un risultato, poi costruiamo il resto.</strong></p>
+      </header>
+
+      <div class="metodo__nav" role="group" aria-label="I tre passi del metodo">
+        <button type="button" class="metodo__num" data-vai="0" aria-label="Passo uno: trenta minuti per conoscerci" aria-current="step">I</button>
+        <button type="button" class="metodo__num" data-vai="1" aria-label="Passo due: disegno il progetto e gli impiegati AI lo costruiscono">II</button>
+        <button type="button" class="metodo__num" data-vai="2" aria-label="Passo tre: una riga rossa e quattro verdi">III</button>
+        <button type="button" class="metodo__ferma" aria-label="Ferma le animazioni e mostrale finite"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg></button>
+      </div>
+
+      <!-- I · videochiamata -->
+      <div class="m-slide is-att" data-slide="0">
+        <figure class="scena scena--call" role="img" aria-label="Una videochiamata fra George e te. George chiede come lavorate, tu racconti del report ricopiato ogni venerdì, e da lì si decide da dove partire.">
+          <div class="quadro">
+            <div class="call">
+              <div class="call__bar"><span class="call__rec" aria-hidden="true"></span><b>Videochiamata</b><span class="call__tempo" aria-hidden="true">30:00</span></div>
+              <div class="call__tile call__tile--g"><img src="/assets/foto/george-hero.webp" width="760" height="974" alt="" loading="lazy"><span class="call__nome">George</span></div>
+              <div class="call__tile call__tile--t">
+                <svg viewBox="0 0 200 240" aria-hidden="true"><circle cx="100" cy="84" r="46" fill="#22396a"/><path d="M16 240c4-66 42-96 84-96s80 30 84 96z" fill="#22396a"/></svg>
+                <span class="call__nome">Tu</span>
+              </div>
+              <p class="call__bolla call__bolla--1">Come lavorate oggi?</p>
+              <p class="call__bolla call__bolla--2">Il venerdì ricopiamo tutto su Excel.</p>
+              <p class="call__bolla call__bolla--3">Partiamo da lì.</p>
+              <p class="call__niente"><s>Slide</s> · Solo tu e io</p>
+            </div>
+          </div>
+        </figure>
+        <div class="m-testo">
+          <h3>Trenta minuti per conoscerci.</h3>
+          <p>In videochiamata, gratis: mi racconti come lavorate e dove vuoi arrivare. Alla fine sai da dove partire.</p>
         </div>
-        <figcaption class="cantiere__didas" aria-hidden="true">Un pezzo alla volta.</figcaption>
-      </figure>
-    </div>
-    <div class="method__copy">
-      <p class="eyebrow reveal">Come lavoro</p>
-      <h2 class="reveal">Il metodo Prima mano.</h2>
-      <figure class="method__photo reveal">
-        <img src="/assets/foto/george-lavagna-riccione.webp" width="800" height="1000" alt="George Matei scrive su una lavagna a fogli durante una formazione" loading="lazy">
-      </figure>
-      <p class="method__lead reveal"><strong>Prima tocchi con mano un risultato, poi costruiamo il resto.</strong> Il prezzo del primo lavoro lo sai in anticipo, e quello che costruiamo lo usi anche se ci fermiamo lì.</p>
-      <ol class="steps">
-        <li class="step reveal"><span class="step__num">I</span><div><h3>Trenta minuti per conoscerci</h3><p>In videochiamata, gratis: mi racconti come lavorate e dove vuoi arrivare.</p></div></li>
-        <li class="step reveal"><span class="step__num">II</span><div><h3>Il primo lavoro</h3><p>Una formazione per il tuo team, una consulenza o un agente AI su un canale solo: lo scegliamo nella chiamata. Alla fine contiamo insieme le prime vittorie.</p></div></li>
-        <li class="step reveal"><span class="step__num">III</span><div><h3>Poi i progetti grandi, un pezzo alla volta</h3><p>Ogni pezzo ha il suo prezzo e funziona anche da solo. Si va avanti quando i numeri lo dicono.</p></div></li>
-      </ol>
-      <div class="cta-row reveal"><a class="btn" href="#prenota">Prenota 30 minuti</a></div>
+      </div>
+
+      <!-- II · il disegno e il modellino -->
+      <div class="m-slide" data-slide="1">
+        <figure class="scena scena--modello" role="img" aria-label="George disegna il progetto di un tempio su un tavolo da disegno. Accanto, i robot costruiscono con cura il modellino tridimensionale, un pezzo alla volta.">
+          <div class="quadro">
+            <img class="mod__george" src="/assets/foto/george-hero.webp" width="760" height="974" alt="" loading="lazy">
+            <svg class="mod__braccio" viewBox="0 0 150 170" aria-hidden="true"><path d="M92 8C118 54 104 96 62 126" fill="none" stroke="#17243f" stroke-width="30" stroke-linecap="round"/><path d="M68 112L48 138" stroke="#f4f5f7" stroke-width="9" stroke-linecap="round" transform="translate(4 0)"/><circle cx="44" cy="146" r="13" fill="#e2b793"/><path d="M38 150L12 168" stroke="#d6b05b" stroke-width="5" stroke-linecap="round"/></svg>
+            <div class="mod__tavolo">
+              <svg viewBox="0 0 220 150" aria-hidden="true">
+                <defs><pattern id="mod-griglia" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M14 0H0V14" fill="none" stroke="#e2c27a" stroke-opacity=".2"/></pattern></defs>
+                <rect width="220" height="150" fill="url(#mod-griglia)"/>
+                <g class="mod__linee" fill="none" stroke="#f3dc98" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path pathLength="1" style="--o:0" d="M26 128H194"/>
+                  <path pathLength="1" style="--o:1" d="M34 120H186"/>
+                  <path pathLength="1" style="--o:2" d="M46 120V66M72 120V66M98 120V66M122 120V66M148 120V66M174 120V66"/>
+                  <path pathLength="1" style="--o:3" d="M38 66H182V54H38Z"/>
+                  <path pathLength="1" style="--o:4" d="M32 54L110 18L188 54Z"/>
+                </g>
+              </svg>
+            </div>
+            <span class="mod__eti mod__eti--g">George disegna</span>
+            <span class="mod__eti mod__eti--a">L'AI costruisce</span>
+            <svg class="mod__filo" viewBox="0 0 120 60" aria-hidden="true"><path pathLength="1" d="M4 44C36 10 76 6 116 30" fill="none" stroke="#e2c27a" stroke-width="2" stroke-dasharray="1 0"/></svg>
+            <div class="m3d" aria-hidden="true"><div class="m3d__mondo"></div></div>
+            <img class="mod__capo" src="/assets/tempio/robot-progetto.webp" width="295" height="283" alt="" loading="lazy">
+            <img class="mod__bot mod__bot--1" src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt="" loading="lazy">
+            <img class="mod__bot mod__bot--2" src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt="" loading="lazy">
+          </div>
+        </figure>
+        <div class="m-testo">
+          <h3>Io disegno il progetto. Gli impiegati AI lo costruiscono.</h3>
+          <p>Con cura, un pezzo alla volta. Lo tocchi con mano prima di costruire il resto, e quello che costruiamo lo usi anche se ci fermiamo lì.</p>
+        </div>
+      </div>
+
+      <!-- III · il foglio dei conti -->
+      <div class="m-slide" data-slide="2">
+        <figure class="scena scena--conti" role="img" aria-label="Un foglio con una riga rossa, l'investimento, e quattro righe verdi: ore liberate, clienti non persi, costi tolti e valore dell'azienda. Se i conti tornano, arriva il timbro: si parte.">
+          <div class="quadro">
+            <img class="conti__robot" src="/assets/tempio/robot-indica.webp" width="161" height="164" alt="" loading="lazy">
+            <div class="conti__foglio">
+              <p class="conti__tit">Il conto, prima di iniziare</p>
+              <p class="conti__es">Esempio</p>
+              <ul class="conti__righe">
+                <li class="conti__r conti__r--rossa" style="--n:0;--l:38%"><span class="conti__seg">−</span><span class="conti__nome">L'investimento</span><i></i></li>
+                <li class="conti__r" style="--n:1;--l:30%"><span class="conti__seg">+</span><span class="conti__nome">Ore liberate</span><i></i></li>
+                <li class="conti__r" style="--n:2;--l:44%"><span class="conti__seg">+</span><span class="conti__nome">Clienti non persi</span><i></i></li>
+                <li class="conti__r" style="--n:3;--l:22%"><span class="conti__seg">+</span><span class="conti__nome">Costi tolti</span><i></i></li>
+                <li class="conti__r" style="--n:4;--l:36%"><span class="conti__seg">+</span><span class="conti__nome">Valore dell'azienda</span><i></i></li>
+              </ul>
+              <span class="conti__timbro" aria-hidden="true">Si parte</span>
+            </div>
+          </div>
+        </figure>
+        <div class="m-testo">
+          <h3>Una riga rossa. Quattro verdi.</h3>
+          <p>Il prezzo lo sai in anticipo: è la riga rossa. Le verdi sono i modi in cui lo faremo fruttare. Si va avanti quando i numeri lo dicono.</p>
+        </div>
+      </div>
+
+      <div class="metodo__cta"><a class="btn" href="#prenota">Prenota 30 minuti</a></div>
     </div>
   </div>
 </section>
 
-<!-- NUMERI -->
-<section class="numbers-light" aria-label="In numeri">
+<!-- LE PROVE -->
+<section class="prove" id="prove" aria-labelledby="prove-t">
   <div class="wrap">
-    <ul class="medals medals--light">
-      <li class="medal reveal"><div class="medal__disc"><span class="medal__num">+10</span><span class="medal__pre medal__pre--sotto">anni</span></div><p>al fianco di imprenditori, CEO e manager</p></li>
-      <li class="medal reveal" style="--d:.08s"><div class="medal__disc"><span class="medal__num">5</span></div><p>software su misura, dallo sviluppo al rilascio</p></li>
-      <li class="medal reveal" style="--d:.16s"><div class="medal__disc"><span class="medal__num" data-count="105" data-suffix="+">105+</span></div><p>sistemi AI messi in funzione</p></li>
-    </ul>
+    <header class="section__head reveal">
+      <p class="eyebrow">Le prove</p>
+      <h2 id="prove-t">Prima delle promesse, i fatti.</h2>
+    </header>
+    <div class="prove__due">
+      <article class="prova prova--muro reveal">
+        <p class="prova__num"><span data-count="80" data-suffix="+">80+</span></p>
+        <h3>sistemi AI messi in funzione</h3>
+        <p class="prova__blocchi">Ogni blocco è un sistema messo in funzione.</p>
+        <div class="muro" aria-hidden="true"></div>
+      </article>
+      <div class="prove__lato">
+        <article class="prova reveal" style="--d:.08s">
+          <p class="prova__num prova__num--medio">9+ anni</p>
+          <p>al fianco di imprenditori, CEO e manager</p>
+        </article>
+        <article class="prova reveal" style="--d:.16s">
+          <p class="prova__num prova__num--medio">5 software</p>
+          <p>su misura, dallo sviluppo al rilascio</p>
+        </article>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -579,7 +705,7 @@
       <img class="book__face" src="/assets/foto/george-volto-blu.webp" width="240" height="240" alt="" loading="lazy">
       <p class="eyebrow eyebrow--light reveal">Prenota · Si comincia da qui</p>
       <h2 class="reveal">Trenta minuti per conoscerci.</h2>
-      <p class="reveal">In videochiamata, niente slide. Prima della chiamata scegli un'attività che vi porta via ore ogni settimana: partiamo da lì. Poi decidi tu, e ti richiamo solo se me lo chiedi.</p>
+      <p class="reveal">In videochiamata, niente slide. Prima della chiamata scegli un'attività che vi porta via ore ogni settimana: partiamo da lì. Poi decidi tu.</p>
       <p class="reveal">Hai già un preventivo per un progetto di AI o di software? Portalo.</p>
       <a class="btn" href="#prenota"><svg aria-hidden="true"><use href="#i-cal"/></svg>Scegli giorno e ora</a>
     </div>
@@ -589,7 +715,7 @@
 <!-- I COSTRUTTORI -->
 <section class="finale" aria-label="I costruttori">
   <img class="finale__scena" srcset="/assets/tempio/tempio-basso-m.webp 900w, /assets/tempio/tempio-basso.webp 1800w" sizes="100vw" src="/assets/tempio/tempio-basso.webp" width="1800" height="962" alt="Un robot con la corona d'alloro studia il progetto del tempio insieme a un compagno, mentre altri due portano un blocco di marmo. Sullo sfondo, un paese greco e il mare." loading="lazy">
-  <p class="finale__frase reveal">Anche il tempio di Apollo è salito un pezzo alla volta.</p>
+  <p class="finale__frase reveal">Anche il tempio di Apollo è stato costruito un pezzo alla volta.</p>
 </section>
 
 </main>
@@ -609,6 +735,7 @@
 
 <script src="/main.js?v=19" defer></script>
 <script src="/demo.js?v=21" defer></script>
-<script src="/tempio.js?v=1" defer></script>
+<script src="/tempio.js?v=2" defer></script>
+<script src="/metodo.js?v=3" defer></script>
 </body>
 </html>
