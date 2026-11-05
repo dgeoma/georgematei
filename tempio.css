@@ -1,0 +1,237 @@
+/* georgematei.com · tema «Tempio di Apollo in costruzione» (05/11/2026)
+   Si carica solo in home, sopra styles.css. Marmo caldo, blu notte e oro; frontoni al posto degli archi. */
+
+@font-face {
+  font-family: "Marcellus";
+  src: url("/assets/fonts/marcellus-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.tempio {
+  --bg: #fbf8f1;
+  --bg-soft: #f4eee1;
+  --line: #e6ddca;
+  --ink-soft: #414c62;
+  --muted: #5a6478;
+  --gold-text: #7c5c17;
+  --serif: "Marcellus", Georgia, "Times New Roman", serif;
+  --frontone: 110px;
+  background: var(--bg);
+}
+.tempio h1, .tempio h2, .tempio .try__copy h3, .tempio .step h3, .tempio .fit__col h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0; }
+.tempio h1 { font-size: clamp(36px, 4.6vw, 60px); line-height: 1.08; text-wrap: balance; }
+.tempio h2 { font-size: clamp(29px, 3.5vw, 44px); line-height: 1.14; }
+
+/* menu: trasparente sul cielo, marmo appena scorri */
+.tempio .nav { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+.tempio .nav.is-scrolled { background: rgba(251, 248, 241, 0.98); -webkit-backdrop-filter: saturate(1.3) blur(14px); backdrop-filter: saturate(1.3) blur(14px); }
+.tempio .wordmark { font-family: var(--serif); font-weight: 400; font-size: 21px; letter-spacing: 0.01em; }
+.tempio .wordmark__mark { font-family: var(--serif); font-weight: 400; }
+.tempio .nav__links a { color: var(--navy-800); }
+
+/* ---------- apertura: la scena a tutta pagina ---------- */
+.tempio .hero {
+  margin-top: calc(var(--nav-h) * -1);
+  padding: calc(var(--nav-h) + 40px) 0 150px;
+  min-height: clamp(780px, 100svh, 980px);
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  background: linear-gradient(180deg, #a9bfe6 0%, #d9e0ee 55%, var(--bg) 100%);
+}
+.hero__scena { position: absolute; inset: 0; z-index: -2; }
+.hero__scena img { width: 100%; height: 100%; object-fit: cover; object-position: 100% 0; -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 97%); mask-image: linear-gradient(180deg, #000 72%, transparent 97%); }
+.tempio .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, rgba(251, 248, 241, 0.92) 0%, rgba(251, 248, 241, 0.86) calc(50% - 90px), rgba(251, 248, 241, 0.5) calc(50% - 20px), rgba(251, 248, 241, 0) calc(50% + 70px)), linear-gradient(180deg, rgba(251, 248, 241, 0.5) 0, rgba(251, 248, 241, 0) 16%); }
+.tempio .hero__grid { width: 100%; grid-template-columns: minmax(0, 490px) minmax(0, 1fr); gap: 32px; align-items: end; }
+.tempio .hero__copy h1 { margin-top: 16px; max-width: 560px; }
+.js .tempio .hero .reveal { transition-duration: 0.5s; transition-delay: calc(var(--d, 0s) * 0.5); }
+.tempio .hero__sub { font-family: var(--serif); font-weight: 400; color: var(--gold-text); font-size: clamp(20px, 2.1vw, 25px); letter-spacing: 0; }
+.tempio .hero__lead { color: var(--navy-700); font-size: 18px; font-weight: 500; max-width: 520px; }
+.tempio .eyebrow--face img { width: 58px; height: 58px; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--gold-500), 0 10px 22px -10px rgba(15, 30, 58, 0.6); }
+.tempio .eyebrow--face { color: var(--navy-800); font-size: 12.5px; }
+.tempio .hero__trust li { background: rgba(255, 255, 255, 0.82); border-color: rgba(201, 161, 74, 0.35); color: var(--navy-800); }
+.tempio .hero__cta .cta-note { color: var(--navy-700); font-weight: 500; }
+
+/* le tre notifiche, tavolette sui gradini del tempio */
+.tempio .hero__photo { position: relative; justify-self: end; width: auto; aspect-ratio: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; align-self: end; padding-bottom: 84px; }
+.tempio .chip, .tempio .chip--1, .tempio .chip--2, .tempio .chip--3 { position: static; display: inline-flex; max-width: 280px; background: rgba(255, 253, 248, 0.94); border: 1px solid rgba(201, 161, 74, 0.45); box-shadow: 0 16px 34px -18px rgba(11, 23, 51, 0.65); }
+.tempio .chip__ico { color: var(--gold-400); }
+
+/* robot in volo */
+.hero__cielo { position: absolute; top: 0; bottom: 0; right: 0; left: calc(50% + 30px); z-index: -1; pointer-events: none; overflow: hidden; container-type: size; }
+.volo { position: absolute; left: 0; top: 0; width: clamp(62px, 6.4vw, 104px); aspect-ratio: 268 / 400; animation: volo-rotta 44s linear infinite; }
+.volo--2 { width: clamp(38px, 3.6vw, 60px); opacity: 0.92; animation-name: volo-rotta-2; animation-duration: 58s; animation-delay: -21s; }
+.volo__giro { position: absolute; inset: 0; animation: volo-giro 44s linear infinite; }
+.volo--2 .volo__giro { animation-duration: 58s; animation-delay: -21s; }
+.volo__dondola { position: absolute; inset: 0; transform-origin: 60% 8%; animation: volo-dondola 2.6s ease-in-out infinite; }
+.volo__dondola img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.volo__rotore, .cantiere__robot-rotore { position: absolute; left: 61.5%; top: 1.4%; width: 128%; height: 7%; transform: translate(-50%, -50%); animation: volo-rotore 0.2s linear infinite; }
+.volo__rotore::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(ellipse at center, #7c5a1d 0 7%, #d9b25c 8% 40%, rgba(241, 217, 150, 0.72) 62%, rgba(241, 217, 150, 0) 74%); }
+@keyframes volo-rotore { 0% { transform: translate(-50%, -50%) scaleX(1); } 25% { transform: translate(-50%, -50%) scaleX(0.16); } 50% { transform: translate(-50%, -50%) scaleX(-1); } 75% { transform: translate(-50%, -50%) scaleX(-0.16); } 100% { transform: translate(-50%, -50%) scaleX(1); } }
+@keyframes volo-dondola { 0%, 100% { transform: translateY(-3%) rotate(-2.5deg); } 50% { transform: translateY(3%) rotate(3deg); } }
+@keyframes volo-rotta { 0% { transform: translate(6cqw, 15cqh); } 22% { transform: translate(30cqw, 3cqh); } 40% { transform: translate(84cqw, 14cqh); } 55% { transform: translate(74cqw, 44cqh); } 72% { transform: translate(28cqw, 58cqh); } 88% { transform: translate(4cqw, 36cqh); } 100% { transform: translate(6cqw, 15cqh); } }
+@keyframes volo-giro { 0%, 40% { transform: scaleX(1); } 43%, 86% { transform: scaleX(-1); } 89%, 100% { transform: scaleX(1); } }
+@keyframes volo-rotta-2 { 0% { transform: translate(86cqw, 58cqh); } 30% { transform: translate(44cqw, 9cqh); } 55% { transform: translate(6cqw, 8cqh); } 78% { transform: translate(38cqw, 50cqh); } 100% { transform: translate(86cqw, 58cqh); } }
+.robot-fermi .volo, .robot-fermi .volo *, .hero.is-fuori .volo, .hero.is-fuori .volo * { animation-play-state: paused; }
+.volo__pausa { position: absolute; right: 16px; top: calc(var(--nav-h) + 10px); z-index: 2; width: 34px; height: 34px; padding: 0; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(8, 18, 42, 0.62); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.volo__pausa svg { width: 14px; height: 14px; }
+
+/* ---------- calendario: il capocantiere indica ---------- */
+.tempio .cal-top__box { position: relative; background: #fffdf8; border-color: rgba(201, 161, 74, 0.4); }
+.robot-indica { position: absolute; right: 44px; bottom: 100%; width: clamp(84px, 9vw, 122px); height: auto; margin-bottom: -2px; z-index: 1; pointer-events: none; }
+
+/* ---------- loghi: i due portatori passano sopra la fascia ---------- */
+.loghi__scena { position: relative; padding-top: 26px; }
+.robot-portatori { position: absolute; left: 0; bottom: calc(100% - 26px - 8px); z-index: 4; width: clamp(104px, 11vw, 150px); height: auto; transform: translateX(var(--x, 12px)); animation: passo 0.62s ease-in-out infinite paused; pointer-events: none; }
+.is-scorre .robot-portatori:not(.is-fermo), .is-scorre .cantiere__robot { animation-play-state: running; }
+@keyframes passo { 0%, 100% { translate: 0 0; rotate: -0.8deg; } 50% { translate: 0 -3px; rotate: 0.8deg; } }
+.tempio .loghi__box { border: 1px solid rgba(226, 194, 122, 0.4); }
+
+/* ---------- sezioni ---------- */
+.iscrizione { margin: 0 0 16px; font-family: var(--serif); font-size: 15px; letter-spacing: 0.06em; color: var(--gold-text); }
+.iscrizione span { font-family: Georgia, "Times New Roman", serif; font-size: 19px; font-weight: 700; letter-spacing: 0.03em; color: var(--navy-800); }
+.tempio .numbers-light, .tempio #perchi { background: var(--bg); }
+.tempio .try { background: var(--bg-soft); }
+.tempio .try__tabs, .tempio .seg { background: #e9e0cd; }
+.tempio .problem__card, .tempio .fit__col, .tempio .faq details, .tempio .board, .tempio .report { background: #fffdf8; }
+.tempio .fit__col--no { background: var(--bg-soft); }
+.tempio .faq summary { font-weight: 600; }
+.tempio .faq summary::after { background-color: #efe7d4; }
+.tempio .medal__num { font-family: var(--serif); font-weight: 400; letter-spacing: 0; }
+.tempio .step__num { font-family: var(--serif); font-weight: 400; }
+.tempio .creds li { background: var(--bg-soft); }
+.tempio .about__quote p { font-family: var(--serif); font-weight: 400; font-size: 25px; }
+.tempio .about__quote footer { font-size: 15px; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
+.tempio .about__photo img { box-shadow: 0 0 0 7px var(--bg), 0 0 0 9px rgba(201, 161, 74, 0.55), var(--shadow); }
+.tempio .try__ask { font-family: var(--serif); font-weight: 400; font-size: 25px; letter-spacing: 0; }
+
+/* frontoni al posto degli archi: due falde e una cornice d'oro */
+.tempio .section--navy, .tempio .book, .tempio .dome {
+  border-radius: 0;
+  -webkit-clip-path: polygon(0 var(--frontone), 50% 0, 100% var(--frontone), 100% 100%, 0 100%);
+  clip-path: polygon(0 var(--frontone), 50% 0, 100% var(--frontone), 100% 100%, 0 100%);
+}
+.tempio .section--navy::before, .tempio .book::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 12px;
+  height: var(--frontone);
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0 10L50 0L100 10' fill='none' stroke='%23c9a14a' stroke-width='1.6' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+.tempio .section--navy { padding-top: 170px; }
+.tempio .dome { padding: 170px 0 96px; background: linear-gradient(180deg, #f4e6bf 0%, #e6c87e 60%, #d6b05b 100%); }
+.tempio .dome__quote { font-family: var(--serif); font-size: clamp(24px, 3vw, 36px); font-weight: 400; letter-spacing: 0; }
+.tempio .dome__quote strong { font-weight: 400; }
+.tempio .book { padding-top: 170px; }
+
+/* fregio con l'alloro, come sul tempio */
+.tempio .method::before, .tempio .finale::after {
+  content: "";
+  display: block;
+  height: 40px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40'%3E%3Cpath d='M0 20H60' stroke='%23d6b05b' stroke-width='1.2'/%3E%3Cg fill='%23d6b05b'%3E%3Cpath d='M4 20q7-9 17-9q-6 8-17 9zM4 20q7 9 17 9q-6-8-17-9zM24 20q7-9 17-9q-6 8-17 9zM24 20q7 9 17 9q-6-8-17-9zM44 20q7-9 17-9q-6 8-17 9zM44 20q7 9 17 9q-6-8-17-9z'/%3E%3C/g%3E%3C/svg%3E") center / 60px 40px repeat-x, var(--navy-950);
+  border-top: 2px solid var(--gold-500);
+  border-bottom: 2px solid var(--gold-500);
+}
+
+/* ---------- metodo: il cantiere ---------- */
+.tempio .method { position: relative; padding: 0 0 110px; overflow: clip; background: linear-gradient(180deg, var(--navy-800), var(--navy-900)); }
+.tempio .method__grid { margin-top: 90px; grid-template-columns: 1.08fr 0.92fr; gap: 56px; align-items: stretch; }
+.tempio .method__side { min-height: 100%; }
+.cantiere { position: sticky; top: calc(var(--nav-h) + 26px); margin: 0; }
+.cantiere__tavola { position: relative; }
+.cantiere svg { display: block; width: 100%; height: auto; border-radius: 20px; background: rgba(8, 18, 42, 0.55); box-shadow: inset 0 0 0 1px rgba(226, 194, 122, 0.28); }
+.cantiere .p { transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.25, 1.2, 0.4, 1); }
+.is-vivo .p { opacity: 0; transform: translateY(-22px); }
+.is-vivo .p.on { opacity: 1; transform: none; }
+.cantiere__robot { position: absolute; left: 4%; top: 6%; width: 13%; height: auto; translate: -72% -92%; transition: left 0.5s ease, top 0.5s ease; pointer-events: none; animation: volo-dondola 2.6s ease-in-out infinite paused; display: none; }
+.is-vivo .cantiere__robot { display: block; }
+.is-finito .cantiere__robot { left: 88% !important; top: 22% !important; }
+.cantiere__capo { position: absolute; left: -2%; bottom: 1%; width: 27%; height: auto; pointer-events: none; }
+.cantiere__didas { margin-top: 12px; text-align: right; font-family: var(--serif); font-size: 17px; color: var(--gold-400); }
+.tempio .step { transition: opacity 0.3s ease; }
+.tempio .step__num { transition: background 0.3s ease, color 0.3s ease; }
+.is-attivo .step__num, .is-fatto .step__num { background: var(--grad-gold); color: var(--navy-900); border-color: var(--gold-400); }
+/* la foto alla lavagna: una nicchia ad arco accanto alla frase */
+.tempio .method__photo { position: static; float: right; width: 136px; margin: 4px 0 12px 22px; }
+.tempio .method__photo img { aspect-ratio: 3 / 4; object-fit: cover; border-radius: 80px 80px 12px 12px; box-shadow: 0 0 0 2px var(--navy-900), 0 0 0 4px var(--gold-500), 0 20px 40px -18px rgba(0, 0, 0, 0.7); }
+.tempio .method .steps { clear: both; }
+
+/* ---------- chiusura: i costruttori ---------- */
+.finale { position: relative; margin-top: -1px; background: var(--navy-900); }
+.finale__scena { width: 100%; max-height: 760px; object-fit: cover; object-position: 50% 100%; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%); mask-image: linear-gradient(180deg, transparent 0, #000 22%); }
+.finale__frase { position: absolute; left: 0; right: 0; top: 3%; padding: 0 22px; text-align: center; font-family: var(--serif); font-size: clamp(22px, 3vw, 38px); line-height: 1.2; color: #fff; text-shadow: 0 2px 16px rgba(8, 18, 42, 0.9); }
+.tempio .footer { background: var(--navy-950); }
+
+/* ---------- movimento ridotto ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .volo, .volo *, .robot-portatori, .cantiere__robot { animation: none !important; }
+  .volo { transform: translate(10cqw, 6cqh); }
+  .volo--2, .volo__pausa { display: none; }
+  .volo__rotore { transform: translate(-50%, -50%); }
+  .robot-portatori { transform: translateX(24px); }
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1080px) {
+  .hero__cielo { left: 62%; }
+  .tempio .hero__grid { grid-template-columns: minmax(0, 480px) minmax(0, 1fr); }
+  .tempio .hero::before { background: linear-gradient(90deg, rgba(251, 248, 241, 0.96) 0%, rgba(251, 248, 241, 0.92) 60%, rgba(251, 248, 241, 0.3) 72%, rgba(251, 248, 241, 0) 82%), linear-gradient(180deg, rgba(251, 248, 241, 0.5) 0, rgba(251, 248, 241, 0) 16%); }
+}
+@media (max-width: 980px) {
+  .tempio .method__grid { display: block; margin-top: 40px; }
+  .tempio .method__side { margin: 0 -22px 26px; padding: 8px 22px 10px; min-height: 0; }
+  .cantiere { position: relative; top: 0; max-width: 340px; margin: 0 auto; }
+  .cantiere__didas { margin-top: 2px; text-align: center; font-size: 14px; }
+}
+@media (max-width: 980px) and (min-height: 700px) {
+  .tempio .method__side { position: sticky; top: var(--nav-h); z-index: 2; background: var(--navy-800); box-shadow: 0 14px 20px -14px rgba(0, 0, 0, 0.6); }
+}
+
+/* ---------- telefono ---------- */
+@media (max-width: 700px) {
+  .tempio { --frontone: 46px; }
+  .tempio h1 { font-size: 36px; }
+  .tempio .hero { display: block; min-height: 0; padding: calc(var(--nav-h) + 46vw) 0 112px; background: var(--bg); }
+  .hero__scena { bottom: auto; height: 74vw; }
+  .hero__scena img { object-position: 50% 0; -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 100%); mask-image: linear-gradient(180deg, #000 62%, transparent 100%); }
+  .tempio .hero::before { background: linear-gradient(180deg, rgba(251, 248, 241, 0.42) 0, rgba(251, 248, 241, 0) calc(var(--nav-h) + 8px)); }
+  .hero__cielo { left: 0; bottom: auto; height: 62vw; }
+  .tempio .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .tempio .hero__photo { align-items: stretch; justify-self: stretch; width: 100%; padding-bottom: 34px; }
+  .tempio .chip, .tempio .chip--1, .tempio .chip--2 { max-width: none; width: 100%; font-size: 13px; }
+  .tempio .chip--3 { display: none; }
+  .volo__pausa { top: calc(var(--nav-h) + 4px); right: 10px; width: 30px; height: 30px; }
+  .robot-indica { right: 16px; width: 72px; }
+  .iscrizione { font-size: 13.5px; }
+  .iscrizione span { font-size: 17px; }
+  .tempio .section--navy, .tempio .dome, .tempio .book { padding-top: 96px; }
+  .tempio .dome { padding-bottom: 66px; }
+  .tempio .method { padding-bottom: 80px; }
+  .tempio .method__side { margin: 0 -18px 22px; padding: 6px 18px 8px; }
+  .cantiere { max-width: 236px; }
+  .tempio .method__photo { width: 96px; margin-left: 16px; }
+  .finale__scena { max-height: none; height: 86vw; object-position: 62% 100%; }
+  .finale { display: flex; flex-direction: column; }
+  .finale__frase { position: static; order: 1; padding: 6px 18px 2px; }
+  .finale__scena { order: 2; }
+  .finale::after { order: 3; }
+}
+
+/* telefoni piccoli: il bottone resta sopra la piega */
+@media (max-width: 380px) {
+  .tempio h1 { font-size: 31px; }
+  .tempio .hero { padding-top: calc(var(--nav-h) + 30vw); }
+  .hero__scena { height: 58vw; }
+  .hero__cielo { height: 46vw; }
+  .tempio .eyebrow--face img { width: 42px; height: 42px; }
+  .tempio .eyebrow--face { font-size: 11px; }
+  .tempio .hero__sub { font-size: 17.5px; margin-top: 8px; }
+  .tempio .hero__lead { font-size: 15.5px; margin-top: 10px; }
+  .tempio .hero__cta { margin-top: 16px; }
+}
