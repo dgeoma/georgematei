@@ -120,6 +120,21 @@
   .fl-ghost:has(textarea:placeholder-shown):not(:focus-within){opacity:.5}
   .fl-ghost:has(textarea:placeholder-shown):not(:focus-within):hover{opacity:.8}
   .fl-add{display:block;margin:0 0 8px}
+  .fl-offer{display:block}
+  .fl-vote{margin-top:14px}
+  .fl-offer>.fl-vote:first-child{margin-top:0}
+  .fl-vote-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+  .fl-vote-label{font-size:15px;font-weight:700}
+  .fl-offer>.fl-vote:not(:first-child) .fl-vote-label{font-size:13px}
+  .fl-vote-val{font-size:22px;font-weight:800;color:#8a6a2c;min-width:30px;text-align:right}
+  .fl-range{-webkit-appearance:none;appearance:none;display:block;width:100%;height:32px;margin:0;background:transparent;cursor:pointer;touch-action:pan-y}
+  .fl-range::-webkit-slider-runnable-track{height:8px;border-radius:8px;background:linear-gradient(90deg,#efe3c3,#d9b65f)}
+  .fl-range::-moz-range-track{height:8px;border-radius:8px;background:linear-gradient(90deg,#efe3c3,#d9b65f)}
+  .fl-range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-10px;border-radius:50%;background:#fff;border:3px solid #a9812f;box-shadow:0 2px 6px rgba(20,30,60,.25)}
+  .fl-range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #a9812f;box-shadow:0 2px 6px rgba(20,30,60,.25)}
+  .fl-vote.is-empty .fl-range{opacity:.5}
+  .fl-range:focus-visible{outline:2px solid #8a6a2c;outline-offset:3px;border-radius:8px}
+  .fl-vote-scale{display:flex;justify-content:space-between;font-size:12px;color:#6c7385}
   .fl-none{display:block;width:100%;margin:18px 0 0;padding:20px;font-size:17px;font-weight:700;text-align:center}
   #fourthBox[hidden]{display:none}
   .fl-idea-chip[aria-pressed="true"]{background:#f8edcf;border-color:#a67c2b;box-shadow:0 0 0 2px #f2e2b7}
@@ -156,7 +171,7 @@
 (() => {
   "use strict";
   const API = "https://questionari-production.up.railway.app/q/funkylancers-ricerca-ai";
-  const KEY = "gm-questionario-funkylancers-v2";
+  const KEY = "gm-questionario-funkylancers-v3";
   const content = document.getElementById("content");
   const progressWrap = document.getElementById("progressWrap");
   const progressFill = document.getElementById("progressFill");
@@ -207,13 +222,15 @@
     {key:'idea_products',title:'Agenti AI e prodotti digitali da usare o vendere',text:'Agenti AI o prodotti digitali da usare nel tuo lavoro per alzare il valore percepito, da rivendere ai clienti con una fee o da usare come lead magnet.',sub:'Impari a farlo da solo, lo costruiamo insieme mentre ti spiego come, oppure lo faccio io.'}
   ];
   const offerOrder = [...offerData].sort(()=>Math.random()-.5);
+  const slider = (id,label) => `<div class="fl-vote ${answers[id]?'':'is-empty'}"><div class="fl-vote-head"><span class="fl-vote-label">${label}</span><output class="fl-vote-val" id="${id}_val">${answers[id]||'—'}</output></div><input type="range" class="fl-range" id="${id}" data-vote="${id}" min="1" max="10" step="1" value="${esc(answers[id]||'5')}" aria-label="Voto da 1 a 10: ${esc(label)}"><div class="fl-vote-scale"><span>1</span><span>10</span></div></div>`;
+  const CLIENT_VOTES = {idea_pm:'cliente_pm',idea_software:'cliente_software',idea_products:'cliente_products'};
   const baseSteps = [
     {id:'sector',kicker:'Contesto',title:'In quale settore lavori?',render:()=>`${field('settore','Scrivilo con parole tue',{placeholder:'Per esempio: consulenza, ristorazione, e-commerce',maxlength:120})}<p class="fl-inline-note">Serve a mostrarti esempi pertinenti e a leggere le risposte per settore. Puoi anche saltarlo.</p>`},
     {id:'problems',kicker:'Problemi',title:'Quali sono i problemi che pesano di più?',render:()=>{const shown=painsShown();const box=n=>field(`pain${n}`,`Problema ${n}`,{textarea:true,rows:3,required:n===1,placeholder:n===1?'Il problema che pesa di più':'Facoltativo'});return `<p class="fl-help">Descrivi situazioni concrete, in ordine di importanza. Per esempio: “i clienti pagano in ritardo” o “ricopio lo stesso dato in tre sistemi”. Il primo è obbligatorio; se ne hai altri, continua pure.</p>${tagGroup(PAINS.filter(n=>n<=shown).map(n=>n===2?`<div class="fl-ghost">${box(n)}</div>`:box(n)).join(''),'pain')}${shown<PAINS.length?'<button type="button" class="fl-ideas-toggle fl-add" id="addPain">+ Aggiungi un altro problema</button>':''}`;}},
     {id:'costs',kicker:'Problemi',title:'Quanto costano questi problemi?',render:costsPage},
     {id:'desires',kicker:'Desideri',title:'Se avessi il genio AI della lampada con i 3 desideri, cosa chiederesti?',render:()=>textareaGroup('Quali sono i risultati o i cambiamenti che desideri di più?','Immagina di poter togliere gli ostacoli e trasformare il lavoro. Scrivi fino a tre desideri, in ordine di importanza. Almeno il primo è richiesto.','desire',['desiderio1','desiderio2','desiderio3'])},
     {id:'fears',kicker:'Paure',title:'Che cosa ti preoccupa all’idea di portare AI e software su misura nel tuo lavoro?',render:()=>textareaGroup('Quali paure o rischi ti verrebbero in mente?','Per esempio: costo, tempo, privacy, qualità, controllo, adozione del team, dipendenza da chi costruisce. Non servono risposte “giuste”. Almeno la prima è richiesta.','fear',['paura1','paura2','paura3'])},
-    {id:'ideas',kicker:'Offerte',title:'Le mie 3 possibili offerte',render:()=>`<p class="fl-help">Queste sono ipotesi da validare, non offerte definitive. Metti 1 alla più interessante, 2 alla seconda, 3 alla terza. Puoi mettere solo il 1. Se nessuna ti interessa, usa il pulsante in fondo.</p><div class="fl-offers">${offerOrder.map(o=>`<article class="fl-offer"><div><h3>${o.title}</h3><p>${o.text}</p><small>${o.sub}</small></div><div><span class="fl-label">Ordine</span><input type="hidden" id="${o.key}" data-rank="${o.key}" value="${esc(answers[o.key]||'')}"><div class="fl-rank-picks" role="group" aria-label="Ordine di interesse: ${esc(o.title)}">${['1','2','3'].map(v=>`<button type="button" class="fl-pick fl-pick--small" data-rank-pick="${o.key}" data-rank-value="${v}" aria-pressed="${answers[o.key]===v}">${v}</button>`).join('')}${`<button type="button" class="fl-pick fl-pick--small" data-rank-pick="${o.key}" data-rank-value="" aria-pressed="${!answers[o.key]}" aria-label="Nessun ordine">—</button>`}</div></div></article>`).join('')}</div><div id="rankError" class="fl-error fl-hidden" role="alert"></div><button type="button" class="fl-pick fl-none" id="none_ideas" aria-pressed="${!!answers.none_ideas}">Nessuna delle tre mi interessa</button><div id="fourthBox" style="margin-top:20px" ${answers.none_ideas?'':'hidden'}>${tagGroup(field('idea_suggerita','Una quarta proposta: per quello che vedi sul mercato, cosa avrebbe più senso?',{textarea:true,placeholder:'Facoltativo'}),'systems')}${generator('systems','idea_suggerita')}</div>`},
+    {id:'ideas',kicker:'Offerte',title:'Le mie 3 possibili offerte',render:()=>`<p class="fl-help">Sono ipotesi da validare, non offerte definitive. Dai un voto da 1 a 10 a ciascuna trascinando la barra. Se nessuna ti interessa, usa il pulsante in fondo.</p><div class="fl-offers">${offerOrder.map(o=>`<article class="fl-offer"><div><h3>${o.title}</h3><p>${o.text}</p><small>${o.sub}</small></div>${slider(o.key,'Il tuo voto')}</article>`).join('')}</div><button type="button" class="fl-pick fl-none" id="none_ideas" aria-pressed="${!!answers.none_ideas}">Nessuna delle tre mi interessa</button><div id="fourthBox" style="margin-top:20px" ${answers.none_ideas?'':'hidden'}>${tagGroup(field('idea_suggerita','Una quarta proposta: per quello che vedi sul mercato, cosa avrebbe più senso?',{textarea:true,placeholder:'Facoltativo'}),'systems')}${generator('systems','idea_suggerita')}</div>`},
     {id:'purchase',kicker:'Decisione',title:'Come preferiresti portarlo nel tuo lavoro?',render:()=>`<p class="fl-help">Immagina che una di queste offerte risolva un problema importante per te. Quale formato ti aiuterebbe davvero a portarla nel lavoro quotidiano?</p><div class="fl-choice-list">${[
       'Un corso pratico da seguire in autonomia, con esempi e strumenti pronti.',
       'Un percorso di gruppo con esercizi, confronto e una sessione periodica.',
@@ -222,21 +239,12 @@
       'Preferisco delegare la realizzazione e ricevere il sistema pronto, con passaggio di consegne.',
       'Una singola consulenza per capire da dove partire.',
       'Nessuno di questi formati mi interesserebbe.'
-    ].map((x,i)=>`<label class="fl-choice"><input type="radio" name="decisione" value="${esc(x)}" data-radio="decisione" ${answers.decisione===x?'checked':''}><span>${esc(x)}</span></label>`).join('')}</div>${choices('prezzo_freelance','Per l’offerta che hai messo al primo posto, quanto investiresti in tutto?',['Meno di €100','€100–500','€500–1.500','€1.500–5.000','Più di €5.000','Non saprei'],{empty:'Preferisco non dirlo'})}${field('prova_necessaria','Che cosa vorresti vedere o sapere prima di scegliere?',{textarea:true,placeholder:'Facoltativo: risultati, esempi, competenze, durata, supporto, indipendenza, prezzo…'})}`},
+    ].map((x,i)=>`<label class="fl-choice"><input type="radio" name="decisione" value="${esc(x)}" data-radio="decisione" ${answers.decisione===x?'checked':''}><span>${esc(x)}</span></label>`).join('')}</div>${choices('prezzo_freelance','Per l’offerta che ti interessa di più, quanto investiresti in tutto?',['Meno di €100','€100–500','€500–1.500','€1.500–5.000','Più di €5.000','Non saprei'],{empty:'Preferisco non dirlo'})}${field('prova_necessaria','Che cosa vorresti vedere o sapere prima di scegliere?',{textarea:true,placeholder:'Facoltativo: risultati, esempi, competenze, durata, supporto, indipendenza, prezzo…'})}`},
+    {id:'clients',kicker:'I tuoi clienti',title:'E se fossi uno dei tuoi clienti abituali?',render:()=>`<p class="fl-help">Mettiti nei panni dei clienti che segui di solito. Che voto darebbero a queste offerte, se le vedessero oggi?</p><div class="fl-offers">${offerOrder.map(o=>`<article class="fl-offer">${slider(CLIENT_VOTES[o.key],o.title)}</article>`).join('')}</div><div style="margin-top:20px">${field('cliente_commento','Un commento finale',{textarea:true,placeholder:'Facoltativo'})}</div>`},
     {id:'note',kicker:'Ultima cosa',title:'C’è qualcosa che vuoi aggiungere?',render:()=>`${field('nota_finale','Una nota libera per George',{textarea:true,placeholder:'Facoltativa. Per favore non inserire nomi, email, aziende o informazioni riservate.'})}<p class="fl-note">Grazie per aver dedicato tempo a questa ricerca. Le risposte servono a capire quali problemi e desideri meritano davvero di diventare un progetto.</p>`}
   ];
-  const companyStep = {id:'softwareCustom',kicker:'Software custom',title:'Come ti sembra l’ipotesi del software custom?',render:()=>`<p class="fl-help">L’hai messa fra le offerte che ti interessano. Il primo passo è una demo cliccabile con un piano di moltiplicazione dell’investimento su misura, da €3–5 mila; lo sviluppo viene dopo, da €10 mila secondo il perimetro.</p>${tagGroup(field('company_idea','Quale problema o software immagini?',{textarea:true,placeholder:'Facoltativo'}),'systems')}${generator('systems','company_idea')}<p class="fl-q">Come reagisci all’ipotesi di pagare €3–5 mila per demo e piano?</p><div class="fl-choice-list">${[
-      'Per me questa fascia di prezzo non avrebbe senso.',
-      'La valuterei solo con un primo progetto pilota più piccolo e circoscritto.',
-      'Avrebbe senso se il problema e il ritorno economico fossero dimostrati con chiarezza.',
-      'La prenderei in considerazione con una demo cliccabile e ipotesi economiche prima dello sviluppo.',
-      'La pagherei solo se poi partisse anche la realizzazione.',
-      'Dipende dal problema, dall’urgenza e da chi decide.',
-      'Non saprei valutarla.'
-    ].map((x)=>`<label class="fl-choice"><input type="radio" name="company_price_reaction" value="${esc(x)}" data-radio="company_price_reaction" ${answers.company_price_reaction===x?'checked':''}><span>${esc(x)}</span></label>`).join('')}</div>${field('idea_company_why','Che cosa la renderebbe più o meno convincente?',{textarea:true,placeholder:'Facoltativo: prezzo, tempi, proprietà del codice, adozione, dati, ritorno atteso…'})}`};
   const noOffer = () => !!answers.none_ideas || RANKS.every(k=>!answers[k]);
-  const showCompany = () => !!answers.idea_software;
-  const getSteps = () => { const x=baseSteps.filter(s=>s.id!=='purchase'||!noOffer()); if(showCompany()) x.splice(x.findIndex(s=>s.id==='note'),0,companyStep); return x; };
+  const getSteps = () => baseSteps.filter(s=>s.id!=='purchase'||!noOffer());
   const setAnswer = (id,value) => { answers[id]=value; save(); };
   const next = () => { const steps=getSteps(); if(current<steps.length-1){current++; render();} else submit(); };
   const back = () => { if(current>=0){current--;render();} };
@@ -265,15 +273,6 @@
       for(const p of pieces){p.t+=dt;p.life=1-p.t/dur;if(p.life<=0)continue;alive=true;const drag=p.leaf?2.3:1.2;p.vx-=p.vx*drag*dt;p.vy+=((p.leaf?620:980)-p.vy*drag)*dt;p.x+=p.vx*dt+(p.leaf?Math.sin(p.t*7+p.flip)*.7:0);p.y+=p.vy*dt;p.r+=p.vr*dt;drawPiece(g,p);}
       if(alive)requestAnimationFrame(frame);else c.remove();})(last);
   }
-  function rankValidate(){
-    const vals=RANKS.map(k=>answers[k]).filter(Boolean);
-    const node=document.getElementById('rankError'); if(!node)return true;
-    const unique=new Set(vals); const numbers=vals.map(Number).sort();
-    let message='';
-    if(unique.size!==vals.length) message='Usa ciascun numero una sola volta.';
-    else if(numbers.some((n,i)=>n!==i+1)) message='Quando assegni un punteggio, compila l’ordine senza salti: 1, poi eventualmente 2, poi 3.';
-    node.textContent=message; node.classList.toggle('fl-hidden',!message); return !message;
-  }
   function addListeners(){
     content.querySelectorAll('[data-digits]').forEach(el=>el.addEventListener('input',()=>{el.value=el.value.replace(/\D/g,'');},true));
     content.querySelectorAll('[data-field]').forEach(el=>{el.addEventListener('input',()=>setAnswer(el.dataset.field,el.value));el.addEventListener('change',()=>setAnswer(el.dataset.field,el.value));});
@@ -283,15 +282,11 @@
       content.querySelectorAll(`[data-choice-field="${id}"]`).forEach(item=>item.setAttribute('aria-pressed',String(item===btn)));
     }));
     content.querySelectorAll('[data-radio]').forEach(el=>el.addEventListener('change',()=>setAnswer(el.dataset.radio,el.value)));
-    content.querySelectorAll('[data-rank-pick]').forEach(btn=>btn.addEventListener('click',()=>{
-      const id=btn.dataset.rankPick,value=btn.dataset.rankValue,hidden=document.getElementById(id);if(!hidden)return;
-      if(value)RANKS.filter(k=>k!==id&&answers[k]===value).forEach(k=>{setAnswer(k,'');const other=document.getElementById(k);if(other)other.value='';content.querySelectorAll(`[data-rank-pick="${k}"]`).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.rankValue==='')));});
-      hidden.value=value;setAnswer(id,value);
-      content.querySelectorAll(`[data-rank-pick="${id}"]`).forEach(item=>item.setAttribute('aria-pressed',String(item===btn)));
-      if(value){answers.none_ideas='';const c=document.getElementById('none_ideas');if(c)c.setAttribute('aria-pressed','false');const f=document.getElementById('fourthBox');if(f)f.hidden=true;save();}
-      rankValidate();
-    }));
-    const none=document.getElementById('none_ideas'); if(none) none.addEventListener('click',()=>{const on=!answers.none_ideas;setAnswer('none_ideas',on?'Sì':'');none.setAttribute('aria-pressed',String(on));document.getElementById('fourthBox').hidden=!on;if(on){RANKS.forEach(k=>{setAnswer(k,'');const h=document.getElementById(k);if(h)h.value='';content.querySelectorAll(`[data-rank-pick="${k}"]`).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.rankValue==='')));});rankValidate();}});
+    content.querySelectorAll('[data-vote]').forEach(el=>{
+      const id=el.dataset.vote,mark=()=>{setAnswer(id,el.value);document.getElementById(`${id}_val`).textContent=el.value;el.closest('.fl-vote').classList.remove('is-empty');if(RANKS.includes(id)&&answers.none_ideas){setAnswer('none_ideas','');document.getElementById('none_ideas').setAttribute('aria-pressed','false');document.getElementById('fourthBox').hidden=true;}};
+      el.addEventListener('input',mark);el.addEventListener('pointerup',mark);
+    });
+    const none=document.getElementById('none_ideas'); if(none) none.addEventListener('click',()=>{const on=!answers.none_ideas;setAnswer('none_ideas',on?'Sì':'');none.setAttribute('aria-pressed',String(on));document.getElementById('fourthBox').hidden=!on;if(on)RANKS.forEach(k=>{setAnswer(k,'');const r=document.getElementById(k);r.value='5';document.getElementById(`${k}_val`).textContent='—';r.closest('.fl-vote').classList.add('is-empty');});});
     content.querySelectorAll('[data-generate]').forEach(btn=>btn.addEventListener('click',()=>{
       const panel=document.getElementById(`panel-${btn.dataset.generate}`);if(!panel)return;
       const open=panel.hidden;
@@ -300,7 +295,6 @@
     }));
     const add=document.getElementById('addPain'); if(add)add.addEventListener('click',()=>{painExtra=painsShown()+1;render();document.getElementById(`pain${painExtra}`)?.focus();});
     const n=document.getElementById('next'); if(n)n.addEventListener('click',()=>{
-      if(steps[current]?.id==='ideas'&&!rankValidate())return;
       const required=content.querySelectorAll('[data-field][required]');
       for(const el of required){if(!el.value.trim()){el.focus();el.setAttribute('aria-invalid','true');let msg=content.querySelector('.fl-required-error');if(!msg){msg=document.createElement('p');msg.className='fl-error fl-required-error';msg.setAttribute('role','alert');msg.textContent='Compila almeno il primo campo richiesto per continuare.';content.querySelector('.fl-nav').before(msg);}return;}}
       celebrate(n);
@@ -350,7 +344,6 @@
     if(noOffer()){['decisione','prova_necessaria','prezzo_freelance',...RANKS].forEach(k=>delete out[k]);}
     else delete out.none_ideas;
     if(!out.none_ideas)delete out.idea_suggerita;
-    if(!showCompany())['company_idea','company_price_reaction','idea_company_why'].forEach(k=>delete out[k]);
     out.spunti_usati=Object.keys(chips).filter(k=>out[k]===chips[k]).join(', ');
     Object.keys(out).forEach(k=>{if(typeof out[k]!=='string')delete out[k];});
     return out;
