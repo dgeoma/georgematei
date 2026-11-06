@@ -259,7 +259,7 @@
       const answersEmail=!!(answers.email||'').trim();try{localStorage.removeItem(KEY);}catch{}
       if(btn)celebrate(btn);
       progressWrap.hidden=true;
-      content.innerHTML=`<div class="fl-thanks"><div class="fl-stamp" aria-hidden="true">✦</div><p class="fl-kicker">Grazie</p><h2>Il tuo feedback è arrivato.</h2>${answersEmail?'<p class="fl-lede">Se l’indirizzo è corretto, il tuo PDF arriverà via email, di solito entro qualche ora.</p>':''}<p class="fl-lede">Tra 3 secondi ti porto sul sito di <a href="/">George Matei</a>.</p></div>`;
+      content.innerHTML=`<div class="fl-thanks"><div class="fl-stamp" aria-hidden="true">✦</div><p class="fl-kicker">Grazie</p><h2>Il tuo feedback è arrivato.</h2>${answersEmail?'<p class="fl-lede">Se l’indirizzo è corretto, il tuo PDF arriverà via email, di solito in pochi minuti.</p>':''}<p class="fl-lede">Tra 3 secondi ti porto sul sito di <a href="/">George Matei</a>.</p></div>`;
       setTimeout(()=>{location.href='/';},3000);
     }catch(e){
       const err=document.createElement('p');err.className='fl-error';err.setAttribute('role','alert');err.textContent=`Non sono riuscito a inviare le risposte${e instanceof TypeError||e.name==='TimeoutError'?'':` (${e.message})`}. Sono ancora salvate su questo dispositivo: riprova tra poco.`;content.querySelector('.fl-error[role=alert]')?.remove();content.querySelector('.fl-nav')?.before(err);if(btn){btn.disabled=false;btn.textContent='Riprova invio';}sending=false;
