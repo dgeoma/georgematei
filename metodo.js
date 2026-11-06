@@ -133,6 +133,46 @@
     dopo(inizio, metti);
   }
 
+  /* ---------- la demo nell'iPhone: si tocca davvero ---------- */
+  var demo = document.querySelector('.scena--demo');
+  var righe = demo ? [].slice.call(demo.querySelectorAll('.demo__riga')) : [];
+  var dito = demo && demo.querySelector('.iphone__dito');
+  var conta = demo && demo.querySelector('.demo__conta b');
+  var toccata = false;
+  function statoRiga(r, fatta) {
+    r.classList.toggle('is-fatta', fatta);
+    r.setAttribute('aria-pressed', fatta ? 'true' : 'false');
+    r.querySelector('b').textContent = r.getAttribute(fatta ? 'data-ok' : 'data-da');
+    if (conta) conta.textContent = righe.filter(function (x) { return x.classList.contains('is-fatta'); }).length;
+  }
+  function demoFinita() { righe.forEach(function (r) { statoRiga(r, true); }); if (dito) dito.classList.remove('is-su'); }
+  function giocaDemo() {
+    if (toccata) return;
+    righe.forEach(function (r) { statoRiga(r, false); });
+    var iph = demo.querySelector('.iphone');
+    righe.forEach(function (r, n) {
+      dopo(900 + n * 1250, function () {
+        if (toccata) return;
+        var a = iph.getBoundingClientRect(), b = r.getBoundingClientRect(), s = a.width / iph.offsetWidth || 1;
+        dito.style.transform = 'translate(' + (((b.left + b.width * 0.72) - a.left) / s).toFixed(1) + 'px,' + (((b.top + b.height / 2) - a.top) / s).toFixed(1) + 'px)';
+        dito.classList.add('is-su');
+      });
+      dopo(1500 + n * 1250, function () {
+        if (toccata) return;
+        statoRiga(r, true);
+        if (n === righe.length - 1) dopo(500, function () { dito.classList.remove('is-su'); });
+      });
+    });
+  }
+  righe.forEach(function (r) {
+    r.setAttribute('aria-pressed', 'true');
+    r.addEventListener('click', function () {
+      toccata = true;
+      if (dito) dito.classList.remove('is-su');
+      statoRiga(r, !r.classList.contains('is-fatta'));
+    });
+  });
+
   /* ---------- il palco ---------- */
   var sezione = document.getElementById('metodo');
   var pista = sezione && sezione.querySelector('.metodo__pista');
@@ -140,15 +180,23 @@
   var slide = sezione ? [].slice.call(sezione.querySelectorAll('.m-slide')) : [];
   var numeri = sezione ? [].slice.call(sezione.querySelectorAll('.metodo__num')) : [];
   var nav = sezione && sezione.querySelector('.metodo__nav');
-  var viva = false, idx = 0, giocate = [false, false, false], palcoVisto = false, fermate = false;
+  var ULTIMA = slide.length - 1;
+  var viva = false, idx = 0, giocate = [false, false, false, false], fermate = false, modoFatto = false;
+
+  /* il palco è fermo sullo schermo: né in arrivo né già oltre */
+  function agganciato() {
+    var d = palco.getBoundingClientRect().top - document.querySelector('.nav').offsetHeight;
+    return d <= 60 && d >= -60;
+  }
 
   function gioca(i) {
-    if (giocate[i] || !viva || !palcoVisto) return;
+    if (giocate[i] || ridotto.matches || !hoIO || (viva && !agganciato())) return;
     giocate[i] = true;
     var sc = slide[i].querySelector('.scena');
     sc.classList.add('is-go');
     if (i === 0) animaTempo(sc.querySelector('.call__tempo'), 5400);
-    if (i === 1) giocaModello();
+    if (sc === modello) giocaModello();
+    if (sc === demo) giocaDemo();
   }
 
   function mostra(i) {
@@ -156,12 +204,15 @@
     slide.forEach(function (s, k) {
       s.classList.toggle('is-att', k === i);
       s.classList.toggle('is-prima', k < i);
+      /* le slide nascoste non si raggiungono col tab */
+      var sc = s.querySelector('.scena');
+      if (k === i) sc.removeAttribute('inert'); else sc.setAttribute('inert', '');
     });
     numeri.forEach(function (b, k) {
       if (k === i) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
       b.classList.toggle('is-fatto', k < i);
     });
-    if (nav) nav.style.setProperty('--avanzo', i / 2);
+    if (nav) nav.style.setProperty('--avanzo', i / ULTIMA);
     gioca(i);
   }
 
@@ -169,7 +220,7 @@
     var navH = document.querySelector('.nav').offsetHeight;
     var inizio = scrollY + pista.getBoundingClientRect().top - navH;
     var corsa = pista.offsetHeight - palco.offsetHeight;
-    return { inizio: inizio, passo: corsa / 2, fine: inizio + corsa };
+    return { inizio: inizio, passo: corsa / ULTIMA, fine: inizio + corsa };
   }
   function vai(i) {
     var m = misure();
@@ -179,7 +230,7 @@
   function suScroll() {
     if (!viva) return;
     var m = misure(), k = m.passo > 0 ? (scrollY - m.inizio) / m.passo : 0;
-    var i = Math.max(0, Math.min(2, Math.round(k)));
+    var i = Math.max(0, Math.min(ULTIMA, Math.round(k)));
     if (i !== idx) mostra(i);
   }
 
@@ -210,7 +261,7 @@
       else { e.preventDefault(); return; }
     }
     var dopoI = idx + dir;
-    if (dopoI < 0 || dopoI > 2) return;              /* dalle estremità si esce scorrendo normalmente */
+    if (dopoI < 0 || dopoI > ULTIMA) return;              /* dalle estremità si esce scorrendo normalmente */
     e.preventDefault();
     vai(dopoI);
     blocco = true; sblocco = ora + 620; massimo = ora + 2200;
@@ -222,11 +273,13 @@
     var giu = e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey), su = e.key === 'PageUp' || (e.key === ' ' && e.shiftKey);
     if (!giu && !su) return;
     var t = e.target, tag = t && t.tagName;
-    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'BUTTON' || tag === 'A' || tag === 'SUMMARY' || (t && t.isContentEditable)) return;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (t && t.isContentEditable)) return;
+    /* sui bottoni lo Spazio serve a premerli; PagGiù e PagSu cambiano slide */
+    if (e.key === ' ' && (tag === 'BUTTON' || tag === 'A' || tag === 'SUMMARY')) return;
     var m = misure(), y = scrollY;
     if (y < m.inizio - 2 || y > m.fine + 2) return;
     var i = idx + (giu ? 1 : -1);
-    if (i < 0 || i > 2) return;
+    if (i < 0 || i > ULTIMA) return;
     e.preventDefault();
     vai(i);
   }
@@ -237,6 +290,7 @@
     fermate = true;
     root.classList.add('anim-ferme');
     pezzi.forEach(function (p) { p.classList.add('on'); });
+    if (!toccata) demoFinita();
     slide.forEach(function (s, k) { giocate[k] = true; s.querySelector('.scena').classList.add('is-go', 'is-fine'); });
     var tempo = sezione.querySelector('.call__tempo'); if (tempo) tempo.textContent = '30:00';
     var fb = sezione.querySelector('.metodo__ferma'); if (fb) fb.hidden = true;
@@ -244,14 +298,18 @@
 
   function aggiornaModo() {
     var si = !ridotto.matches && hoIO && matchMedia('(min-height: 600px)').matches;
-    if (si === viva) return;
+    if (modoFatto && si === viva) return;
+    modoFatto = true;
     viva = si;
     root.classList.toggle('metodo--viva', viva);
-    if (viva) suScroll();
-    else slide.forEach(function (s) {
+    root.classList.toggle('metodo--anim', !ridotto.matches && hoIO);
+    if (viva) { suScroll(); mostra(idx); }
+    else slide.forEach(function (s, k) {
       s.classList.remove('is-prima');
-      s.querySelector('.scena').classList.add('is-go');
-      s.querySelector('.scena').classList.remove('is-fine');
+      s.querySelector('.scena').removeAttribute('inert');
+      /* finestre basse: niente palco, ogni scena parte quando la vedi */
+      if (ridotto.matches || !hoIO) s.querySelector('.scena').classList.add('is-go');
+      else quando(s.querySelector('.scena'), 0.4, function () { if (!viva) gioca(k); });
     });
     misuraQuadri();
   }
@@ -266,6 +324,7 @@
 
   if (sezione) {
     montaModello();
+    if (!ridotto.matches && hoIO) righe.forEach(function (r) { statoRiga(r, false); });
     aggiornaModo();
     misuraQuadri();
     if ('ResizeObserver' in window) { var ro = new ResizeObserver(misuraQuadri); scene.forEach(function (s) { ro.observe(s); }); }
@@ -275,7 +334,10 @@
     addEventListener('keydown', suTasto);
     var fb = sezione.querySelector('.metodo__ferma'); if (fb) fb.addEventListener('click', fermaScene);
     numeri.forEach(function (b) { b.addEventListener('click', function () { vai(+b.getAttribute('data-vai')); }); });
-    quando(palco, 0.45, function () { palcoVisto = true; gioca(idx); });
+    /* la prima scena parte quando il palco è agganciato, non mentre ci stai arrivando */
+    function controllaPalco() { if (viva) gioca(idx); }
+    addEventListener('scroll', controllaPalco, { passive: true });
+    controllaPalco();
     /* il modellino segue un po' il mouse: lo tocchi con mano */
     if (modello && matchMedia('(hover: hover)').matches && !ridotto.matches) {
       var mondo = modello.querySelector('.m3d__mondo');
