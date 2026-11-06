@@ -128,14 +128,10 @@
 .tempio .dome__quote strong { font-weight: 400; }
 .tempio .book { padding-top: 170px; }
 
-/* fregio con l'alloro, come sul tempio */
+/* fregio: il disegno (greca) sta in fondo al file */
 .tempio .method::before, .tempio .finale::after {
   content: "";
   display: block;
-  height: 40px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40'%3E%3Cpath d='M0 20H60' stroke='%23d6b05b' stroke-width='1.2'/%3E%3Cg fill='%23d6b05b'%3E%3Cpath d='M4 20q7-9 17-9q-6 8-17 9zM4 20q7 9 17 9q-6-8-17-9zM24 20q7-9 17-9q-6 8-17 9zM24 20q7 9 17 9q-6-8-17-9zM44 20q7-9 17-9q-6 8-17 9zM44 20q7 9 17 9q-6-8-17-9z'/%3E%3C/g%3E%3C/svg%3E") center / 60px 40px repeat-x, var(--navy-950);
-  border-top: 2px solid var(--gold-500);
-  border-bottom: 2px solid var(--gold-500);
 }
 
 
@@ -246,4 +242,13 @@
 @media (max-width: 380px) {
   .tempio .hero__img { top: calc(var(--nav-h) + 1vw); height: 29vw; }
   .hero__cielo { height: 28vw; }
+}
+
+/* ---------- greca (06/11): al posto dell'alloro ---------- */
+.tempio .method::before, .tempio .finale::after {
+  height: 48px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M0 30H32M30 30V2H6V22H22V10H14V16' fill='none' stroke='%23d6b05b' stroke-width='2.4' stroke-linecap='square'/%3E%3C/svg%3E") 0 50% / 32px 32px repeat-x, var(--navy-950);
+  border-top: 1px solid var(--gold-500);
+  border-bottom: 1px solid var(--gold-500);
+  box-shadow: inset 0 3px 0 var(--navy-950), inset 0 4px 0 rgba(214, 176, 91, 0.55), inset 0 -3px 0 var(--navy-950), inset 0 -4px 0 rgba(214, 176, 91, 0.55);
 }
