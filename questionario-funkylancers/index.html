@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0f1e3a">
 <title>Conosci il tuo lavoro, immagina il prossimo passo · George Matei</title>
-<meta name="description" content="Una ricerca tra Funkylancers senza richiesta di dati identificativi, su problemi, desideri e modi di usare AI e software nel lavoro.">
+<meta name="description" content="Tre domande su problemi, desideri e ciò che manca al tuo business. In cambio, se lasci l’email, un PDF personale.">
 <link rel="canonical" href="https://georgematei.com/questionario-funkylancers/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -114,6 +114,10 @@
   .fl-honeypot{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important}
   .fl-thanks{padding:34px 0}
   .fl-thanks .fl-stamp{font-size:36px;margin-bottom:14px}
+  .fl-thanks .fl-lede a{color:#3a527e;text-decoration:underline;text-underline-offset:3px}
+  .fl-figure{border:0;padding:0;margin:0 0 18px;display:flex;flex-wrap:wrap;gap:8px 20px}.fl-figure legend{padding:0;margin:0 0 7px}.fl-figure label{display:flex;align-items:center;gap:7px;font-size:15px;cursor:pointer}.fl-figure input{width:18px;height:18px;accent-color:#927129}
+  .fl-consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;margin:6px 0 4px;cursor:pointer}
+  .fl-consent input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:#927129}
   .fl-hidden{display:none!important}
   .fl-field[hidden]{display:none}
   .fl-ghost{transition:opacity .2s ease}
@@ -134,7 +138,7 @@
   <aside class="fl-scene" id="scene" aria-label="Tempio di Delfi in costruzione con piccoli robot assistenti">
     <img class="fl-scene-bg" src="/assets/funkylancers-delfi-sfondo.jpg" width="1122" height="1402" alt="Robot costruttori al lavoro intorno al tempio di Delfi">
     <div class="fl-flyer" aria-hidden="true"><div class="fl-flyer-flip"><div class="fl-flyer-bob"><img src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt=""><span class="fl-rotor"></span></div></div></div>
-    <span class="fl-brand">GEORGE MATEI</span>
+    <a class="fl-brand" href="/" target="_blank" rel="noopener">GEORGE MATEI</a>
     <div class="fl-scene-copy">
       <div class="fl-greek" lang="grc">γνῶθι σεαυτόν <span aria-hidden="true">·</span> conosci te stesso</div>
       <p>Prima facciamo chiarezza su ciò che conta. Poi immaginiamo cosa può costruire l’AI per aiutarti a farlo.</p>
@@ -168,15 +172,17 @@
   let started = false;
   const scene = document.getElementById('scene');
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(answers)); } catch {} };
-  const field = (id,label,opts={}) => `<div class="fl-field"><label for="${id}">${label}${opts.required?'<span class="fl-required" aria-label="obbligatorio">*</span>':''}</label>${opts.textarea?`<textarea class="fl-textarea" id="${id}" data-field="${id}" ${opts.rows?`rows="${opts.rows}"`:''} ${opts.required?'required':''} maxlength="1600" placeholder="${opts.placeholder||'Scrivi con parole tue…'}">${esc(answers[id]||'')}</textarea>`:`<input class="fl-input" id="${id}" data-field="${id}" type="${opts.type||'text'}" ${opts.required?'required':''} ${opts.min!==undefined?`min="${opts.min}"`:''} ${opts.step?`step="${opts.step}"`:''} ${opts.inputmode?`inputmode="${opts.inputmode}"`:''} maxlength="${opts.maxlength||500}" value="${esc(answers[id]||'')}" placeholder="${opts.placeholder||''}">`}</div>`;
+  const field = (id,label,opts={}) => `<div class="fl-field"><label for="${id}">${label}${opts.required?'<span class="fl-required" aria-label="obbligatorio">*</span>':''}</label>${opts.textarea?`<textarea class="fl-textarea" id="${id}" data-field="${id}" ${opts.rows?`rows="${opts.rows}"`:''} ${opts.required?'required':''} maxlength="1600" placeholder="${opts.placeholder||'Scrivi con parole tue…'}">${esc(answers[id]||'')}</textarea>`:`<input class="fl-input" id="${id}" data-field="${id}" type="${opts.type||'text'}" ${opts.required?'required':''} ${opts.min!==undefined?`min="${opts.min}"`:''} ${opts.step?`step="${opts.step}"`:''} ${opts.max?`max="${opts.max}"`:''} ${opts.autocomplete?`autocomplete="${opts.autocomplete}"`:''} ${opts.inputmode?`inputmode="${opts.inputmode}"`:''} maxlength="${opts.maxlength||500}" value="${esc(answers[id]||'')}" placeholder="${opts.placeholder||''}">`}</div>`;
   const MAX = {pain:5,desiderio:3};
   const extra = {pain:0,desiderio:0};
   const shown = key => { let last=0; for(let n=1;n<=MAX[key];n++) if((answers[`${key}${n}`]||'').trim()) last=n; return Math.max(2,last,extra[key]); };
   const boxes = (key,label,first,addLabel) => { const count=shown(key); let html=''; for(let n=1;n<=count;n++){ const box=field(`${key}${n}`,`${label} ${n}`,{textarea:true,rows:n===1?3:2,required:n===1,placeholder:n===1?first:'Facoltativo'}); html+=n===2?`<div class="fl-ghost">${box}</div>`:box; } return html+(count<MAX[key]?`<button type="button" class="fl-ideas-toggle fl-add" data-add="${key}">${addLabel}</button>`:''); };
+  const today = () => { const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
   const baseSteps = [
+    {id:'who',kicker:'Prima di iniziare',title:'Chi sei?',render:()=>`<div class="fl-duo">${field('nome','Nome',{required:true,maxlength:80,autocomplete:'given-name'})}${field('cognome','Cognome',{required:true,maxlength:80,autocomplete:'family-name'})}</div>${field('email','Email (facoltativa): ti mando il tuo PDF personale',{type:'email',maxlength:160,autocomplete:'email',inputmode:'email'})}<fieldset class="fl-figure" id="figura"><legend class="fl-label">Il personaggio nel tuo PDF</legend><label><input type="radio" name="figura" value="femminile" data-figura ${answers.figura==='femminile'?'checked':''}> Femminile</label><label><input type="radio" name="figura" value="maschile" data-figura ${answers.figura==='maschile'?'checked':''}> Maschile</label></fieldset><div class="fl-duo">${field('data_nascita','Data di nascita (facoltativa)',{type:'date',min:'1900-01-01',max:today(),autocomplete:'bday'})}${field('ora_nascita','Ora di nascita (facoltativa)',{type:'time'})}</div><label class="fl-consent"><input type="checkbox" id="consenso_profilo" data-consent ${answers.consenso_profilo?'checked':''}><span>Se indico data o ora di nascita, acconsento a che George Dragos Matei le usi per leggere il mio profilo (tema natale, Gene Keys o simili) e che le posizioni calcolate, senza il mio nome, passino a un assistente AI per preparare il mio PDF.</span></label>`},
     {id:'problems',kicker:'Il tuo business, oggi',title:'Quali problemi ti pesano di più nel tuo business?',render:()=>`<p class="fl-help">Quelli che ti costano più tempo, soldi o energie, partendo dal più importante. Bastano poche parole.</p>${boxes('pain','Problema','Il problema che pesa di più','+ Aggiungi un altro problema')}`},
     {id:'desires',kicker:'I tuoi desideri',title:'Se il genio AI della lampada ti concedesse 3 desideri per il tuo business, cosa chiederesti?',render:()=>`<p class="fl-help">Per un attimo, tutto è possibile. Parti da quello che vuoi di più.</p>${boxes('desiderio','Desiderio','Il desiderio che vuoi di più','+ Aggiungi il terzo desiderio')}`},
-    {id:'missing',kicker:'L’ultimo pezzo',title:'Che cosa senti che ti manca per arrivare alla versione ideale di te e del tuo business?',render:()=>`<p class="fl-help">Può essere una competenza, una persona, un sistema, del tempo o qualcos’altro.</p>${field('manca','Che cosa ti manca',{textarea:true,rows:3,required:true,placeholder:'Scrivi con parole tue…'})}${field('nota_finale','Vuoi aggiungere qualcosa?',{textarea:true,rows:2,placeholder:'Facoltativo. Per favore non inserire nomi, email, aziende o informazioni riservate.'})}`}
+    {id:'missing',kicker:'L’ultimo pezzo',title:'Che cosa senti che ti manca per arrivare alla versione ideale di te e del tuo business?',render:()=>`<p class="fl-help">Può essere una competenza, una persona, un sistema, del tempo o qualcos’altro.</p>${field('manca','Che cosa ti manca',{textarea:true,rows:3,required:true,placeholder:'Scrivi con parole tue…'})}${field('nota_finale','Vuoi aggiungere qualcosa?',{textarea:true,rows:2,placeholder:'Facoltativo. Per favore non inserire nomi di clienti o informazioni riservate.'})}`}
   ];
   const getSteps = () => baseSteps;
   const setAnswer = (id,value) => { answers[id]=value; save(); };
@@ -210,9 +216,13 @@
   function addListeners(){
     content.querySelectorAll('[data-field]').forEach(el=>{el.addEventListener('input',()=>setAnswer(el.dataset.field,el.value));el.addEventListener('change',()=>setAnswer(el.dataset.field,el.value));});
     content.querySelectorAll('[data-add]').forEach(btn=>btn.addEventListener('click',()=>{const key=btn.dataset.add;extra[key]=shown(key)+1;render();document.getElementById(`${key}${extra[key]}`)?.focus();}));
+    const consent=content.querySelector('[data-consent]');if(consent)consent.addEventListener('change',()=>setAnswer('consenso_profilo',consent.checked?'sì':''));
+    content.querySelectorAll('[data-figura]').forEach(r=>r.addEventListener('change',()=>setAnswer('figura',r.value)));
     const n=document.getElementById('next'); if(n)n.addEventListener('click',()=>{
       const required=content.querySelectorAll('[data-field][required]');
-      for(const el of required){if(!el.value.trim()){el.focus();el.setAttribute('aria-invalid','true');let msg=content.querySelector('.fl-required-error');if(!msg){msg=document.createElement('p');msg.className='fl-error fl-required-error';msg.setAttribute('role','alert');msg.textContent='Compila almeno il primo campo richiesto per continuare.';content.querySelector('.fl-nav').before(msg);}return;}}
+      const fail=(el,text)=>{el.focus();el.setAttribute('aria-invalid','true');let msg=content.querySelector('.fl-required-error');if(!msg){msg=document.createElement('p');msg.className='fl-error fl-required-error';msg.setAttribute('role','alert');content.querySelector('.fl-nav').before(msg);}msg.textContent=text;};
+      for(const el of required){if(!el.value.trim()||!el.checkValidity()){fail(el,'Controlla i campi obbligatori per continuare.');return;}}
+      const em=document.getElementById('email');if(em&&em.value.trim()&&!/^[^\s@<>,;"'()]{1,64}@[^\s@<>,;"'()]{1,180}\.[a-z]{2,}$/i.test(em.value.trim())){fail(em,'Controlla l’indirizzo email.');return;}if(em&&em.value.trim()&&!answers.figura){fail(content.querySelector('[data-figura]'),'Scegli il personaggio per il tuo PDF.');return;}const birth=['data_nascita','ora_nascita'].map(id=>document.getElementById(id));if(birth[0]&&!birth[0].checkValidity()){fail(birth[0],'Controlla la data di nascita.');return;}if(consent&&!consent.checked&&birth.some(el=>el&&el.value)){fail(consent,'Se indichi i dati di nascita serve il consenso, oppure lasciali vuoti.');return;}
       if(current<steps.length-1)celebrate(n);
       next();
     });
@@ -221,7 +231,7 @@
   function render(){
     steps=getSteps();progressWrap.hidden=current<0;scene.classList.toggle('is-mini',current>=0);
     if(current<0){
-      content.innerHTML=`<p class="fl-kicker">Una ricerca tra Funkylancers</p><h1>Tre domande sul tuo business.</h1><p class="fl-lede">Cosa ti pesa, cosa chiederesti al genio AI della lampada e cosa senti che ti manca. Bastano un paio di minuti.</p><div class="fl-note"><strong>È anonimo: voglio la tua opinione vera.</strong> Non ti chiedo nome, email, azienda o profilo Skool, e le risposte non sono collegate al tuo account. Evita solo nomi di clienti e dati riservati.<details><summary>I dettagli, senza giri di parole</summary>Il database delle risposte non salva l’indirizzo IP, ma salva data e ora dell’invio. In una community piccola, un dettaglio molto specifico può farti riconoscere: scrivi solo ciò che ti va di condividere. I servizi che ospitano sito e API possono trattare dati tecnici, come gli IP, nei propri log di sicurezza. Le risposte aperte potranno essere analizzate con strumenti AI dopo aver tolto eventuali dettagli identificativi. <a href="/privacy/" target="_blank" rel="noopener noreferrer">Leggi l’informativa</a>.</details></div><p class="fl-help">Le risposte restano in questo dispositivo fino all’invio.</p><button class="fl-button fl-start" id="start">Inizia</button>`;
+      content.innerHTML=`<p class="fl-kicker">Una ricerca tra Funkylancers</p><h1>Tre domande sul tuo business.</h1><p class="fl-lede">Cosa ti pesa, cosa chiederesti al genio AI della lampada e cosa senti che ti manca. Bastano un paio di minuti.</p><div class="fl-note"><strong>Non è anonimo: saprò chi ha scritto cosa.</strong> All’inizio ti chiedo nome e cognome e, se vuoi, email e dati di nascita: in cambio ti mando un PDF personale con la tua ombra e la tua luce. Partecipare è facoltativo. Evita nomi di clienti e dati riservati.<details><summary>I dettagli, senza giri di parole</summary>Se mi lasci i dati di nascita e il consenso, li uso per leggere il tuo profilo personale (tema natale, Gene Keys o simili): puoi ritirare il consenso quando vuoi. Il database delle risposte non salva l’indirizzo IP, ma salva data e ora dell’invio. I servizi che ospitano sito e API possono trattare dati tecnici, come gli IP, nei propri log di sicurezza. Se lasci l’email, le risposte e le posizioni del tuo tema passano in automatico a un assistente AI (Claude di Anthropic) per scrivere il PDF: non gli passo nome, cognome ed email, ma quello che scrivi nei campi liberi arriva così com’è, quindi non inserire nomi di clienti o dati riservati. Le risposte non vengono pubblicate singolarmente. <a href="/privacy/" target="_blank" rel="noopener noreferrer">Leggi l’informativa</a>.</details></div><p class="fl-help">Le risposte restano in questo dispositivo fino all’invio.</p><button class="fl-button fl-start" id="start">Inizia</button>`;
       document.getElementById('start').addEventListener('click',()=>{current=0;started=true;render();});return;
     }
     if(current>=steps.length){current=steps.length-1;}
@@ -246,10 +256,11 @@
       const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:AbortSignal.timeout(25000)});
       let j={};try{j=await r.json();}catch{}
       if(!r.ok)throw new Error(j.errore||'il server non ha accettato l’invio');
-      try{localStorage.removeItem(KEY);}catch{}
+      const answersEmail=!!(answers.email||'').trim();try{localStorage.removeItem(KEY);}catch{}
       if(btn)celebrate(btn);
       progressWrap.hidden=true;
-      content.innerHTML=`<div class="fl-thanks"><div class="fl-stamp" aria-hidden="true">✦</div><p class="fl-kicker">Grazie</p><h2>La tua prospettiva è arrivata.</h2><p class="fl-lede">Le tue risposte aiuteranno a capire quali problemi vale la pena risolvere e quale direzione merita un test concreto.</p><p class="fl-note">Non riceverai richieste di contatto da questa compilazione.</p></div>`;
+      content.innerHTML=`<div class="fl-thanks"><div class="fl-stamp" aria-hidden="true">✦</div><p class="fl-kicker">Grazie</p><h2>Il tuo feedback è arrivato.</h2>${answersEmail?'<p class="fl-lede">Se l’indirizzo è corretto, il tuo PDF arriverà via email, di solito entro qualche ora.</p>':''}<p class="fl-lede">Tra 3 secondi ti porto sul sito di <a href="/">George Matei</a>.</p></div>`;
+      setTimeout(()=>{location.href='/';},3000);
     }catch(e){
       const err=document.createElement('p');err.className='fl-error';err.setAttribute('role','alert');err.textContent=`Non sono riuscito a inviare le risposte${e instanceof TypeError||e.name==='TimeoutError'?'':` (${e.message})`}. Sono ancora salvate su questo dispositivo: riprova tra poco.`;content.querySelector('.fl-error[role=alert]')?.remove();content.querySelector('.fl-nav')?.before(err);if(btn){btn.disabled=false;btn.textContent='Riprova invio';}sending=false;
     }
