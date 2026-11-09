@@ -1,16 +1,17 @@
 /* georgematei.com · questionario «Da dove partiamo» (09/11/2026)
    Al posto del calendario aperto. Prima chi hai davanti (freelance, imprenditore, dipendente, PA, studente),
    poi domande adattate a quel profilo, poi cosa gli interessa.
-   Esito: calendario della call conoscitiva SOLO se l'esigenza si risolve con consulenza, formazione,
-   automazioni o software, c'è disponibilità a investire e non si sta solo esplorando.
-   Altrimenti: Catalogo Utilizzi AI in una nuova finestra, con i filtri già scelti.
+   Alla fine: nome, email e telefono, poi l'invio a HighLevel (account Alpha Consulting Group di George):
+   webhook → WF_Quiz_Sito_Webhook → crea contatto, tag «widget sito», campi «Quiz sito · …».
+   Tutti vanno a /grazie/: nessuno viene scartato a schermo, George valuta e risponde per email.
+   L'esito calcolato qui (Qualificato / Da valutare / Da orientare) finisce solo nel campo «Esito automatico».
    Ispirato alla selezione Funkylancers di Iacopo Pelagatti (sfida principale, disponibilità a investire). */
 (function () {
   'use strict';
   var root = document.getElementById('quiz');
   if (!root) return;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var CAL = 'https://api.leadconnectorhq.com/widget/booking/zxAZSoKOYjuvrf698mJJ';
+  var HOOK = 'https://services.leadconnectorhq.com/hooks/qU2bNH64LmanhTwuSwhA/webhook-trigger/34a42c0a-b3be-4e05-9025-7d7e37a46048';
 
   var PROFILI = [
     ['freelance', 'Sono freelance o consulente', 'Lavoro in proprio, anche con aziende'],
@@ -86,6 +87,7 @@
     if (A.profilo) (RAMI[A.profilo] || []).forEach(function (q) { l.push('ramo:' + q.id); });
     l.push('interessi', 'sfida', 'investire', 'quando');
     if (A.interessi && A.interessi.length === 1 && A.interessi[0] === 'nonso') l = l.filter(function (x) { return x !== 'investire' && x !== 'quando'; });
+    l.push('contatti');
     return l;
   }
   var passo = 'profilo';
@@ -129,12 +131,24 @@
       }[A.profilo];
       h += '<h3 id="quiz-q" tabindex="-1">Qual è la sfida principale che vuoi risolvere nei prossimi mesi?</h3>' +
         '<label class="sr-only" for="quiz-sfida">La tua sfida principale</label><textarea id="quiz-sfida" class="quiz__text" rows="4" maxlength="600" placeholder="' + esc(ph) + '">' + esc(A.sfida || '') + '</textarea>' +
-        '<p class="quiz__hint">Due righe bastano. Più è concreta, più la chiamata ti è utile.</p>' +
+        '<p class="quiz__hint">Due righe bastano. Più è concreta, più la mia risposta ti è utile.</p>' +
         '<button type="button" class="btn quiz__next"' + ((A.sfida || '').trim().length >= 10 ? '' : ' disabled') + '>Avanti</button>';
     } else if (passo === 'investire') {
       h += '<h3 id="quiz-q" tabindex="-1">Sei disposto a investire per risolverla?</h3>' + scelte('investire', [['budget', 'Sì, ho già un budget'], ['conti', 'Sì, se i conti tornano', 'Prima voglio vedere quanto rende'], ['no', 'Non ora', 'Cerco prima qualcosa di gratuito']], false, [A.investire]);
     } else if (passo === 'quando') {
       h += '<h3 id="quiz-q" tabindex="-1">Quando vorresti partire?</h3>' + scelte('quando', [['subito', 'Entro un mese'], ['3mesi', 'Nei prossimi tre mesi'], ['esploro', 'Sto solo esplorando']], false, [A.quando]);
+    } else if (passo === 'contatti') {
+      var C = A.c || {};
+      var campo = function (id, lab, tipo, auto, req) {
+        return '<label class="quiz__campo"><span>' + lab + (req ? '' : ' <em>(facoltativo)</em>') + '</span><input id="qc-' + id + '" data-c="' + id + '" type="' + tipo + '" autocomplete="' + auto + '" value="' + esc(C[id] || '') + '"' + (req ? ' required' : '') + '></label>';
+      };
+      h += '<h3 id="quiz-q" tabindex="-1">Ultimo passo: a chi rispondo?</h3>' +
+        '<p class="quiz__hint">Leggo io le tue risposte e ti scrivo: se posso aiutarti, nella mail trovi il link per prenotare la videochiamata.</p>' +
+        '<div class="quiz__campi">' + campo('nome', 'Nome', 'text', 'given-name', true) + campo('cognome', 'Cognome', 'text', 'family-name', true) +
+        campo('email', 'Email', 'email', 'email', true) + campo('tel', 'Telefono, con prefisso', 'tel', 'tel', false) + '</div>' +
+        '<label class="quiz__ok"><input type="checkbox" data-c="privacy"' + (C.privacy ? ' checked' : '') + '> <span>Ho letto <a href="/privacy/" target="_blank" rel="noopener">come tratto i tuoi dati</a> e voglio che George valuti la mia richiesta.</span></label>' +
+        '<p class="quiz__err" role="alert" hidden></p>' +
+        '<button type="button" class="btn quiz__send">Invia a George</button>';
     }
     root.innerHTML = '<div class="quiz__step">' + h + '<div class="quiz__foot">' + indietro() + '</div></div>';
     if (focus) { var t = root.querySelector('#quiz-q'); if (t) t.focus({ preventScroll: true }); }
@@ -143,10 +157,9 @@
   var attendo = false;
   function avanti() {
     attendo = false;
-    if (passo === 'esito') return;
     var l = passi(), i = l.indexOf(passo);
+    if (i < 0 || i + 1 >= l.length) return;
     storia.push(passo);
-    if (i + 1 >= l.length) { esito(); return; }
     passo = l[i + 1];
     disegna(true);
     porta();
@@ -187,46 +200,91 @@
     return true;
   }
 
-  function esito() {
-    passo = 'esito';
-    var cat = catalogoURL();
-    var h;
-    if (qualificato()) {
-      var src = CAL;
-      h = '<div class="quiz__esito quiz__esito--ok"><p class="quiz__badge">Posso aiutarti</p>' +
-        '<h3 id="quiz-q" tabindex="-1">Bene: parliamone in videochiamata.</h3>' +
-        '<p>Trenta minuti, gratis. Mi racconti la tua sfida e alla fine sai da dove partire. Scegli giorno e ora qui sotto.</p>' +
-        '<ul class="quiz__sum">' + riassunto().map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
-        '<div class="cal-top__widget quiz__cal" id="calendario"><p class="cal-top__wait" aria-hidden="true">Carico le date libere…</p>' +
-        '<iframe src="' + esc(src) + '" title="Calendario prenotazioni di George Matei" id="zxAZSoKOYjuvrf698mJJ_1793121711485" scrolling="no" allow="payment" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe></div>' +
-        '<p class="quiz__hint">Nel modulo di prenotazione riscrivi in una riga la tua sfida: così arrivo preparato. Vuoi prima farti un\'idea? <a href="' + esc(cat) + '" target="_blank" rel="noopener">Guarda il catalogo con le soluzioni per te</a>. Non vedi il calendario? Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p></div>';
-    } else {
-      var motivo = A.investire === 'no' ? 'Per ora la cosa più utile è partire dalle soluzioni che puoi valutare da solo.'
-        : A.quando === 'esploro' || (A.interessi || []).indexOf('nonso') >= 0 ? 'Se stai ancora esplorando, la cosa più utile è vedere cosa si può fare, con esempi concreti.'
-        : 'Per quello che mi hai raccontato, la cosa più utile è partire dagli esempi concreti.';
-      h = '<div class="quiz__esito"><p class="quiz__badge quiz__badge--soft">Il passo giusto adesso</p>' +
-        '<h3 id="quiz-q" tabindex="-1">Parti dal Catalogo Utilizzi AI.</h3>' +
-        '<p>' + esc(motivo) + (cat.indexOf('?') > 0 ? ' Ho già scelto i filtri in base alle tue risposte: segnati le schede che vorresti nella tua attività.' : ' Trovi esempi concreti, divisi per tipo, ruolo e settore: segnati quelli che ti interessano.') + '</p>' +
-        '<a class="btn" href="' + esc(cat) + '" target="_blank" rel="noopener">Apri il catalogo<span class="sr-only"> (si apre in una nuova finestra)</span></a>' +
-        '<p class="quiz__hint">Quando hai scelto cosa ti serve, torna qui e rifai il questionario: se posso aiutarti, ti si apre il calendario.</p></div>';
+  function leggiCampi() {
+    A.c = A.c || {};
+    root.querySelectorAll('[data-c]').forEach(function (i) { A.c[i.getAttribute('data-c')] = i.type === 'checkbox' ? i.checked : i.value; });
+  }
+  /* Telefono: +39 se manca il prefisso (00 → +); vuoto = va bene; null = non valido */
+  function telefono(t) {
+    t = (t || '').trim(); if (!t) return '';
+    var piu = t.charAt(0) === '+', d = t.replace(/\D/g, '');
+    if (!piu && d.indexOf('00') === 0) { d = d.slice(2); piu = true; }
+    if (!piu) d = '39' + d.replace(/^39(?=3\d{8,9}$)/, '');
+    return d.length >= 8 && d.length <= 15 ? '+' + d : null;
+  }
+  function mancanti() {
+    var C = A.c || {}, m = [];
+    if (!(C.nome || '').trim()) m.push(['nome', 'il nome']);
+    if (!(C.cognome || '').trim()) m.push(['cognome', 'il cognome']);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((C.email || '').trim())) m.push(['email', 'un\'email valida']);
+    if (telefono(C.tel) === null) m.push(['tel', 'un telefono valido, con prefisso (es. +39 333 1234567)']);
+    if (!C.privacy) m.push(['privacy', 'la spunta sulla privacy']);
+    return m;
+  }
+  function contattiOk() { return !mancanti().length; }
+  function etichetta(q, v) { var o = q.o.filter(function (x) { return x[0] === v; })[0]; return o ? o[1] : ''; }
+  function esitoAuto() {
+    if (passi().indexOf('investire') < 0) return 'Da orientare (catalogo)';
+    if (qualificato()) return 'Qualificato';
+    if (A.investire === 'no' || A.quando === 'esploro' || (A.interessi || []).indexOf('nonso') >= 0) return 'Da orientare (catalogo)';
+    return 'Da valutare';
+  }
+  var INVESTIRE = { budget: 'Sì, ho già un budget', conti: 'Sì, se i conti tornano', no: 'Non ora' };
+  var QUANDO = { subito: 'Entro un mese', '3mesi': 'Nei prossimi tre mesi', esploro: 'Sto solo esplorando' };
+  function dati() {
+    var C = A.c || {}, d = {
+      first_name: (C.nome || '').trim(), last_name: (C.cognome || '').trim(), email: (C.email || '').trim(), phone: telefono(C.tel) || '',
+      profilo: '', servizi: '', fatturato: '', clienti: '', team: '', settore: '', ruolo: '', decide: '', budget_ente: '', cerca: '',
+      interessi: (A.interessi || []).map(function (id) { return etichettaInteresse(INT[id]).t; }).join(', '),
+      sfida: (A.sfida || '').trim(),
+      investire: passi().indexOf('investire') >= 0 ? INVESTIRE[A.investire] || '' : '',
+      quando: passi().indexOf('quando') >= 0 ? QUANDO[A.quando] || '' : '',
+      esito: esitoAuto(), fonte: 'georgematei.com · questionario home'
+    };
+    PROFILI.forEach(function (x) { if (x[0] === A.profilo) d.profilo = x[1]; });
+    var chiave = { budget: 'budget_ente' };
+    (RAMI[A.profilo] || []).forEach(function (q) { d[chiave[q.id] || q.id] = etichetta(q, A[q.id]); });
+    d.riepilogo = riassunto().concat(['Sfida: ' + d.sfida, 'Investire: ' + d.investire, 'Quando: ' + d.quando, 'Esito automatico: ' + d.esito, 'Catalogo suggerito: https://georgematei.com' + catalogoURL()]).join('\n');
+    return d;
+  }
+  var inviando = false;
+  function invia() {
+    if (inviando) return;
+    leggiCampi();
+    var btn = root.querySelector('.quiz__send'), err = root.querySelector('.quiz__err');
+    root.querySelectorAll('[data-c]').forEach(function (i) { i.removeAttribute('aria-invalid'); });
+    var m = mancanti();
+    if (m.length) {
+      err.hidden = false;
+      err.textContent = 'Manca ' + m.map(function (x) { return x[1]; }).join(', ') + '.';
+      m.forEach(function (x) { var i = root.querySelector('[data-c="' + x[0] + '"]'); if (i) i.setAttribute('aria-invalid', 'true'); });
+      var f = root.querySelector('[data-c="' + m[0][0] + '"]'); if (f) f.focus();
+      return;
     }
-    root.innerHTML = h + '<div class="quiz__foot"><button type="button" class="quiz__back">← Cambia le risposte</button><button type="button" class="quiz__reset">Ricomincia</button></div>';
-    var t = root.querySelector('#quiz-q'); if (t) t.focus({ preventScroll: true });
-    porta();
-    var f = root.querySelector('iframe');
-    if (f) {
-      var box = root.querySelector('.quiz__cal');
-      f.addEventListener('load', function () { setTimeout(function () { box.classList.add('is-ready'); }, 2500); });
-      setTimeout(function () { box.classList.add('is-ready'); }, 10000);
-      if (!document.querySelector('script[src*="form_embed.js"]')) { var s = document.createElement('script'); s.src = 'https://link.msgsndr.com/js/form_embed.js'; s.async = true; document.body.appendChild(s); }
-    }
+    inviando = true;
+    btn.disabled = true; btn.textContent = 'Invio…'; err.hidden = true;
+    var ctl = 'AbortController' in window ? new AbortController() : null;
+    var stop = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
+    fetch(HOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dati()), signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { clearTimeout(stop); if (!r.ok) throw new Error(r.status); return r; })
+      .then(function () {
+        try { sessionStorage.setItem('quiz.nome', (A.c.nome || '').trim()); sessionStorage.setItem('quiz.catalogo', catalogoURL()); } catch (e) {}
+        location.href = '/grazie/';
+      })
+      .catch(function () {
+        clearTimeout(stop);
+        inviando = false; btn.disabled = false; btn.textContent = 'Riprova';
+        err.hidden = false;
+        err.innerHTML = 'Non sono riuscito a inviare la richiesta. Riprova tra poco, oppure scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.';
+      });
   }
 
   /* ---------- eventi ---------- */
   root.addEventListener('click', function (e) {
-    var b = e.target.closest('button'); if (!b || b.disabled || attendo) return;
+    var b = e.target.closest('button'); if (!b || b.disabled || attendo || inviando) return;
     if (b.classList.contains('quiz__reset')) { A = {}; storia = []; passo = 'profilo'; disegna(true); return; }
     if (b.classList.contains('quiz__back')) { passo = storia.pop() || 'profilo'; disegna(true); return; }
+    if (b.classList.contains('quiz__send')) { invia(); return; }
     if (b.classList.contains('quiz__next')) {
       if (passo === 'sfida') A.sfida = root.querySelector('#quiz-sfida').value.trim();
       avanti(); return;
@@ -250,7 +308,16 @@
     attendo = true;
     setTimeout(avanti, reduce ? 0 : 180);
   });
+  function aggiornaContatto(e) {
+    var k = e.target.getAttribute && e.target.getAttribute('data-c'); if (!k) return;
+    A.c = A.c || {};
+    A.c[k] = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    e.target.removeAttribute('aria-invalid');
+  }
+  root.addEventListener('change', aggiornaContatto);
+  root.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target.getAttribute && e.target.getAttribute('data-c') && e.target.type !== 'checkbox') { e.preventDefault(); invia(); } });
   root.addEventListener('input', function (e) {
+    aggiornaContatto(e);
     if (e.target.id === 'quiz-sfida') { A.sfida = e.target.value; root.querySelector('.quiz__next').disabled = e.target.value.trim().length < 10; }
   });
 

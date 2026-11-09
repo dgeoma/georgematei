@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Richiesta inviata · George Matei</title>
+<meta name="description" content="La tua richiesta è arrivata a George Matei: la valuta e ti risponde per email.">
+<meta property="og:title" content="Richiesta inviata · George Matei">
+<meta property="og:description" content="La tua richiesta è arrivata: George la valuta e ti risponde per email.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="George Matei">
+<meta property="og:url" content="https://georgematei.com/grazie/">
+<meta property="og:image" content="https://georgematei.com/assets/og-george.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="George Matei, AI e automazioni per imprenditori">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://georgematei.com/grazie/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0f1e3a">
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=23">
+<style>
+  .grazie__passi { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; max-width: 640px; }
+  .grazie__passi li { padding: 14px 18px; border-radius: 14px; background: #fff; border: 1px solid rgba(201,161,74,.4); font-size: 17px; color: var(--ink-soft); }
+  .grazie__passi b { color: var(--ink); }
+  .page-hero .grazie__nota { margin-top: 18px; font-size: 15px; }
+  .grazie__nota a, .grazie__home { color: var(--ink); text-underline-offset: 3px; font-weight: 700; }
+  .grazie .cta-row { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+    <nav class="nav__links" aria-label="Sezioni">
+      <a href="/#prova">Esempi</a>
+      <a href="/#metodo">Come lavoro</a>
+      <a href="/#chi">Chi sono</a>
+      <a href="/#domande">Domande</a>
+      <div class="nav__menu">
+        <button type="button" class="nav__more" aria-haspopup="true">Risorse<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav__drop">
+          <a href="/catalogo-use-case-ai/"><b>Catalogo Utilizzi AI</b><small>Cosa si può costruire con l'AI nella tua attività</small></a>
+        </div>
+      </div>
+    </nav>
+    <a class="btn btn--small" href="/">Torna al sito</a>
+  </div>
+</header>
+
+<main id="contenuto">
+  <section class="page-hero grazie">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--face"><img src="/assets/foto/george-sorriso.webp" width="240" height="240" alt="">Richiesta inviata a George</p>
+      <h1>Grazie<span class="grazie__nome"></span>: la tua richiesta è arrivata.</h1>
+      <p>La leggo io, con calma, insieme alle risposte che mi hai dato.</p>
+      <ul class="grazie__passi">
+        <li><b>Se posso aiutarti</b> ti arriva un'email con il link per prenotare una videochiamata conoscitiva di 30 minuti, gratuita.</li>
+        <li><b>Se non è il momento giusto</b> ti rispondo comunque, con i passi successivi più adatti alla tua situazione.</li>
+      </ul>
+      <p class="grazie__nota">Controlla anche la cartella spam o promozioni. Se hai fretta, scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p>
+      <div class="cta-row"><a class="btn" id="grazie-cat" href="/catalogo-use-case-ai/">Intanto guarda il Catalogo Utilizzi AI</a><a class="grazie__home" href="/">Torna al sito</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+    <nav class="footer__links" aria-label="Contatti">
+      <a href="/catalogo-use-case-ai/">Catalogo Utilizzi AI</a>
+      <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
+      <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+    <p class="footer__legal">© 2026 George Dragos Matei · AI e automazioni per imprenditori · Sede negli Emirati Arabi Uniti</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    // nome e catalogo filtrato arrivano dal questionario (solo in questa scheda del browser)
+    try {
+      var n = sessionStorage.getItem('quiz.nome'), c = sessionStorage.getItem('quiz.catalogo');
+      if (n) document.querySelector('.grazie__nome').textContent = ', ' + n;
+      if (c && c.indexOf('/catalogo-use-case-ai/') === 0) document.getElementById('grazie-cat').href = c;
+    } catch (e) {}
+    var nav = document.querySelector('.nav');
+    addEventListener('scroll', function () { nav.classList.toggle('is-scrolled', scrollY > 12); }, { passive: true });
+  })();
+</script>
+<script src="/nav.js?v=1" defer></script>
+</body>
+</html>

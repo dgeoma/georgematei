@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/styles.css?v=23">
 <link rel="stylesheet" href="/tempio.css?v=5">
 <link rel="stylesheet" href="/metodo.css?v=12">
-<link rel="stylesheet" href="/quiz.css?v=1">
+<link rel="stylesheet" href="/quiz.css?v=3">
 <!--JSONLD-->
 <script type="application/ld+json">
 {
@@ -237,7 +237,7 @@
       <p class="hero__lead reveal" style="--d:.2s">Metto impiegati AI dentro la tua azienda: rispondono ai clienti, seguono i preventivi, preparano i numeri. E il tuo team impara a usarli.</p>
       <div class="hero__cta reveal" style="--d:.26s">
         <a class="btn" href="#prenota"><svg aria-hidden="true"><use href="#i-cal"/></svg>Scopri da dove partire</a>
-        <p class="cta-note">Poche domande. Se posso aiutarti, prenoti la videochiamata gratuita.</p>
+        <p class="cta-note">Poche domande: le leggo io e ti rispondo.</p>
       </div>
       <ul class="hero__trust reveal" style="--d:.32s">
         <li><svg aria-hidden="true"><use href="#i-spark"/></svg>80+ sistemi AI messi in funzione</li>
@@ -254,8 +254,8 @@
   <button class="volo__pausa" type="button" aria-pressed="false" aria-label="Ferma i robot in volo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button>
 </section>
 
-<!-- QUESTIONARIO (09/11/2026): al posto del calendario aperto. Il calendario compare solo a chi ha un'esigenza
-     che si risolve con consulenza, formazione, automazioni o software; agli altri il catalogo, già filtrato. -->
+<!-- QUESTIONARIO (09/11/2026): al posto del calendario. Le risposte vanno al webhook HighLevel (account Alpha Consulting Group)
+     → WF_Quiz_Sito_Webhook; poi tutti su /grazie/. George valuta e manda per email il link di prenotazione. -->
 <section class="cal-top" id="prenota" aria-labelledby="cal-top-t">
   <div class="wrap">
     <div class="cal-top__box quiz-box">
@@ -263,11 +263,11 @@
       <div class="cal-top__head">
         <p class="eyebrow">Da dove partiamo · poche domande</p>
         <h2 id="cal-top-t" tabindex="-1">Vediamo se posso aiutarti.</h2>
-        <p class="quiz__intro">Poche domande per capire chi sei e cosa ti serve. Se posso esserti utile, scegli subito giorno e ora per una videochiamata gratuita di 30 minuti.</p>
+        <p class="quiz__intro">Poche domande per capire chi sei e cosa ti serve. Le leggo io e ti rispondo per email: se posso esserti utile, nella mail trovi il link per prenotare una videochiamata gratuita di 30 minuti.</p>
       </div>
       <div class="quiz" id="quiz"></div>
-      <noscript><p class="cal-top__note">Il questionario ha bisogno di JavaScript. Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a> oppure <a href="/calendario/">apri il calendario</a>.</p></noscript>
-      <p class="cal-top__note">Le risposte non vengono salvate né inviate a nessuno: servono solo a mostrarti il passo giusto. Il calendario di HighLevel si carica solo alla fine, se fa per te. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, scrivi al tuo referente lì.</p>
+      <noscript><p class="cal-top__note">Il questionario ha bisogno di JavaScript. Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p></noscript>
+      <p class="cal-top__note">Le risposte partono solo quando premi «Invia a George» e finiscono nel mio account HighLevel, dove le leggo io. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, scrivi al tuo referente lì.</p>
     </div>
   </div>
 </section>
@@ -490,7 +490,7 @@
       <li>Un sistema che i tuoi collaboratori usano davvero</li>
     </ul>
     <p class="sis-chiusa reveal">Non devi per forza buttare quello che hai: dove si può, gli impiegati AI lavorano dentro il tuo software.</p>
-    <div class="cta-center reveal"><a class="btn" href="#prenota">Scopri da dove partire</a><p class="cta-note">Videochiamata gratuita.</p></div>
+    <div class="cta-center reveal"><a class="btn" href="#prenota">Scopri da dove partire</a><p class="cta-note">Le leggo io e ti rispondo.</p></div>
   </div>
 </section>
 
@@ -678,7 +678,7 @@
       <p class="reveal">Poi ho aggiunto i sistemi: da responsabile IT, ho messo in piedi un reparto partendo da zero e ho seguito la creazione di cinque software su misura.</p>
       <p class="reveal">Oggi sono il direttore del reparto AI e Automazione di Marketing Genius. Nel tempo che resta, seguo pochi imprenditori, per garantire il massimo della qualità.</p>
       <blockquote class="about__quote reveal"><p>Tu ti occupi del business, io mi occupo del sistema.</p><footer>George</footer></blockquote>
-      <div class="cta-row reveal"><a class="btn" href="#prenota">Scopri da dove partire</a><p class="cta-note">Videochiamata gratuita.</p></div>
+      <div class="cta-row reveal"><a class="btn" href="#prenota">Scopri da dove partire</a><p class="cta-note">Le leggo io e ti rispondo.</p></div>
     </div>
   </div>
 </section>
@@ -688,7 +688,7 @@
   <div class="wrap">
     <header class="section__head reveal">
       <p class="eyebrow">Domande</p>
-      <h2>Prima di prenotare.</h2>
+      <h2>Domande frequenti.</h2>
     </header>
     <div class="faq">
       <details class="reveal"><summary>Quanto costa?</summary><div><p>La chiamata è gratis. Lì ti dico quanto costa il primo lavoro e, prima di iniziare, anche quanto costano al mese gli strumenti che servono. Un listino non c'è, perché ogni azienda parte da un punto diverso.</p></div></details>
@@ -697,7 +697,7 @@
       <details class="reveal"><summary>I dati della mia azienda sono al sicuro?</summary><div><p>Prima di iniziare decidiamo insieme quali strumenti usiamo, quali dati e dove restano, e lo mettiamo per iscritto, anche con i fornitori AI che li trattano. All'AI va solo quello che serve per quel lavoro.</p></div></details>
       <details class="reveal"><summary>E se qualcosa si blocca?</summary><div><p>Scrivi a me: su quello che ho costruito intervengo io. Tempi e correzioni incluse li scriviamo prima di partire.</p></div></details>
     </div>
-    <p class="faq__more reveal">Le altre domande me le fai <a href="#prenota">in chiamata</a>.</p>
+    <p class="faq__more reveal">Le altre domande <a href="#prenota">scrivimele nel questionario</a>.</p>
   </div>
 </section>
 
@@ -739,7 +739,7 @@
       <h2 class="reveal">Trenta minuti per conoscerci.</h2>
       <p class="reveal">In videochiamata, niente slide. Prima della chiamata scegli un'attività che vi porta via ore ogni settimana: partiamo da lì. Poi decidi tu.</p>
       <p class="reveal">Hai già un preventivo per un progetto di AI o di software? Portalo.</p>
-      <a class="btn" href="#prenota"><svg aria-hidden="true"><use href="#i-cal"/></svg>Rispondi e scegli giorno e ora</a>
+      <a class="btn" href="#prenota"><svg aria-hidden="true"><use href="#i-cal"/></svg>Rispondi alle domande</a>
     </div>
   </div>
 </section>
@@ -767,7 +767,7 @@
 </footer>
 
 <script src="/main.js?v=19" defer></script>
-<script src="/quiz.js?v=2" defer></script>
+<script src="/quiz.js?v=4" defer></script>
 <script src="/demo.js?v=22" defer></script>
 <script src="/tempio.js?v=2" defer></script>
 <script src="/metodo.js?v=6" defer></script>
