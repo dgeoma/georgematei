@@ -3,14 +3,15 @@
    poi domande adattate a quel profilo, poi cosa gli interessa.
    Alla fine: nome, email e telefono, poi l'invio a HighLevel (account Alpha Consulting Group di George):
    webhook → WF_Quiz_Sito_Webhook → crea contatto, tag «widget sito», campi «Quiz sito · …».
-   Tutti vanno a /grazie/: nessuno viene scartato a schermo, George valuta e risponde per email.
-   L'esito calcolato qui (Qualificato / Da valutare / Da orientare) finisce solo nel campo «Esito automatico».
+   Dopo l'invio: se l'esito è «Qualificato» si apre subito il calendario della call conoscitiva
+   (nome, email e telefono già compilati); tutti gli altri vanno a /grazie/, dove George valuta e risponde per email.
    Ispirato alla selezione Funkylancers di Iacopo Pelagatti (sfida principale, disponibilità a investire). */
 (function () {
   'use strict';
   var root = document.getElementById('quiz');
   if (!root) return;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CAL = 'https://api.leadconnectorhq.com/widget/booking/zxAZSoKOYjuvrf698mJJ';
   var HOOK = 'https://services.leadconnectorhq.com/hooks/qU2bNH64LmanhTwuSwhA/webhook-trigger/34a42c0a-b3be-4e05-9025-7d7e37a46048';
 
   var PROFILI = [
@@ -143,7 +144,7 @@
         return '<label class="quiz__campo"><span>' + lab + (req ? '' : ' <em>(facoltativo)</em>') + '</span><input id="qc-' + id + '" data-c="' + id + '" type="' + tipo + '" autocomplete="' + auto + '" value="' + esc(C[id] || '') + '"' + (req ? ' required' : '') + '></label>';
       };
       h += '<h3 id="quiz-q" tabindex="-1">Ultimo passo: a chi rispondo?</h3>' +
-        '<p class="quiz__hint">Leggo io le tue risposte e ti scrivo: se posso aiutarti, nella mail trovi il link per prenotare la videochiamata.</p>' +
+        '<p class="quiz__hint">Se posso aiutarti, dopo l\'invio scegli subito giorno e ora della videochiamata. Altrimenti leggo io le tue risposte e ti scrivo.</p>' +
         '<div class="quiz__campi">' + campo('nome', 'Nome', 'text', 'given-name', true) + campo('cognome', 'Cognome', 'text', 'family-name', true) +
         campo('email', 'Email', 'email', 'email', true) + campo('tel', 'Telefono, con prefisso', 'tel', 'tel', false) + '</div>' +
         '<label class="quiz__ok"><input type="checkbox" data-c="privacy"' + (C.privacy ? ' checked' : '') + '> <span>Ho letto <a href="/privacy/" target="_blank" rel="noopener">come tratto i tuoi dati</a> e voglio che George valuti la mia richiesta.</span></label>' +
@@ -268,6 +269,7 @@
     fetch(HOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dati()), signal: ctl ? ctl.signal : undefined })
       .then(function (r) { clearTimeout(stop); if (!r.ok) throw new Error(r.status); return r; })
       .then(function () {
+        if (qualificato()) { calendario(); return; }
         try { sessionStorage.setItem('quiz.nome', (A.c.nome || '').trim()); sessionStorage.setItem('quiz.catalogo', catalogoURL()); } catch (e) {}
         location.href = '/grazie/';
       })
@@ -277,6 +279,29 @@
         err.hidden = false;
         err.innerHTML = 'Non sono riuscito a inviare la richiesta. Riprova tra poco, oppure scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.';
       });
+  }
+
+  /* Qualificato: calendario subito, con i contatti già compilati nel modulo di prenotazione */
+  function calendario() {
+    passo = 'esito';
+    var C = A.c || {}, p = new URLSearchParams();
+    if ((C.nome || '').trim()) p.set('first_name', C.nome.trim());
+    if ((C.cognome || '').trim()) p.set('last_name', C.cognome.trim());
+    if ((C.email || '').trim()) p.set('email', C.email.trim());
+    var tel = telefono(C.tel); if (tel) p.set('phone', tel);
+    var src = CAL + (p.toString() ? '?' + p.toString() : '');
+    root.innerHTML = '<div class="quiz__esito quiz__esito--ok"><p class="quiz__badge">Posso aiutarti</p>' +
+      '<h3 id="quiz-q" tabindex="-1">Bene' + (C.nome ? ', ' + esc(C.nome.trim()) : '') + ': parliamone in videochiamata.</h3>' +
+      '<p>Le tue risposte mi sono arrivate. Trenta minuti, gratis: mi racconti la tua sfida e alla fine sai da dove partire. Scegli giorno e ora qui sotto.</p>' +
+      '<div class="cal-top__widget quiz__cal" id="calendario"><p class="cal-top__wait" aria-hidden="true">Carico le date libere…</p>' +
+      '<iframe src="' + esc(src) + '" title="Calendario prenotazioni di George Matei" id="zxAZSoKOYjuvrf698mJJ_1793121711485" scrolling="no" allow="payment" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe></div>' +
+      '<p class="quiz__hint">Non vedi il calendario? <a href="/calendario/" target="_blank" rel="noopener">Aprilo in una nuova pagina</a> oppure scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p></div>';
+    var t = root.querySelector('#quiz-q'); if (t) t.focus({ preventScroll: true });
+    porta();
+    var f = root.querySelector('iframe'), box = root.querySelector('.quiz__cal');
+    f.addEventListener('load', function () { setTimeout(function () { box.classList.add('is-ready'); }, 2500); });
+    setTimeout(function () { box.classList.add('is-ready'); }, 10000);
+    if (!document.querySelector('script[src*="form_embed.js"]')) { var sc = document.createElement('script'); sc.src = 'https://link.msgsndr.com/js/form_embed.js'; sc.async = true; document.body.appendChild(sc); }
   }
 
   /* ---------- eventi ---------- */
