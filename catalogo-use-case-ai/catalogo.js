@@ -1,4 +1,4 @@
-/* georgematei.com · Catalogo degli use case AI
+/* georgematei.com · Catalogo Utilizzi AI
    I dati arrivano da dati.js (window.CATALOGO), generato da uno script: qui non si scrive a mano nessuna scheda.
    Filtri: tipo, area, ruolo, livello, per chi, settore + ricerca. #<id> apre una scheda (link condivisibile). */
 (function () {
@@ -90,17 +90,12 @@
   function img(x, cls) {
     return '<img class="' + cls + '" src="/catalogo-use-case-ai/img/' + esc(x.immagine || 'automazione-flusso') + '.svg" alt="" loading="lazy" decoding="async" width="480" height="300">';
   }
-  function tempoHTML(x) {
-    if (!x.tempo || !x.tempo.testo) return '';
-    var et = x.tempo.tipo === 'durata' ? 'Durata' : 'Tempo per realizzarlo';
-    return '<span class="tm" title="' + et + '"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="sr-only">' + et + ': </span>' + esc(x.tempo.testo) + '</span>';
-  }
   function cardHTML(x, i) {
     return '<article class="pc" style="--i:' + Math.min(i, 11) + '">' +
       '<a class="pc__link" href="#' + esc(x.id) + '" data-id="' + esc(x.id) + '">' +
-      '<div class="pc__img">' + img(x, '') + '<span class="lvl-t" data-lvl="' + x.livello + '">' + LIV[x.livello] + '</span></div>' +
-      '<div class="pc__body"><p class="pc__type">' + esc(TIPO[x.categoria] || '') + '</p><h3>' + esc(x.titolo) + '</h3><p class="pc__p">' + esc(x.promessa) + '</p></div>' +
-      '<div class="pc__foot">' + tempoHTML(x) + '<span class="pc__more">Scopri<span aria-hidden="true"> →</span></span></div>' +
+      '<div class="pc__img">' + img(x, '') + '<span class="lvl-t" data-lvl="' + x.livello + '"><span class="sr-only">Impegno: </span>' + LIV[x.livello] + '</span>' +
+      '<span class="pc__type" data-cat="' + esc(x.categoria) + '">' + esc(TIPO[x.categoria] || '') + '</span></div>' +
+      '<div class="pc__body"><h3>' + esc(x.titolo) + '</h3><p class="pc__p">' + esc(x.promessa) + '</p></div>' +
       '</a></article>';
   }
   function attiviHTML() {
@@ -174,7 +169,7 @@
     if (registra !== false && location.hash !== '#' + id) {
       if (spinta) history.replaceState(null, '', '#' + id); else { history.pushState(null, '', '#' + id); spinta = true; }
     }
-    document.title = x.titolo + ' · Catalogo degli use case AI';
+    document.title = x.titolo + ' · Catalogo Utilizzi AI';
   }
   function chiudi(storia) {
     if (!dlg.open) return;
@@ -238,6 +233,17 @@
   var t = null;
   document.getElementById('q').addEventListener('input', function (e) { clearTimeout(t); t = setTimeout(function () { q = e.target.value.trim(); disegna(); }, 140); });
   document.getElementById('ord').addEventListener('change', function (e) { ord = e.target.value; disegna(); });
+  // griglia o lista: la scelta resta per le visite successive (solo su questo browser)
+  var vista = 'griglia';
+  try { vista = localStorage.getItem('catalogo.vista') === 'lista' ? 'lista' : 'griglia'; } catch (e) {}
+  function mettiVista(v) {
+    vista = v;
+    grid.classList.toggle('is-list', v === 'lista');
+    document.querySelectorAll('.cat__view button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.vista === v)); });
+    try { localStorage.setItem('catalogo.vista', v); } catch (e) {}
+  }
+  document.querySelector('.cat__view').addEventListener('click', function (e) { var b = e.target.closest('button[data-vista]'); if (b) mettiVista(b.dataset.vista); });
+  mettiVista(vista);
   var ftog = document.querySelector('.cat__ftog');
   ftog.addEventListener('click', function () {
     var on = !document.body.classList.contains('filters-open');

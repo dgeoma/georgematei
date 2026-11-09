@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Catalogo degli use case AI · George Matei</title>
+<title>Catalogo Utilizzi AI · George Matei</title>
 <meta name="description" content="Cosa si può costruire con l'AI in un'azienda o nel lavoro di un freelance: agenti AI, automazioni, app, formazione e consulenza. Filtra per ruolo, area, livello di impegno e settore.">
-<meta property="og:title" content="Catalogo degli use case AI · George Matei">
+<meta property="og:title" content="Catalogo Utilizzi AI · George Matei">
 <meta property="og:description" content="Agenti AI, automazioni, app, formazione e consulenza: filtra per il tuo ruolo e trova cosa si può costruire nella tua attività.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
@@ -18,8 +18,8 @@
 <meta name="theme-color" content="#0f1e3a">
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.gmPronto)document.documentElement.classList.remove('js')},3000)</script>
-<link rel="stylesheet" href="/styles.css?v=21">
-<link rel="stylesheet" href="/catalogo-use-case-ai/catalogo.css?v=2">
+<link rel="stylesheet" href="/styles.css?v=22">
+<link rel="stylesheet" href="/catalogo-use-case-ai/catalogo.css?v=4">
 </head>
 <body class="cat-page">
 <a class="skip" href="#vetrina">Vai al catalogo</a>
@@ -31,7 +31,13 @@
       <a href="/#prova">Esempi</a>
       <a href="/#metodo">Come lavoro</a>
       <a href="/#chi">Chi sono</a>
-      <a href="/catalogo-use-case-ai/" aria-current="page">Catalogo</a>
+      <a href="/#domande">Domande</a>
+      <div class="nav__menu is-current">
+        <button type="button" class="nav__more" aria-haspopup="true">Risorse<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav__drop">
+          <a href="/catalogo-use-case-ai/" aria-current="page"><b>Catalogo Utilizzi AI</b><small>Cosa si può costruire con l'AI nella tua attività</small></a>
+        </div>
+      </div>
     </nav>
     <a class="btn btn--small" href="/calendario/">Prenota 30 minuti</a>
   </div>
@@ -40,7 +46,7 @@
 <main id="vetrina" class="cat">
   <div class="wrap">
     <div class="cat__head reveal">
-      <p class="eyebrow">Catalogo</p>
+      <p class="eyebrow">Catalogo Utilizzi AI</p>
       <h1>Cosa si può costruire con l'AI</h1>
       <p class="cat__lead">Agenti, automazioni, app, formazione e consulenza. Filtra per il tuo ruolo e per l'impegno che vuoi metterci.</p>
     </div>
@@ -60,6 +66,10 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         Filtri <span class="cat__fn" hidden></span>
       </button>
+      <div class="cat__view" role="group" aria-label="Visualizzazione">
+        <button type="button" data-vista="griglia" aria-pressed="true" aria-label="Griglia" title="Griglia"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></button>
+        <button type="button" data-vista="lista" aria-pressed="false" aria-label="Lista" title="Lista"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="5" height="4" rx="1"/><rect x="4" y="15" width="5" height="4" rx="1"/><path d="M12 7h8M12 17h8" stroke-width="2" stroke-linecap="round"/></svg></button>
+      </div>
       <label class="cat__sort"><span class="sr-only">Ordina</span>
         <select id="ord">
           <option value="evidenza">In evidenza</option>
@@ -96,6 +106,7 @@
   <div class="wrap footer__inner">
     <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
     <nav class="footer__links" aria-label="Contatti">
+      <a href="/catalogo-use-case-ai/" aria-current="page">Catalogo Utilizzi AI</a>
       <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
       <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
       <a href="/privacy/">Privacy</a>
@@ -106,6 +117,7 @@
 
 <script src="/main.js?v=19" defer></script>
 <script src="/catalogo-use-case-ai/dati.js?v=3" defer></script>
-<script src="/catalogo-use-case-ai/catalogo.js?v=2" defer></script>
+<script src="/catalogo-use-case-ai/catalogo.js?v=3" defer></script>
+<script src="/nav.js?v=1" defer></script>
 </body>
 </html>

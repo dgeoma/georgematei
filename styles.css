@@ -151,6 +151,24 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav__links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--grad-gold); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
 .nav__links a:hover { color: var(--ink); }
 .nav__links a:hover::after, .nav__links a.is-active::after { transform: scaleX(1); }
+/* menu «Risorse»: si apre al passaggio del mouse, al tocco e da tastiera (focus-within), senza JavaScript */
+.nav__links { align-items: center; }
+.nav__menu { position: relative; }
+.nav__more { display: inline-flex; align-items: center; gap: 4px; padding: 6px 0; border: 0; background: none; font: inherit; font-size: 15px; font-weight: 600; color: var(--ink-soft); cursor: pointer; }
+.nav__more svg { width: 16px; height: 16px; transition: transform .2s ease; }
+.nav__menu:hover .nav__more, .nav__menu:focus-within .nav__more { color: var(--ink); }
+.nav__menu:hover .nav__more svg, .nav__menu:focus-within .nav__more svg { transform: rotate(180deg); }
+.nav__drop { position: absolute; top: 100%; right: -14px; padding-top: 12px; min-width: 290px; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s; z-index: 60; }
+.nav__menu:hover .nav__drop, .nav__menu:focus-within .nav__drop { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.nav__menu.is-open .nav__drop { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.nav__menu.is-chiuso .nav__drop { opacity: 0; visibility: hidden; }
+.nav__menu.is-open .nav__more svg { transform: rotate(180deg); }
+.nav__menu.is-current .nav__more { color: var(--ink); box-shadow: inset 0 -2px 0 var(--gold-500); }
+.nav__links .nav__drop a { display: block; padding: 14px 18px; border-radius: 16px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); color: var(--ink); }
+.nav__links .nav__drop a::after { display: none; }
+.nav__links .nav__drop a:hover { border-color: var(--gold-400); }
+.nav__drop b { display: block; font-size: 15px; font-weight: 700; }
+.nav__drop small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: var(--muted); }
 
 /* ---------- hero ---------- */
 
