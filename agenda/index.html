@@ -55,9 +55,9 @@
   </section>
   <section class="cal-page" id="prenota">
     <div class="wrap">
-      <div class="agenda-scelta" role="tablist" aria-label="Durata della videochiamata">
-        <button type="button" role="tab" class="agenda-scelta__btn is-on" aria-selected="true" data-cal="cPICakRP00QYGUi5Wyoi">30 minuti</button>
-        <button type="button" role="tab" class="agenda-scelta__btn" aria-selected="false" data-cal="Av13SbWfCgW6oDpES7uo">60 minuti</button>
+      <div class="agenda-scelta" role="group" aria-label="Durata della videochiamata">
+        <button type="button" class="agenda-scelta__btn is-on" aria-pressed="true" data-cal="cPICakRP00QYGUi5Wyoi">30 minuti</button>
+        <button type="button" class="agenda-scelta__btn" aria-pressed="false" data-cal="Av13SbWfCgW6oDpES7uo">60 minuti</button>
       </div>
       <p class="cal-page__note">Il calendario è di HighLevel e si carica con la pagina: registra la visita e salva nel browser identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Non vedi il calendario? Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p>
       <div class="cal-page__box" id="calendario">
@@ -98,7 +98,7 @@
     btns.forEach(function (b) {
       b.addEventListener('click', function () {
         if (b.classList.contains('is-on')) return;
-        btns.forEach(function (x) { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+        btns.forEach(function (x) { x.classList.toggle('is-on', x === b); x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
         var id = b.getAttribute('data-cal');
         frame.id = id + '_agenda';
         frame.title = 'Calendario prenotazioni di George Matei, ' + b.textContent;
