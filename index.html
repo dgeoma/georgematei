@@ -22,9 +22,10 @@
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.gmPronto)document.documentElement.classList.remove('js')},3000)</script>
-<link rel="stylesheet" href="/styles.css?v=22">
+<link rel="stylesheet" href="/styles.css?v=23">
 <link rel="stylesheet" href="/tempio.css?v=5">
-<link rel="stylesheet" href="/metodo.css?v=11">
+<link rel="stylesheet" href="/metodo.css?v=12">
+<link rel="stylesheet" href="/quiz.css?v=1">
 <!--JSONLD-->
 <script type="application/ld+json">
 {
@@ -193,6 +194,7 @@
     <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.6-3.4 8.3-8 9-4.6-.7-8-4.4-8-9V6l8-3z"/><path d="M8.6 12.2l2.4 2.4 4.4-4.6"/></symbol>
     <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/></symbol>
+    <symbol id="i-doc-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5"/><path d="M8.8 14.6l2.2 2.2 4.2-4.4"/></symbol>
     <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
   </defs>
 </svg>
@@ -212,7 +214,7 @@
         </div>
       </div>
     </nav>
-    <a class="btn btn--small" href="#prenota">Prenota<span class="hide-sm">&nbsp;30 minuti</span></a>
+    <a class="btn btn--small" href="#prenota">Inizia<span class="hide-sm">&nbsp;da qui</span></a>
   </div>
 </header>
 
@@ -234,8 +236,8 @@
       <p class="hero__sub reveal" style="--d:.14s">Prima un risultato che tocchi con mano. Poi il resto, un pezzo alla volta.</p>
       <p class="hero__lead reveal" style="--d:.2s">Metto impiegati AI dentro la tua azienda: rispondono ai clienti, seguono i preventivi, preparano i numeri. E il tuo team impara a usarli.</p>
       <div class="hero__cta reveal" style="--d:.26s">
-        <a class="btn" href="#prenota"><svg aria-hidden="true"><use href="#i-cal"/></svg>Prenota 30 minuti</a>
-        <p class="cta-note">Videochiamata gratuita: alla fine sai da dove partire.</p>
+        <a class="btn" href="#prenota"><svg aria-hidden="true"><use href="#i-cal"/></svg>Scopri da dove partire</a>
+        <p class="cta-note">Poche domande. Se posso aiutarti, prenoti la videochiamata gratuita.</p>
       </div>
       <ul class="hero__trust reveal" style="--d:.32s">
         <li><svg aria-hidden="true"><use href="#i-spark"/></svg>80+ sistemi AI messi in funzione</li>
@@ -252,21 +254,20 @@
   <button class="volo__pausa" type="button" aria-pressed="false" aria-label="Ferma i robot in volo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button>
 </section>
 
-<!-- CALENDARIO -->
+<!-- QUESTIONARIO (09/11/2026): al posto del calendario aperto. Il calendario compare solo a chi ha un'esigenza
+     che si risolve con consulenza, formazione, automazioni o software; agli altri il catalogo, già filtrato. -->
 <section class="cal-top" id="prenota" aria-labelledby="cal-top-t">
   <div class="wrap">
-    <div class="cal-top__box">
+    <div class="cal-top__box quiz-box">
       <img class="robot-indica" src="/assets/tempio/robot-indica.webp" width="190" height="172" alt="" aria-hidden="true" loading="lazy">
       <div class="cal-top__head">
-        <p class="eyebrow">Prenota · 30 minuti</p>
-        <h2 id="cal-top-t" tabindex="-1">Scegli giorno e ora.</h2>
+        <p class="eyebrow">Da dove partiamo · poche domande</p>
+        <h2 id="cal-top-t" tabindex="-1">Vediamo se posso aiutarti.</h2>
+        <p class="quiz__intro">Poche domande per capire chi sei e cosa ti serve. Se posso esserti utile, scegli subito giorno e ora per una videochiamata gratuita di 30 minuti.</p>
       </div>
-      <div class="cal-top__widget" id="calendario">
-        <p class="cal-top__wait" aria-hidden="true">Carico le date libere…</p>
-        <iframe data-src="https://api.leadconnectorhq.com/widget/booking/zxAZSoKOYjuvrf698mJJ" title="Calendario prenotazioni di George Matei" id="zxAZSoKOYjuvrf698mJJ_1793121711485" scrolling="no" allow="payment" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe>
-      </div>
-      <noscript><p class="cal-top__note"><a href="/calendario/">Apri il calendario</a></p></noscript>
-      <p class="cal-top__note">Il calendario è di HighLevel e si carica con la pagina: registra la visita e salva nel browser identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, per qualunque cosa scrivi al tuo referente lì. Non vedi il calendario? Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p>
+      <div class="quiz" id="quiz"></div>
+      <noscript><p class="cal-top__note">Il questionario ha bisogno di JavaScript. Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a> oppure <a href="/calendario/">apri il calendario</a>.</p></noscript>
+      <p class="cal-top__note">Le risposte non vengono salvate né inviate a nessuno: servono solo a mostrarti il passo giusto. Il calendario di HighLevel si carica solo alla fine, se fa per te. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, scrivi al tuo referente lì.</p>
     </div>
   </div>
 </section>
@@ -334,7 +335,7 @@
       </ul>
       <div class="problem__end">
         <p>Se almeno una ti suona familiare, in trenta minuti capiamo da dove partire. Se hai già un preventivo, portalo.</p>
-        <a class="btn" href="#prenota">Prenota 30 minuti</a>
+        <a class="btn" href="#prenota">Scopri da dove partire</a>
       </div>
     </div>
     <!-- «Ciao, sono George»: NASCOSTA finché George non approva un nuovo testo (29/10/2026). Deve dare valore e non ripetere «Chi sono».
@@ -366,17 +367,11 @@
       <div class="try__copy">
         <h3>Un agente AI che risponde ai clienti</h3>
         <p>Risponde su WhatsApp, Instagram o sul sito, raccoglie le informazioni, fissa gli appuntamenti e, quando serve, passa la parola a una persona. Si presenta sempre come assistente AI e segue le tue regole.</p>
-        <p class="try__hint">Scegli il messaggio da mandare:</p>
-        <div class="try__chips">
-          <button type="button" class="chipbtn" data-scenario="preventivo">Vorrei un preventivo</button>
-          <button type="button" class="chipbtn" data-scenario="sabato">Siete aperti sabato?</button>
-          <button type="button" class="chipbtn" data-scenario="persona">Posso parlare con una persona?</button>
-        </div>
-        <p class="try__after" aria-hidden="true">Lo vuoi sul WhatsApp della tua azienda? <a href="#prenota">Prenota 30 minuti</a></p>
+        <p class="try__after" aria-hidden="true">Lo vuoi sul WhatsApp della tua azienda? <a href="#prenota">Parliamone</a></p>
       </div>
       <div class="phone" aria-label="Simulazione di una chat con l'assistente AI">
         <div class="phone__bar"><span class="phone__avatar" aria-hidden="true">SR</span><div><b>Studio Rossi</b><small>assistente AI · online</small></div></div>
-        <div class="phone__chat" aria-live="polite" tabindex="-1"><p class="phone__empty">Tocca uno dei messaggi: l'assistente risponde qui.</p></div>
+        <div class="phone__chat" aria-live="polite" tabindex="-1"><p class="phone__empty">Scegli qui sotto il messaggio da mandare: l'assistente ti risponde.</p></div>
         <div class="phone__replies"></div>
       </div>
     </div>
@@ -436,7 +431,7 @@
     </div>
 
     <p class="try__note">Sono simulazioni: nessun dato lascia il tuo browser. Di sistemi così ne ho messi in funzione più di 80.</p>
-    <div class="cta-center reveal"><p class="try__ask">Vuoi vederlo sul tuo caso?</p><a class="btn" href="#prenota">Prenota 30 minuti</a></div>
+    <div class="cta-center reveal"><p class="try__ask">Vuoi vederlo sul tuo caso?</p><a class="btn" href="#prenota">Scopri da dove partire</a></div>
   </div>
 </section>
 
@@ -476,9 +471,9 @@
         </header>
         <div class="sis__ora"><span class="sis__clock" aria-hidden="true"></span><span class="sis__orario">Lunedì, 8:00</span><span class="sis__sospesi"><b>0</b> in sospeso</span></div>
         <ul class="sis__righe">
-          <li class="sis__riga" data-stato="ok"><span class="sis__nome">Contatto delle 21:40</span><span class="sis__stato">Appuntamento fissato</span><img class="sis__bot" src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt="" loading="lazy"></li>
-          <li class="sis__riga" data-stato="ok"><span class="sis__nome">Preventivo · Laura B.</span><span class="sis__stato">Accettato</span><img class="sis__bot" src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt="" loading="lazy"></li>
-          <li class="sis__riga" data-stato="ok"><span class="sis__nome">Report del lunedì</span><span class="sis__stato">Pronto alle 8</span><img class="sis__bot" src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt="" loading="lazy"></li>
+          <li class="sis__riga" data-stato="ok"><span class="sis__nome">Contatto delle 21:40</span><span class="sis__stato">Appuntamento fissato</span><span class="sis__bot sis__ico" aria-hidden="true" title="Appuntamento in agenda"><svg><use href="#i-cal"/></svg></span></li>
+          <li class="sis__riga" data-stato="ok"><span class="sis__nome">Preventivo · Laura B.</span><span class="sis__stato">Accettato</span><span class="sis__bot sis__ico" aria-hidden="true" title="Preventivo seguito"><svg><use href="#i-doc-ok"/></svg></span></li>
+          <li class="sis__riga" data-stato="ok"><span class="sis__nome">Report del lunedì</span><span class="sis__stato">Pronto alle 8</span><span class="sis__bot sis__ico" aria-hidden="true" title="Report preparato"><svg><use href="#i-chart"/></svg></span></li>
         </ul>
         <p class="sis__piede sis__piede--tu"><svg aria-hidden="true"><use href="#i-bell"/></svg><span class="sis__avviso">A te arriva solo quello che tocca a te.</span></p>
       </article>
@@ -495,7 +490,7 @@
       <li>Un sistema che i tuoi collaboratori usano davvero</li>
     </ul>
     <p class="sis-chiusa reveal">Non devi per forza buttare quello che hai: dove si può, gli impiegati AI lavorano dentro il tuo software.</p>
-    <div class="cta-center reveal"><a class="btn" href="#prenota">Prenota 30 minuti</a><p class="cta-note">Videochiamata gratuita.</p></div>
+    <div class="cta-center reveal"><a class="btn" href="#prenota">Scopri da dove partire</a><p class="cta-note">Videochiamata gratuita.</p></div>
   </div>
 </section>
 
@@ -636,7 +631,7 @@
         </div>
       </div>
 
-      <div class="metodo__cta"><a class="btn" href="#prenota">Prenota 30 minuti</a></div>
+      <div class="metodo__cta"><a class="btn" href="#prenota">Scopri da dove partire</a></div>
     </div>
   </div>
 </section>
@@ -683,7 +678,7 @@
       <p class="reveal">Poi ho aggiunto i sistemi: da responsabile IT, ho messo in piedi un reparto partendo da zero e ho seguito la creazione di cinque software su misura.</p>
       <p class="reveal">Oggi sono il direttore del reparto AI e Automazione di Marketing Genius. Nel tempo che resta, seguo pochi imprenditori, per garantire il massimo della qualità.</p>
       <blockquote class="about__quote reveal"><p>Tu ti occupi del business, io mi occupo del sistema.</p><footer>George</footer></blockquote>
-      <div class="cta-row reveal"><a class="btn" href="#prenota">Prenota 30 minuti</a><p class="cta-note">Videochiamata gratuita.</p></div>
+      <div class="cta-row reveal"><a class="btn" href="#prenota">Scopri da dove partire</a><p class="cta-note">Videochiamata gratuita.</p></div>
     </div>
   </div>
 </section>
@@ -744,7 +739,7 @@
       <h2 class="reveal">Trenta minuti per conoscerci.</h2>
       <p class="reveal">In videochiamata, niente slide. Prima della chiamata scegli un'attività che vi porta via ore ogni settimana: partiamo da lì. Poi decidi tu.</p>
       <p class="reveal">Hai già un preventivo per un progetto di AI o di software? Portalo.</p>
-      <a class="btn" href="#prenota"><svg aria-hidden="true"><use href="#i-cal"/></svg>Scegli giorno e ora</a>
+      <a class="btn" href="#prenota"><svg aria-hidden="true"><use href="#i-cal"/></svg>Rispondi e scegli giorno e ora</a>
     </div>
   </div>
 </section>
@@ -766,13 +761,14 @@
       <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
       <a href="/privacy/">Privacy</a>
     </nav>
-    <p class="footer__partner">Sei un consulente o un commercialista? <a href="#prenota">Prenota gli stessi trenta minuti</a>: così sappiamo tutti e due a chi mandare un cliente.</p>
+    <p class="footer__partner">Sei un consulente o un commercialista? <a href="mailto:d.georgematei@gmail.com">Scrivimi</a>: così sappiamo tutti e due a chi mandare un cliente.</p>
     <p class="footer__legal">© 2026 George Dragos Matei · AI e automazioni per imprenditori · Sede negli Emirati Arabi Uniti · I marchi nel carosello appartengono ai rispettivi titolari e indicano aziende e scuole con cui ho lavorato o studiato: nessuno sponsorizza questo sito. Le illustrazioni del tempio sono create con l'AI.</p>
   </div>
 </footer>
 
 <script src="/main.js?v=19" defer></script>
-<script src="/demo.js?v=21" defer></script>
+<script src="/quiz.js?v=2" defer></script>
+<script src="/demo.js?v=22" defer></script>
 <script src="/tempio.js?v=2" defer></script>
 <script src="/metodo.js?v=6" defer></script>
 <script src="/nav.js?v=1" defer></script>

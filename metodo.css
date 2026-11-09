@@ -422,3 +422,13 @@ html:not(.metodo--viva) .m-slide .scena { max-width: calc((100svh - var(--nav-h)
   .tempio .hero__cta .btn { min-height: 44px; padding: 10px 24px; }
 }
 @media (max-height: 480px) and (min-width: 701px) { .targhetta, .tempio .robot-indica { display: none; } }
+
+/* 09/11/2026 · al posto del robottino ripetuto, un'icona per ogni passo:
+   agenda (contatto), documento con la spunta (preventivo), grafico (report) */
+.sis__ico { right: 12px; top: 50%; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: var(--navy-800); color: var(--gold-400); box-shadow: 0 6px 14px -8px rgba(11, 23, 51, 0.6); transform: translateY(-50%); }
+.sis__ico svg { width: 22px; height: 22px; }
+.sis--vivo.is-corre .sis__ico { animation: sis-ico 0.6s cubic-bezier(0.3, 1.4, 0.5, 1) both; }
+.sis--vivo.is-attesa .sis__ico { transform: translateY(-50%) scale(0.4); opacity: 0; }
+.sis--vivo .sis__riga[data-stato="ok"] .sis__ico { background: #1f6a40; color: #fff; }
+@keyframes sis-ico { from { transform: translateY(-50%) scale(0.4); opacity: 0; } to { transform: translateY(-50%) scale(1); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .sis__ico { animation: none !important; } }

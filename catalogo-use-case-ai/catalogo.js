@@ -112,7 +112,7 @@
     var l = risultati();
     grid.classList.toggle('is-first', primoGiro && !reduce);
     grid.innerHTML = l.length ? l.map(cardHTML).join('') :
-      '<div class="cat__empty"><h3>Nessun risultato con questi filtri</h3><p>Togli un filtro o cerca un\'altra parola. Se il tuo caso non c\'è, <a href="/calendario/">raccontamelo in 30 minuti</a>.</p></div>';
+      '<div class="cat__empty"><h3>Nessun risultato con questi filtri</h3><p>Togli un filtro o cerca un\'altra parola. Se il tuo caso non c\'è, <a href="/#prenota">raccontamelo qui</a>.</p></div>';
     document.querySelector('.cat__count').textContent = l.length === schede.length ? schede.length + ' soluzioni' : l.length + ' di ' + schede.length + ' soluzioni';
     document.querySelector('.cat__active').innerHTML = attiviHTML();
     var n = 0; for (var k in F) n += F[k].size;
@@ -250,6 +250,18 @@
     document.body.classList.toggle('filters-open', on);
     ftog.setAttribute('aria-expanded', String(on));
   });
+
+  // Arrivo dal questionario della home: ?tipo=formazione,automazione&per=freelance preseleziona i filtri
+  try {
+    var qs = new URLSearchParams(location.search);
+    ['tipo', 'per', 'ruolo', 'area', 'livello', 'settore'].forEach(function (k) {
+      (qs.get(k) || '').split(',').forEach(function (v) {
+        v = v.trim(); if (!v) return;
+        var ok = GRUPPI.filter(function (g) { return g[0] === k; })[0][2]().some(function (x) { return x[0] === v; });
+        if (ok) F[k].add(v);
+      });
+    });
+  } catch (e) {}
 
   disegna();
   if (location.hash.length > 1) apri(decodeURIComponent(location.hash.slice(1)), false);

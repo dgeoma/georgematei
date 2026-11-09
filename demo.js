@@ -36,8 +36,22 @@
   /* ---------- 1 · l'agente risponde ---------- */
   var chat = root.querySelector('.phone__chat');
   var replies = root.querySelector('.phone__replies');
-  var chips = root.querySelectorAll('[data-scenario]');
   var busy = false;
+  /* I tre messaggi da mandare stanno dentro il telefono, sopra la tastiera:
+     toccarne uno fa partire la chat (anche su desktop). */
+  var STARTERS = [['preventivo', 'Vorrei un preventivo'], ['sabato', 'Siete aperti sabato?'], ['persona', 'Posso parlare con una persona?']];
+  function starters(label) {
+    replies.replaceChildren();
+    replies.classList.add('is-start');
+    if (label) replies.appendChild(el('p', 'phone__invito', label));
+    STARTERS.forEach(function (s) {
+      var b = el('button', 'reply reply--start', s[1]);
+      b.type = 'button';
+      b.setAttribute('data-scenario', s[0]);
+      b.addEventListener('click', function () { run(s[0]); });
+      replies.appendChild(b);
+    });
+  }
 
   var clock = 0;
   function now() {
@@ -142,16 +156,16 @@
   async function run(name) {
     if (busy) return;
     busy = true;
-    chips.forEach(function (c) { c.setAttribute('aria-disabled', 'true'); });
     clock = 0;
     chat.replaceChildren(el('p', 'phone__day', 'Oggi'));
     replies.replaceChildren();
+    replies.classList.remove('is-start');
     var phone = root.querySelector('.phone');
     var r = phone.getBoundingClientRect();
     if (r.top < 70 || r.bottom > innerHeight) phone.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
     try { await scenari[name](); } finally {
       busy = false;
-      chips.forEach(function (c) { c.removeAttribute('aria-disabled'); });
+      starters('Prova un altro messaggio:');
       var after = root.querySelector('.try__after');
       if (after) {
         after.classList.add('is-on'); after.removeAttribute('aria-hidden');
@@ -160,7 +174,7 @@
       }
     }
   }
-  chips.forEach(function (c) { c.addEventListener('click', function () { if (c.getAttribute('aria-disabled') !== 'true') run(c.getAttribute('data-scenario')); }); });
+  starters();
 
   /* ---------- 2 · preventivi: senza e con l'AI ---------- */
   var slider = root.querySelector('.timeline-range');
