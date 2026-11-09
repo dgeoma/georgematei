@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogo degli use case AI · George Matei</title>
+<meta name="description" content="Cosa si può costruire con l'AI in un'azienda o nel lavoro di un freelance: agenti AI, automazioni, app, formazione e consulenza. Filtra per ruolo, area, livello di impegno e settore.">
+<meta property="og:title" content="Catalogo degli use case AI · George Matei">
+<meta property="og:description" content="Agenti AI, automazioni, app, formazione e consulenza: filtra per il tuo ruolo e trova cosa si può costruire nella tua attività.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="George Matei">
+<meta property="og:url" content="https://georgematei.com/catalogo-use-case-ai/">
+<meta property="og:image" content="https://georgematei.com/assets/og-george.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://georgematei.com/catalogo-use-case-ai/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0f1e3a">
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.gmPronto)document.documentElement.classList.remove('js')},3000)</script>
+<link rel="stylesheet" href="/styles.css?v=21">
+<link rel="stylesheet" href="/catalogo-use-case-ai/catalogo.css?v=2">
+</head>
+<body class="cat-page">
+<a class="skip" href="#vetrina">Vai al catalogo</a>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+    <nav class="nav__links" aria-label="Sezioni">
+      <a href="/#prova">Esempi</a>
+      <a href="/#metodo">Come lavoro</a>
+      <a href="/#chi">Chi sono</a>
+      <a href="/catalogo-use-case-ai/" aria-current="page">Catalogo</a>
+    </nav>
+    <a class="btn btn--small" href="/calendario/">Prenota 30 minuti</a>
+  </div>
+</header>
+
+<main id="vetrina" class="cat">
+  <div class="wrap">
+    <div class="cat__head reveal">
+      <p class="eyebrow">Catalogo</p>
+      <h1>Cosa si può costruire con l'AI</h1>
+      <p class="cat__lead">Agenti, automazioni, app, formazione e consulenza. Filtra per il tuo ruolo e per l'impegno che vuoi metterci.</p>
+    </div>
+
+    <div class="cat__bar reveal" style="--d:.08s">
+      <label class="cat__search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Cerca nel catalogo</span>
+        <input id="q" type="search" placeholder="Cerca: WhatsApp, preventivi, procedure, report…" autocomplete="off">
+      </label>
+      <div class="cat__levels" role="group" aria-label="Livello di impegno">
+        <button type="button" class="lvl" data-lvl="base" aria-pressed="false"><i></i>Base</button>
+        <button type="button" class="lvl" data-lvl="intermedio" aria-pressed="false"><i></i>Intermedio</button>
+        <button type="button" class="lvl" data-lvl="avanzato" aria-pressed="false"><i></i>Avanzato</button>
+      </div>
+      <button type="button" class="cat__ftog" aria-expanded="false" aria-controls="filtri">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Filtri <span class="cat__fn" hidden></span>
+      </button>
+      <label class="cat__sort"><span class="sr-only">Ordina</span>
+        <select id="ord">
+          <option value="evidenza">In evidenza</option>
+          <option value="facili">Prima i più semplici</option>
+          <option value="az">A → Z</option>
+        </select>
+      </label>
+    </div>
+    <p class="cat__legend reveal" style="--d:.12s">Il colore dice l'impegno richiesto per metterlo in piedi: <span class="lvl-t" data-lvl="base">base</span> si mette in piedi in pochi giorni, <span class="lvl-t" data-lvl="intermedio">intermedio</span> chiede da qualche giorno a qualche settimana e un po' del tuo tempo, <span class="lvl-t" data-lvl="avanzato">avanzato</span> è un progetto di più settimane.</p>
+
+    <div class="cat__active" aria-live="polite"></div>
+
+    <div class="cat__layout">
+      <aside class="cat__filters" id="filtri" aria-label="Filtri"></aside>
+      <section class="cat__results" aria-label="Risultati">
+        <p class="cat__count" aria-live="polite"></p>
+        <div class="cat__grid"></div>
+      </section>
+    </div>
+
+    <div class="cat__end reveal">
+      <h2>Non trovi il tuo caso?</h2>
+      <p>Il catalogo cresce con le richieste. Raccontami cosa ti porta via più ore: in 30 minuti capiamo se si può costruire e da dove partire.</p>
+      <a class="btn" href="/calendario/">Prenota 30 minuti</a>
+    </div>
+  </div>
+</main>
+
+<dialog class="sheet" id="scheda" aria-labelledby="scheda-t">
+  <div class="sheet__box"></div>
+</dialog>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+    <nav class="footer__links" aria-label="Contatti">
+      <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
+      <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+    <p class="footer__legal">© 2026 George Dragos Matei · AI e automazioni per imprenditori · Sede negli Emirati Arabi Uniti</p>
+  </div>
+</footer>
+
+<script src="/main.js?v=19" defer></script>
+<script src="/catalogo-use-case-ai/dati.js?v=3" defer></script>
+<script src="/catalogo-use-case-ai/catalogo.js?v=2" defer></script>
+</body>
+</html>
