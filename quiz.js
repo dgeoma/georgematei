@@ -295,7 +295,7 @@
       '<p>Le tue risposte mi sono arrivate. Trenta minuti, gratis: mi racconti la tua sfida e alla fine sai da dove partire. Scegli giorno e ora qui sotto.</p>' +
       '<div class="cal-top__widget quiz__cal" id="calendario"><p class="cal-top__wait" aria-hidden="true">Carico le date libere…</p>' +
       '<iframe src="' + esc(src) + '" title="Calendario prenotazioni di George Matei" id="zxAZSoKOYjuvrf698mJJ_1793121711485" scrolling="no" allow="payment" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe></div>' +
-      '<p class="quiz__hint">Non vedi il calendario? <a href="' + esc(src) + '" target="_blank" rel="noopener">Aprilo in una nuova pagina</a> oppure scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p></div>';
+      '<p class="quiz__hint">Non vedi il calendario? <a href="/calendario/" target="_blank" rel="noopener">Aprilo in una nuova pagina</a> oppure scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p></div>';
     var t = root.querySelector('#quiz-q'); if (t) t.focus({ preventScroll: true });
     porta();
     var f = root.querySelector('iframe'), box = root.querySelector('.quiz__cal');
