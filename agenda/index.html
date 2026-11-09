@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Prenota una videochiamata · George Matei</title>
+<meta name="description" content="Prenota una videochiamata con George Matei: trenta o sessanta minuti.">
+<meta property="og:title" content="Prenota una videochiamata con George Matei">
+<meta property="og:description" content="Trenta o sessanta minuti in videochiamata.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="George Matei">
+<meta property="og:url" content="https://georgematei.com/agenda/">
+<meta property="og:image" content="https://georgematei.com/assets/og-george.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="George Matei, AI e automazioni per imprenditori">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://georgematei.com/agenda/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0f1e3a">
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=22">
+</head>
+<body>
+<a class="skip" href="#prenota">Vai al calendario</a>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+    <nav class="nav__links" aria-label="Sezioni">
+      <a href="/#prova">Esempi</a>
+      <a href="/#metodo">Come lavoro</a>
+      <a href="/#chi">Chi sono</a>
+      <a href="/#domande">Domande</a>
+      <div class="nav__menu">
+        <button type="button" class="nav__more" aria-haspopup="true">Risorse<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav__drop">
+          <a href="/catalogo-use-case-ai/"><b>Catalogo Utilizzi AI</b><small>Cosa si può costruire con l'AI nella tua attività</small></a>
+        </div>
+      </div>
+    </nav>
+    <a class="btn btn--small" href="/">Torna al sito</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--face"><img src="/assets/foto/george-sorriso.webp" width="240" height="240" alt="">Agenda · Videochiamata</p>
+      <h1>Scegli quanto tempo ti serve.</h1>
+      <p>Trenta minuti per una domanda precisa o per conoscerci. Sessanta se c'è da lavorare insieme su qualcosa. Scegli la durata, poi il giorno e l'ora.</p>
+    </div>
+  </section>
+  <section class="cal-page" id="prenota">
+    <div class="wrap">
+      <div class="agenda-scelta" role="tablist" aria-label="Durata della videochiamata">
+        <button type="button" role="tab" class="agenda-scelta__btn is-on" aria-selected="true" data-cal="cPICakRP00QYGUi5Wyoi">30 minuti</button>
+        <button type="button" role="tab" class="agenda-scelta__btn" aria-selected="false" data-cal="Av13SbWfCgW6oDpES7uo">60 minuti</button>
+      </div>
+      <p class="cal-page__note">Il calendario è di HighLevel e si carica con la pagina: registra la visita e salva nel browser identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Non vedi il calendario? Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p>
+      <div class="cal-page__box" id="calendario">
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi" title="Calendario prenotazioni di George Matei, 30 minuti" id="cPICakRP00QYGUi5Wyoi_agenda" scrolling="no" allow="payment" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+<style>
+  .agenda-scelta { display: flex; gap: 10px; margin: 0 0 18px; flex-wrap: wrap; }
+  .agenda-scelta__btn { font: inherit; font-weight: 600; font-size: 15px; padding: 12px 22px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; min-height: 44px; }
+  .agenda-scelta__btn.is-on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .agenda-scelta__btn:focus-visible { outline: 3px solid #c9a24a; outline-offset: 2px; }
+</style>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+    <nav class="footer__links" aria-label="Contatti">
+      <a href="/catalogo-use-case-ai/">Catalogo Utilizzi AI</a>
+      <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
+      <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+    <p class="footer__legal">© 2026 George Dragos Matei · AI e automazioni per imprenditori · Sede negli Emirati Arabi Uniti</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var nav = document.querySelector('.nav');
+    addEventListener('scroll', function () { nav.classList.toggle('is-scrolled', scrollY > 12); }, { passive: true });
+  })();
+</script>
+<script>
+  (function () {
+    var btns = document.querySelectorAll('.agenda-scelta__btn'), frame = document.querySelector('#calendario iframe');
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.classList.contains('is-on')) return;
+        btns.forEach(function (x) { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+        var id = b.getAttribute('data-cal');
+        frame.id = id + '_agenda';
+        frame.title = 'Calendario prenotazioni di George Matei, ' + b.textContent;
+        frame.src = 'https://api.leadconnectorhq.com/widget/booking/' + id;
+      });
+    });
+  })();
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+<script src="/nav.js?v=1" defer></script>
+</body>
+</html>
