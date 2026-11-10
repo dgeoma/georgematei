@@ -2,6 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import SferaArmillare from '../components/SferaArmillare.astro';
+import RobotVolanti from '../components/RobotVolanti.astro';
 ---
 <!doctype html>
 <html lang="it">
@@ -28,7 +29,7 @@ import SferaArmillare from '../components/SferaArmillare.astro';
 <link rel="preload" href="/assets/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script is:inline>document.documentElement.classList.add('js');setTimeout(function(){if(!window.gmPronto)document.documentElement.classList.remove('js')},3000)</script>
 <link rel="stylesheet" href="/styles.css?v=23">
-<link rel="stylesheet" href="/tempio.css?v=5">
+<link rel="stylesheet" href="/tempio.css?v=6">
 <link rel="stylesheet" href="/metodo.css?v=12">
 <link rel="stylesheet" href="/quiz.css?v=3">
 <!--JSONLD-->
@@ -215,6 +216,7 @@ import SferaArmillare from '../components/SferaArmillare.astro';
     <img src="/assets/tempio/tempio-alto.webp" width="1800" height="1123" alt="Il tempio di Apollo a Delfi in costruzione: piccoli robot con l'elmo dorato sollevano blocchi di marmo e dipingono le colonne" fetchpriority="high">
   </picture>
   <div class="hero__cielo" aria-hidden="true">
+    <RobotVolanti />
     <div class="volo volo--1"><div class="volo__giro"><div class="volo__dondola"><img src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt=""><span class="volo__rotore"></span></div></div></div>
     <div class="volo volo--2"><div class="volo__giro"><div class="volo__dondola"><img src="/assets/funkylancers-robot-volante.webp" width="268" height="400" alt=""><span class="volo__rotore"></span></div></div></div>
   </div>
