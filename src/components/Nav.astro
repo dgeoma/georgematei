@@ -1,0 +1,29 @@
+---
+// Barra in alto, uguale su tutte le pagine. In home i link sono ancore (#…), altrove puntano a /#….
+interface Props { home?: boolean; current?: 'catalogo'; cta?: { href: string; label: string } }
+const { home = false, current, cta = { href: '/', label: 'Torna al sito' } } = Astro.props;
+const p = home ? '' : '/';
+const esempi = home ? '#esempi' : '/#prova';
+---
+<header class="nav">
+  <div class="wrap nav__inner">
+    {home
+      ? <a class="wordmark" href="#top" aria-label="George Matei, torna su"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+      : <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>}
+    <nav class="nav__links" aria-label="Sezioni">
+      <a href={esempi}>Esempi</a>
+      <a href={`${p}#metodo`}>Come lavoro</a>
+      <a href={`${p}#chi`}>Chi sono</a>
+      <a href={`${p}#domande`}>Domande</a>
+      <div class:list={['nav__menu', { 'is-current': current === 'catalogo' }]}>
+        <button type="button" class="nav__more" aria-haspopup="true">Risorse<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav__drop">
+          <a href="/catalogo-use-case-ai/" aria-current={current === 'catalogo' ? 'page' : undefined}><b>Catalogo Utilizzi AI</b><small>Cosa si può costruire con l'AI nella tua attività</small></a>
+        </div>
+      </div>
+    </nav>
+    {home
+      ? <a class="btn btn--small" href="#prenota">Inizia<span class="hide-sm">&nbsp;da qui</span></a>
+      : <a class="btn btn--small" href={cta.href}>{cta.label}</a>}
+  </div>
+</header>

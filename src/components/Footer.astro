@@ -1,0 +1,21 @@
+---
+// Piè di pagina comune. In home c'è in più la riga partner e la nota sui marchi del carosello.
+interface Props { home?: boolean; current?: 'catalogo' | 'privacy' }
+const { home = false, current } = Astro.props;
+const cur = (k: string) => (current === k ? 'page' : undefined);
+---
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a class="wordmark" href={home ? '#top' : '/'}><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
+    <nav class="footer__links" aria-label="Contatti">
+      <a href="/catalogo-use-case-ai/" aria-current={cur('catalogo')}>Catalogo Utilizzi AI</a>
+      <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
+      <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
+      <a href="/privacy/" aria-current={cur('privacy')}>Privacy</a>
+    </nav>
+    {home && <p class="footer__partner">Sei un consulente o un commercialista? <a href="mailto:d.georgematei@gmail.com">Scrivimi</a>: così sappiamo tutti e due a chi mandare un cliente.</p>}
+    {home
+      ? <p class="footer__legal">© 2026 George Dragos Matei · AI e automazioni per imprenditori · Sede negli Emirati Arabi Uniti · I marchi nel carosello appartengono ai rispettivi titolari e indicano aziende e scuole con cui ho lavorato o studiato: nessuno sponsorizza questo sito. Le illustrazioni del tempio sono create con l'AI.</p>
+      : <p class="footer__legal">© 2026 George Dragos Matei · AI e automazioni per imprenditori · Sede negli Emirati Arabi Uniti</p>}
+  </div>
+</footer>

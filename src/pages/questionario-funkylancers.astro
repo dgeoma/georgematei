@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="it">
 <head>
@@ -11,7 +13,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css?v=21">
-<style>
+<style is:inline>
   :root{--fl-ink:#0f1e3a;--fl-muted:#58647b;--fl-gold:#c9a14a;--fl-gold-soft:#f7edda;--fl-paper:#fffdf8;--fl-line:#e5e8ed;--fl-red:#c83e37;--fl-shadow:0 22px 70px rgba(8,18,42,.12)}
   body.fl-body{background:#f3f5f9;color:var(--fl-ink);min-height:100vh}
   .fl-shell{width:min(1240px,100%);margin:0 auto;padding:clamp(14px,3vw,34px);display:grid;grid-template-columns:minmax(320px,.86fr) minmax(420px,1fr);gap:clamp(18px,3vw,42px);align-items:start}
@@ -154,7 +156,7 @@
     <div class="fl-footer"><span>Nessuna risposta viene pubblicata singolarmente</span><a href="/privacy/" target="_blank" rel="noopener noreferrer">Privacy e dati</a></div>
   </section>
 </main>
-<script>
+<script is:inline>
 (() => {
   "use strict";
   const API = "https://george-questionari.vercel.app/q/funkylancers-ricerca-ai";

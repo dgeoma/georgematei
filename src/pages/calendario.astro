@@ -1,3 +1,7 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
 <!doctype html>
 <html lang="it">
 <head>
@@ -26,24 +30,7 @@
 <body>
 <a class="skip" href="#prenota">Vai al calendario</a>
 
-<header class="nav">
-  <div class="wrap nav__inner">
-    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
-    <nav class="nav__links" aria-label="Sezioni">
-      <a href="/#prova">Esempi</a>
-      <a href="/#metodo">Come lavoro</a>
-      <a href="/#chi">Chi sono</a>
-      <a href="/#domande">Domande</a>
-      <div class="nav__menu">
-        <button type="button" class="nav__more" aria-haspopup="true">Risorse<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="nav__drop">
-          <a href="/catalogo-use-case-ai/"><b>Catalogo Utilizzi AI</b><small>Cosa si può costruire con l'AI nella tua attività</small></a>
-        </div>
-      </div>
-    </nav>
-    <a class="btn btn--small" href="/">Torna al sito</a>
-  </div>
-</header>
+<Nav />
 
 <main>
   <section class="page-hero">
@@ -64,26 +51,15 @@
   </section>
 </main>
 
-<footer class="footer">
-  <div class="wrap footer__inner">
-    <a class="wordmark" href="/"><span class="wordmark__mark" aria-hidden="true">GM</span>George Matei</a>
-    <nav class="footer__links" aria-label="Contatti">
-      <a href="/catalogo-use-case-ai/">Catalogo Utilizzi AI</a>
-      <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>
-      <a href="https://www.linkedin.com/in/georgematei" rel="me">LinkedIn</a>
-      <a href="/privacy/">Privacy</a>
-    </nav>
-    <p class="footer__legal">© 2026 George Dragos Matei · AI e automazioni per imprenditori · Sede negli Emirati Arabi Uniti</p>
-  </div>
-</footer>
+<Footer />
 
-<script>
+<script is:inline>
   (function () {
     var nav = document.querySelector('.nav');
     addEventListener('scroll', function () { nav.classList.toggle('is-scrolled', scrollY > 12); }, { passive: true });
   })();
 </script>
-<script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
-<script src="/nav.js?v=1" defer></script>
+<script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+<script is:inline src="/nav.js?v=1" defer></script>
 </body>
 </html>
