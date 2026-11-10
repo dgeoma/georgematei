@@ -88,6 +88,7 @@ export function avvia(canvas: HTMLCanvasElement) {
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
+      renderer.render(scene, camera);   // setSize svuota il canvas: ridisegna anche in pausa
     };
     misura();
     addEventListener('resize', misura, { passive: true });

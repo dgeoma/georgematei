@@ -128,7 +128,8 @@ export function creaRobot() {
   return { robot, corpo, elica };
 }
 
-// Le stesse rotte delle animazioni CSS (percentuali della zona di cielo), chiuse e ammorbidite.
+// Gli stessi punti delle rotte CSS (percentuali della zona di cielo). Qui la curva è ammorbidita e la velocità
+// costante, quindi i robot passano dagli stessi punti ma non negli stessi istanti delle animazioni CSS.
 const ROTTE = [
   [[6, 15], [30, 3], [84, 14], [74, 44], [28, 58], [4, 36]],
   [[86, 58], [44, 9], [6, 8], [38, 50]],
@@ -168,7 +169,9 @@ export function avvia(canvas: HTMLCanvasElement, cielo: HTMLElement, hero: Eleme
     renderer.setSize(W, H, false);
     camera.left = 0; camera.right = W; camera.top = 0; camera.bottom = -H;
     camera.updateProjectionMatrix();
+    if (pronto) disegna(0);   // setSize svuota il canvas: ridisegna anche in pausa
   };
+  let pronto = false;
   misura();
   addEventListener('resize', misura, { passive: true });
 
@@ -213,7 +216,10 @@ export function avvia(canvas: HTMLCanvasElement, cielo: HTMLElement, hero: Eleme
   const loop = () => { if (attivo || fermo || !ammessa) return; attivo = true; ultimo = performance.now(); requestAnimationFrame(frame); };
   document.addEventListener('visibilitychange', () => { if (!document.hidden) loop(); });
 
+  pronto = true;
   disegna(0); // primo fotogramma subito, anche se in pausa
+  // Se la scheda grafica perde il contesto, tornano le immagini di sempre.
+  canvas.addEventListener('webglcontextlost', () => { hero?.classList.remove('robot-3d'); fermo = true; });
   hero?.classList.add('robot-3d');
   loop();
 }

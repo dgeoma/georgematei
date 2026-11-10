@@ -64,7 +64,7 @@
 .volo { position: absolute; left: 0; top: 0; width: clamp(62px, 6.4vw, 104px); aspect-ratio: 268 / 400; animation: volo-rotta 44s linear infinite; }
 .volo--2 { width: clamp(38px, 3.6vw, 60px); opacity: 0.92; animation-name: volo-rotta-2; animation-duration: 58s; animation-delay: -21s; }
 .volo__giro { position: absolute; inset: 0; animation: volo-giro 44s linear infinite; }
-.volo--2 .volo__giro { animation-duration: 58s; animation-delay: -21s; }
+.volo--2 .volo__giro { animation-name: volo-giro-2; animation-duration: 58s; animation-delay: -21s; }
 .volo__dondola { position: absolute; inset: 0; transform-origin: 60% 8%; animation: volo-dondola 2.6s ease-in-out infinite; }
 .volo__dondola img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .volo__rotore { position: absolute; left: 61.5%; top: 1.4%; width: 128%; height: 7%; transform: translate(-50%, -50%); animation: volo-rotore 0.2s linear infinite; }
@@ -74,6 +74,8 @@
 @keyframes volo-rotta { 0% { transform: translate(6cqw, 15cqh); } 22% { transform: translate(30cqw, 3cqh); } 40% { transform: translate(84cqw, 14cqh); } 55% { transform: translate(74cqw, 44cqh); } 72% { transform: translate(28cqw, 58cqh); } 88% { transform: translate(4cqw, 36cqh); } 100% { transform: translate(6cqw, 15cqh); } }
 /* giro senza schiacciare l'immagine piatta: sparisce un attimo e riappare girato (10/11/2026) */
 @keyframes volo-giro { 0% { transform: scaleX(1); opacity: 1; } 40% { transform: scaleX(1); opacity: 1; } 41.2% { transform: scaleX(1); opacity: 0; } 41.3% { transform: scaleX(-1); opacity: 0; } 42.5% { transform: scaleX(-1); opacity: 1; } 86% { transform: scaleX(-1); opacity: 1; } 87.2% { transform: scaleX(-1); opacity: 0; } 87.3% { transform: scaleX(1); opacity: 0; } 88.5%, 100% { transform: scaleX(1); opacity: 1; } }
+/* il robot piccolo va a sinistra fino al 55% e a destra dopo: si gira lì (prima si girava al 41% e all'87%) */
+@keyframes volo-giro-2 { 0% { transform: scaleX(-1); opacity: 1; } 54% { transform: scaleX(-1); opacity: 1; } 55.2% { transform: scaleX(-1); opacity: 0; } 55.3% { transform: scaleX(1); opacity: 0; } 56.5% { transform: scaleX(1); opacity: 1; } 98.6% { transform: scaleX(1); opacity: 1; } 99.8% { transform: scaleX(1); opacity: 0; } 99.9% { transform: scaleX(-1); opacity: 0; } 100% { transform: scaleX(-1); opacity: 1; } }
 @keyframes volo-rotta-2 { 0% { transform: translate(86cqw, 58cqh); } 30% { transform: translate(44cqw, 9cqh); } 55% { transform: translate(6cqw, 8cqh); } 78% { transform: translate(38cqw, 50cqh); } 100% { transform: translate(86cqw, 58cqh); } }
 .robot-fermi .volo, .robot-fermi .volo *, .hero.is-fuori .volo, .hero.is-fuori .volo * { animation-play-state: paused; }
 .volo__pausa { position: absolute; right: 16px; top: calc(var(--nav-h) + 10px); z-index: 2; width: 34px; height: 34px; padding: 0; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(8, 18, 42, 0.62); color: #fff; display: grid; place-items: center; cursor: pointer; }
