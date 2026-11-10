@@ -92,7 +92,12 @@ export function avvia(canvas: HTMLCanvasElement) {
     misura();
     addEventListener('resize', misura, { passive: true });
 
-    let visibile = true, fermo = false, t0 = performance.now(), ultimo = t0, giro = 0;
+    // Se il visitatore ha già fermato i robot prima che la sfera parta, resta ferma anche lei.
+    let visibile = true, fermo = pausa?.getAttribute('aria-pressed') === 'true', t0 = performance.now(), ultimo = t0, giro = 0;
+    // Il CSS la nasconde sotto i 981px o con «Riduci movimento» attivato dopo il caricamento: allora niente disegno.
+    const mq = [matchMedia('(min-width: 981px)'), matchMedia('(prefers-reduced-motion: reduce)')];
+    let ammessa = mq[0].matches && !mq[1].matches;
+    mq.forEach((m) => m.addEventListener('change', () => { ammessa = mq[0].matches && !mq[1].matches; if (ammessa) { misura(); loop(); } }));
     if (hero && 'IntersectionObserver' in window) {
       new IntersectionObserver(([e]) => { visibile = e.isIntersecting; if (visibile) loop(); }).observe(hero);
     }
@@ -106,11 +111,13 @@ export function avvia(canvas: HTMLCanvasElement) {
       giro += dt * 0.12;
       sfera.rotation.y = giro + scrollY * 0.0022;
       renderer.render(scene, camera);
-      if (visibile && !fermo && !document.hidden) requestAnimationFrame(frame); else attivo = false;
+      if (visibile && ammessa && !fermo && !document.hidden) requestAnimationFrame(frame); else attivo = false;
     };
-    const loop = () => { if (attivo || fermo) return; attivo = true; ultimo = performance.now(); requestAnimationFrame(frame); };
+    const loop = () => { if (attivo || fermo || !ammessa) return; attivo = true; ultimo = performance.now(); requestAnimationFrame(frame); };
     document.addEventListener('visibilitychange', () => { if (!document.hidden) loop(); });
 
     canvas.classList.add('is-pronta');
+    // Se è stata fermata prima di partire, si disegna una volta la sfera già composta.
+    if (fermo) { mat.uniforms.uT.value = 1.2; renderer.render(scene, camera); }
     loop();
   }

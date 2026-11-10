@@ -7,9 +7,12 @@
 <canvas class="sfera" aria-hidden="true"></canvas>
 
 <style is:global>
-  /* Filigrana d'oro dietro il titolo, nello spazio chiaro a sinistra: non copre il dipinto. */
-  .sfera { position: absolute; z-index: -1; pointer-events: none; top: 50%; left: max(0px, calc(50% - 720px)); width: min(46vw, 640px); aspect-ratio: 1; transform: translate(-6%, -46%); opacity: 0; transition: opacity 1.6s ease; }
-  .sfera.is-pronta { opacity: .55; }
+  /* Filigrana d'oro dietro il titolo (scuro, contrasto ampio). Sfuma prima del sottotitolo dorato,
+     così il testo dorato resta sopra 4.5:1 (WCAG AA). Non copre il dipinto a destra. */
+  .tempio .hero__copy { position: relative; }
+  .sfera { position: absolute; z-index: -1; pointer-events: none; top: -250px; left: -150px; width: 640px; aspect-ratio: 1; opacity: 0; transition: opacity 1.6s ease;
+    -webkit-mask-image: linear-gradient(180deg, #000 0, #000 56%, transparent 68%); mask-image: linear-gradient(180deg, #000 0, #000 56%, transparent 68%); }
+  .sfera.is-pronta { opacity: .6; }
   @media (max-width: 980px) { .sfera { display: none; } }
   @media (prefers-reduced-motion: reduce) { .sfera { display: none; } }
 </style>
@@ -19,7 +22,7 @@
   const ok = canvas
     && matchMedia('(min-width: 981px)').matches
     && !matchMedia('(prefers-reduced-motion: reduce)').matches
-    && (() => { try { return !!document.createElement('canvas').getContext('webgl2'); } catch { return false; } })();
+    && (() => { try { const gl = document.createElement('canvas').getContext('webgl2'); gl?.getExtension('WEBGL_lose_context')?.loseContext(); return !!gl; } catch { return false; } })();
 
   const avvia = async () => {
     if (!ok || !canvas) return;
