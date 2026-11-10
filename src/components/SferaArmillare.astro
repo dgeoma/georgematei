@@ -1,0 +1,34 @@
+---
+// Sfera armillare in Three.js nell'apertura della home: polvere d'oro sparsa che si ricompone
+// una volta sola in una sfera armillare (il modello greco di un sistema). Poi ruota piano;
+// lo scroll la fa girare. Niente 3D su telefono, con «Riduci movimento» o senza WebGL:
+// lì resta la pagina di sempre. Three.js si scarica solo dopo che la pagina è pronta.
+---
+<canvas class="sfera" aria-hidden="true"></canvas>
+
+<style is:global>
+  /* Filigrana d'oro dietro il titolo, nello spazio chiaro a sinistra: non copre il dipinto. */
+  .sfera { position: absolute; z-index: -1; pointer-events: none; top: 50%; left: max(0px, calc(50% - 720px)); width: min(46vw, 640px); aspect-ratio: 1; transform: translate(-6%, -46%); opacity: 0; transition: opacity 1.6s ease; }
+  .sfera.is-pronta { opacity: .55; }
+  @media (max-width: 980px) { .sfera { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .sfera { display: none; } }
+</style>
+
+<script>
+  const canvas = document.querySelector<HTMLCanvasElement>('canvas.sfera');
+  const ok = canvas
+    && matchMedia('(min-width: 981px)').matches
+    && !matchMedia('(prefers-reduced-motion: reduce)').matches
+    && (() => { try { return !!document.createElement('canvas').getContext('webgl2'); } catch { return false; } })();
+
+  const avvia = async () => {
+    if (!ok || !canvas) return;
+    const { avvia: parti } = await import('../scripts/sfera3d');
+    parti(canvas);
+  };
+
+  if (ok) {
+    const via = () => ('requestIdleCallback' in window ? requestIdleCallback(() => avvia(), { timeout: 1500 }) : setTimeout(avvia, 300));
+    if (document.readyState === 'complete') via(); else addEventListener('load', via, { once: true });
+  }
+</script>
