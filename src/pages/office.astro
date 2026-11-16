@@ -1,0 +1,80 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+// Stanza Zoom personale di George: per cambiarla basta toccare queste tre righe.
+const ZOOM_URL = 'https://us06web.zoom.us/j/8403234362';
+const ZOOM_ID = '840 323 4362';
+const ZOOM_PASSCODE = 'MiCXG5';
+---
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sala riunioni · George Matei</title>
+<meta name="description" content="Accesso diretto alla videochiamata con George Matei.">
+<meta property="og:title" content="Sala riunioni · George Matei">
+<meta property="og:description" content="Entra nella videochiamata con George Matei.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="George Matei">
+<meta property="og:url" content="https://georgematei.com/office/">
+<meta property="og:image" content="https://georgematei.com/assets/og-george.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="George Matei, AI e automazioni per imprenditori">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://georgematei.com/office/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0f1e3a">
+<link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=23">
+<style is:inline>
+  .office { padding: 64px 0 88px; background: linear-gradient(180deg, #fff, var(--bg-soft)); text-align: center; }
+  .office__inner { max-width: 640px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; }
+  .office__foto { width: clamp(180px, 46vw, 240px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: var(--navy-800); box-shadow: 0 0 0 5px #fff, 0 0 0 7px var(--gold-500), var(--shadow); }
+  .office__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+  .office .eyebrow { margin-top: 34px; justify-content: center; }
+  .office .eyebrow::after { content: ""; width: 22px; height: 2px; background: var(--grad-gold); border-radius: 2px; }
+  .office h1 { font-size: clamp(30px, 4.4vw, 46px); margin-top: 14px; }
+  .office__testo { margin-top: 16px; font-size: 18px; color: var(--ink-soft); }
+  .office .btn { margin-top: 30px; }
+  .office__nota { margin-top: 18px; font-size: 14.5px; color: var(--muted); }
+  .office__nota b { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  @media (max-width: 560px) { .office { padding: 44px 0 64px; } .office .btn { width: 100%; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+
+<Nav />
+
+<main id="contenuto">
+  <section class="office">
+    <div class="wrap office__inner">
+      <figure class="office__foto"><img src="/assets/foto/george-hero.webp" alt="George Matei" width="760" height="974" fetchpriority="high"></figure>
+      <p class="eyebrow">Sala riunioni</p>
+      <h1>Entra nella videochiamata con George Matei</h1>
+      <p class="office__testo">La stanza si apre all'orario concordato. Se la trovi ancora chiusa, aspetta un momento e riprova: ti faccio entrare appena comincia.</p>
+      <a class="btn" href={ZOOM_URL} target="_blank" rel="noopener noreferrer" aria-label="Entra nella videochiamata (si apre in Zoom)">
+        Entra nella videochiamata
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="office__nota">Si apre in Zoom. Se ti chiede il passcode, o se non succede nulla, entra con ID <b>{ZOOM_ID}</b> e passcode <b>{ZOOM_PASSCODE}</b>.</p>
+    </div>
+  </section>
+</main>
+
+<Footer />
+
+<script is:inline>
+  (function () {
+    var nav = document.querySelector('.nav');
+    addEventListener('scroll', function () { nav.classList.toggle('is-scrolled', scrollY > 12); }, { passive: true });
+  })();
+</script>
+<script is:inline src="/nav.js?v=1" defer></script>
+</body>
+</html>
