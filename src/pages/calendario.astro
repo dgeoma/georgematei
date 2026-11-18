@@ -8,6 +8,9 @@ import Footer from '../components/Footer.astro';
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://api.leadconnectorhq.com">
+<link rel="preconnect" href="https://stcdn.leadconnectorhq.com" crossorigin>
+<link rel="preconnect" href="https://link.msgsndr.com">
 <title>Prenota 30 minuti · George Matei</title>
 <meta name="description" content="Prenota una chiamata conoscitiva gratuita di trenta minuti: mi racconti come lavorate e alla fine sai se e da dove conviene partire con l'AI.">
 <meta property="og:title" content="Prenota 30 minuti con George Matei">
@@ -26,27 +29,30 @@ import Footer from '../components/Footer.astro';
 <meta name="theme-color" content="#0f1e3a">
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css?v=22">
+<style>
+  .cal-page--solo { padding-top: 34px; }
+  .cal-page__title { font-size: clamp(24px, 3vw, 32px); margin: 0 0 18px; }
+  .cal-page__box { position: relative; }
+  .cal-page__box iframe { position: relative; display: block; }
+  .cal-page__wait { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--muted); font-size: 15px; }
+  @media (max-width: 380px) { .cal-page__title { padding: 0 10px; } }
+  .cal-page__note--sotto { margin: 18px 0 0; }
+</style>
 </head>
 <body>
-<a class="skip" href="#prenota">Vai al calendario</a>
+<a class="skip" href="#calendario">Vai al calendario</a>
 
 <Nav />
 
 <main>
-  <section class="page-hero">
+  <section class="cal-page cal-page--solo" id="prenota">
     <div class="wrap">
-      <p class="eyebrow eyebrow--face"><img src="/assets/foto/george-sorriso.webp" width="240" height="240" alt="">Prenota · Si comincia da qui</p>
-      <h1>Trenta minuti per conoscerci.</h1>
-      <p>In videochiamata, gratis, niente slide. Mi racconti come lavorate e dove vuoi arrivare; alla fine sai da dove partire. Poi decidi tu, e ti richiamo solo se me lo chiedi.</p>
-      <p>Hai già un preventivo per un progetto di AI o di software? Portalo: ti dico se vale la pena guardarlo a fondo.</p>
-    </div>
-  </section>
-  <section class="cal-page" id="prenota">
-    <div class="wrap">
-      <p class="cal-page__note">Il calendario è di HighLevel e si carica con la pagina: registra la visita e salva nel browser identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, per qualunque cosa scrivi al tuo referente lì. Non vedi il calendario? Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p>
+      <h1 class="cal-page__title">Prenota trenta minuti</h1>
       <div class="cal-page__box" id="calendario">
-        <iframe src="https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi" title="Calendario prenotazioni di George Matei" id="cPICakRP00QYGUi5Wyoi_calendario" scrolling="no" allow="payment" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe>
+        <p class="cal-page__wait" id="cal-wait" aria-hidden="true">Carico il calendario…</p>
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi" title="Calendario prenotazioni di George Matei" id="cPICakRP00QYGUi5Wyoi_calendario" scrolling="no" allow="payment" onload="var w=document.getElementById('cal-wait');if(w)w.remove()" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe>
       </div>
+      <p class="cal-page__note cal-page__note--sotto">Il calendario è di HighLevel e si carica con la pagina: registra la visita e salva nel browser identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, per qualunque cosa scrivi al tuo referente lì. Non vedi il calendario? Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p>
     </div>
   </section>
 </main>
@@ -54,6 +60,7 @@ import Footer from '../components/Footer.astro';
 <Footer />
 
 <script is:inline>
+  setTimeout(function () { var w = document.getElementById('cal-wait'); if (w) w.textContent = 'Il calendario non si carica? Scrivimi a d.georgematei@gmail.com'; }, 10000);
   (function () {
     var nav = document.querySelector('.nav');
     addEventListener('scroll', function () { nav.classList.toggle('is-scrolled', scrollY > 12); }, { passive: true });
