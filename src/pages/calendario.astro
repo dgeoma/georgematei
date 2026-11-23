@@ -49,10 +49,10 @@ import Footer from '../components/Footer.astro';
     <div class="wrap">
       <h1 class="cal-page__title">Prenota trenta minuti</h1>
       <div class="cal-page__box" id="calendario">
-        <p class="cal-page__wait" id="cal-wait" aria-hidden="true">Carico il calendario…</p>
+        <p class="cal-page__wait" id="cal-wait">Carico il calendario…</p>
         <iframe src="https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi" title="Calendario prenotazioni di George Matei" id="cPICakRP00QYGUi5Wyoi_calendario" scrolling="no" allow="payment" onload="var w=document.getElementById('cal-wait');if(w)w.remove()" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe>
       </div>
-      <p class="cal-page__note cal-page__note--sotto">Il calendario è di HighLevel e si carica con la pagina: registra la visita e salva nel browser identificativi, anche per le sue statistiche. <a href="/privacy/">Come tratto i tuoi dati</a>. Se sei già cliente di Marketing Genius, per qualunque cosa scrivi al tuo referente lì. Non vedi il calendario? Scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.</p>
+      <p class="cal-page__note cal-page__note--sotto">Il calendario non si apre? <a href="https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi" target="_blank" rel="noopener">Aprilo a schermo intero</a>.</p>
     </div>
   </section>
 </main>
@@ -60,7 +60,7 @@ import Footer from '../components/Footer.astro';
 <Footer />
 
 <script is:inline>
-  setTimeout(function () { var w = document.getElementById('cal-wait'); if (w) w.textContent = 'Il calendario non si carica? Scrivimi a d.georgematei@gmail.com'; }, 10000);
+  setTimeout(function () { var w = document.getElementById('cal-wait'); if (w) w.innerHTML = 'Il calendario non si carica? <a href="https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi" target="_blank" rel="noopener">Aprilo a schermo intero</a>'; }, 10000);
   (function () {
     var nav = document.querySelector('.nav');
     addEventListener('scroll', function () { nav.classList.toggle('is-scrolled', scrollY > 12); }, { passive: true });
