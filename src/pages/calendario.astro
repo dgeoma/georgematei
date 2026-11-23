@@ -1,6 +1,7 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import calendarioJs from '../scripts/calendario.js?raw';
 ---
 <!doctype html>
 <html lang="it">
@@ -8,14 +9,19 @@ import Footer from '../components/Footer.astro';
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://api.leadconnectorhq.com">
-<link rel="preconnect" href="https://stcdn.leadconnectorhq.com" crossorigin>
-<link rel="preconnect" href="https://link.msgsndr.com">
 <link rel="preconnect" href="https://backend.leadconnectorhq.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://unpkg.com" crossorigin>
-<link rel="dns-prefetch" href="https://storage.googleapis.com">
+<link rel="preconnect" href="https://georgematei-api.vercel.app" crossorigin>
+<script is:inline>
+  // Gli orari liberi partono subito, prima di CSS e font: due finestre da 31 giorni (limite di HighLevel).
+  (function () {
+    var tz = 'Europe/Rome';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || tz; } catch (e) {}
+    var base = 'https://backend.leadconnectorhq.com/calendars/cPICakRP00QYGUi5Wyoi/free-slots?timezone=' + encodeURIComponent(tz);
+    var now = Date.now(), D = 86400000;
+    function get(a, b) { return fetch(base + '&startDate=' + a + '&endDate=' + b).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+    window.__slots = { tz: tz, base: base, until: now + 61 * D, p: Promise.all([get(now, now + 30 * D), get(now + 30 * D, now + 61 * D)]) };
+  })();
+</script>
 <title>Prenota 30 minuti · George Matei</title>
 <meta name="description" content="Prenota una chiamata conoscitiva gratuita di trenta minuti: mi racconti come lavorate e alla fine sai se e da dove conviene partire con l'AI.">
 <meta property="og:title" content="Prenota 30 minuti con George Matei">
@@ -34,14 +40,66 @@ import Footer from '../components/Footer.astro';
 <meta name="theme-color" content="#0f1e3a">
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css?v=22">
-<style>
+<style is:global>
   .cal-page--solo { padding-top: 34px; }
   .cal-page__title { font-size: clamp(24px, 3vw, 32px); margin: 0 0 18px; }
-  .cal-page__box { position: relative; }
-  .cal-page__box iframe { position: relative; display: block; }
-  .cal-page__wait { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--muted); font-size: 15px; }
   @media (max-width: 380px) { .cal-page__title { padding: 0 10px; } }
   .cal-page__note--sotto { margin: 18px 0 0; }
+  .bk { padding: 28px; min-height: 520px; color: var(--ink); }
+  .bk__head { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 22px; }
+  .bk__head b { font-size: 19px; }
+  .bk__head span { color: var(--muted); font-size: 15px; }
+  .bk__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 32px; }
+  .bk__month { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .bk__month b { font-size: 17px; }
+  .bk__month b::first-letter, .bk__side h3::first-letter, .bk__chosen span::first-letter, .bk__done b::first-letter { text-transform: uppercase; }
+  .bk__chosen span, .bk__done b { display: block; }
+  .bk__nav { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--ink); font-size: 18px; cursor: pointer; }
+  .bk__nav:disabled { opacity: .3; cursor: default; }
+  .bk__days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+  .bk__dow { font-size: 12px; font-weight: 700; color: var(--muted); padding: 6px 0; text-transform: uppercase; letter-spacing: .04em; }
+  .bk__day { aspect-ratio: 1; max-height: 52px; border: 0; border-radius: 50%; background: none; font: inherit; font-size: 15px; color: #b5bdca; }
+  .bk__day--on { color: var(--ink); background: var(--gold-200); font-weight: 700; cursor: pointer; }
+  .bk__day--on:hover { background: var(--gold-400); }
+  .bk__day--sel { background: var(--navy-800) !important; color: #fff; }
+  .bk__side h3 { font-size: 16px; margin: 0 0 4px; }
+  .bk__tz { font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+  .bk__slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
+  .bk__slot { padding: 12px 6px; border-radius: 12px; border: 1.5px solid var(--navy-600); background: #fff; color: var(--navy-800); font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; }
+  .bk__slot:hover { background: var(--navy-800); color: #fff; }
+  .bk__empty, .bk__load { color: var(--muted); font-size: 15px; }
+  .bk__load { display: grid; place-items: center; min-height: 380px; }
+  .bk__form { max-width: 560px; margin: 0 auto; }
+  .bk__chosen { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--bg-soft); border-radius: 14px; padding: 14px 16px; margin-bottom: 20px; font-weight: 700; }
+  .bk__chosen button { border: 0; background: none; color: var(--gold-text); font: inherit; font-size: 14px; text-decoration: underline; cursor: pointer; }
+  .bk__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .bk label { display: block; font-size: 14px; font-weight: 700; margin: 0 0 14px; }
+  .bk input, .bk textarea { display: block; width: 100%; margin-top: 6px; padding: 13px 14px; border: 1.5px solid var(--line); border-radius: 12px; font: inherit; font-size: 16px; font-weight: 400; color: var(--ink); background: #fff; }
+  .bk input:focus, .bk textarea:focus { outline: none; border-color: var(--navy-600); }
+  .bk textarea { min-height: 90px; resize: vertical; }
+  .bk__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .bk__err { color: #b42318; font-size: 14px; min-height: 20px; margin: 0 0 10px; }
+  .bk__small { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+  .bk__small a { color: var(--ink); }
+  .bk .btn { width: 100%; justify-content: center; border: 0; cursor: pointer; }
+  .bk .btn:disabled { opacity: .6; cursor: default; }
+  .bk__done { text-align: center; padding: 40px 10px; }
+  .bk__done b { display: block; font-size: 22px; margin-bottom: 10px; }
+  .bk__done p { color: var(--ink-soft); margin: 0 auto 8px; max-width: 460px; }
+  .bk iframe { width: 100%; border: 0; min-height: 620px; display: block; }
+  .bk--frame { padding: 0; }
+  @media (max-width: 760px) {
+    .bk { padding: 20px 16px; }
+    .bk__grid { grid-template-columns: 1fr; gap: 22px; }
+    .bk__row { grid-template-columns: 1fr; gap: 0; }
+    .bk__head { padding-bottom: 14px; margin-bottom: 14px; }
+    .bk__head b { font-size: 17px; }
+    .bk__days { gap: 2px; }
+    .bk__dow { padding: 2px 0; font-size: 11px; }
+    .bk__day { aspect-ratio: auto; width: 38px; height: 38px; margin: 0 auto; font-size: 14px; }
+    .bk__nav { width: 34px; height: 34px; }
+    .bk { min-height: 0; }
+  }
 </style>
 </head>
 <body>
@@ -54,8 +112,11 @@ import Footer from '../components/Footer.astro';
     <div class="wrap">
       <h1 class="cal-page__title">Prenota trenta minuti</h1>
       <div class="cal-page__box" id="calendario">
-        <p class="cal-page__wait" id="cal-wait">Carico il calendario…</p>
-        <iframe src="https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi" title="Calendario prenotazioni di George Matei" id="cPICakRP00QYGUi5Wyoi_calendario" scrolling="no" allow="payment" onload="var w=document.getElementById('cal-wait');if(w)w.remove()" style="width:100%;border:none;overflow:hidden;min-height:620px"></iframe>
+        <p class="bk__trap" id="bk-status" role="status" aria-live="polite"></p>
+        <div class="bk" id="bk">
+          <div class="bk__head"><b>Chiamata conoscitiva</b><span>30 minuti · videochiamata Zoom · gratis</span></div>
+          <div class="bk__load" id="bk-body">Carico gli orari liberi…</div>
+        </div>
       </div>
       <p class="cal-page__note cal-page__note--sotto">Il calendario non si apre? <a href="https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi" target="_blank" rel="noopener">Aprilo a schermo intero</a>.</p>
     </div>
@@ -64,14 +125,13 @@ import Footer from '../components/Footer.astro';
 
 <Footer />
 
+<script is:inline set:html={calendarioJs}></script>
 <script is:inline>
-  setTimeout(function () { var w = document.getElementById('cal-wait'); if (w) w.innerHTML = 'Il calendario non si carica? <a href="https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi" target="_blank" rel="noopener">Aprilo a schermo intero</a>'; }, 10000);
   (function () {
     var nav = document.querySelector('.nav');
     addEventListener('scroll', function () { nav.classList.toggle('is-scrolled', scrollY > 12); }, { passive: true });
   })();
 </script>
-<script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
 <script is:inline src="/nav.js?v=1" defer></script>
 </body>
 </html>
