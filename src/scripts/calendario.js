@@ -3,6 +3,28 @@
 (function () {
   var API = 'https://georgematei-api.vercel.app/api/prenota';
   var WIDGET = 'https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi';
+  var SITEKEY = '0x4AAAAAAGPkknbsT4BuvMwP'; // Cloudflare Turnstile (chiave pubblica)
+  var tsId = null, tsReady = null;
+  function loadTs() {
+    if (tsReady) return tsReady;
+    tsReady = new Promise(function (res) {
+      window.__tsLoad = function () { res(true); };
+      var sc = document.createElement('script');
+      sc.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__tsLoad';
+      sc.async = true; sc.onerror = function () { res(false); };
+      document.head.appendChild(sc);
+    });
+    return tsReady;
+  }
+  function tsToken() {
+    return new Promise(function (res) {
+      if (!window.turnstile || tsId == null) return res('');
+      var n = 0, t = window.turnstile.getResponse(tsId);
+      if (t) return res(t);
+      var iv = setInterval(function () { t = window.turnstile.getResponse(tsId); if (t || ++n > 60) { clearInterval(iv); res(t || ''); } }, 250);
+    });
+  }
+  function tsReset() { try { if (window.turnstile && tsId != null) window.turnstile.reset(tsId); } catch (x) {} }
   var S = window.__slots, root = document.getElementById('bk'), body = document.getElementById('bk-body');
   var status = document.getElementById('bk-status');
   var days = {}, months = [], mi = 0, selDay = null, selSlot = null, busy = false;
@@ -61,6 +83,7 @@
     body.className = 'bk__grid';
     body.innerHTML = '<div>' + g + '</div><div class="bk__side" id="bk-side">' + side + '</div>';
     if (focus) { var f = body.querySelector(focus); if (f) f.focus({ preventScroll: true }); }
+    setTimeout(loadTs, 300);
   }
 
   function renderForm() {
@@ -74,11 +97,18 @@
       '<p class="bk__small" style="margin:-6px 0 14px">Telefono con il prefisso del paese, per esempio +39 o +971.</p>' +
       '<label>Di cosa vuoi parlare? <span style="font-weight:400;color:var(--muted)">(facoltativo)</span><textarea name="note" maxlength="1500"></textarea></label>' +
       '<div class="bk__trap" aria-hidden="true"><input name="hp_k7" tabindex="-1" autocomplete="off"></div>' +
+      '<div id="bk-ts" class="bk__ts"></div>' +
       '<p class="bk__err" id="bk-err" role="alert"></p>' +
       '<button class="btn" type="submit">Conferma la chiamata</button>' +
       '<p class="bk__small">Ti arriva la conferma via email con il link Zoom. <a href="/privacy/">Come tratto i tuoi dati</a>.</p>' +
       '</form>';
     var f = document.getElementById('bk-form');
+    try { if (window.turnstile && tsId != null) window.turnstile.remove(tsId); } catch (x) {}
+    tsId = null;
+    loadTs().then(function (ok) {
+      var box = document.getElementById('bk-ts');
+      if (ok && window.turnstile && box) tsId = window.turnstile.render(box, { sitekey: SITEKEY, appearance: 'interaction-only', language: 'it', size: 'flexible', action: 'prenota' });
+    });
     if (matchMedia('(min-width: 761px)').matches) f.nome.focus();
     root.scrollIntoView({ block: 'start', behavior: 'smooth' });
     f.addEventListener('submit', submit);
@@ -106,6 +136,8 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) { err.textContent = "Controlla l'email."; return; }
     if (!/^\+[1-9]\d{6,14}$/.test(data.telefono)) { err.textContent = 'Scrivi il telefono con il prefisso del paese, per esempio +39 o +971.'; return; }
     err.textContent = ''; lock(true); btn.textContent = 'Prenoto…'; status.textContent = 'Prenotazione in corso';
+    tsToken().then(function (cf) { data.cf = cf; send(); });
+    function send() {
     var ctrl = window.AbortController ? new AbortController() : null, to = ctrl && setTimeout(function () { ctrl.abort(); }, 25000);
     fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), signal: ctrl ? ctrl.signal : undefined })
       .then(function (r) { return r.text().then(function (t) { var j = {}; try { j = JSON.parse(t); } catch (x) {} return { s: r.status, j: j }; }); })
@@ -138,7 +170,9 @@
         var msg = x && x.name === 'AbortError' ? 'Il server non ha risposto in tempo. Controlla la tua email prima di riprovare: la prenotazione potrebbe essere già arrivata.'
           : (x && x.message && x.message.length < 160 && !/fetch|network|load|json|token/i.test(x.message) ? x.message : 'Prenotazione non riuscita.');
         err.innerHTML = esc(msg) + ' Se il problema resta, <a href="' + WIDGET + '" target="_blank" rel="noopener">prenota da qui</a> o scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.';
+        tsReset();
       });
+    }
   }
 
   root.addEventListener('click', function (e) {
