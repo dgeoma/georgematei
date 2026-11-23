@@ -2,7 +2,7 @@
 // prenotazione tramite la funzione Vercel georgematei-api. Se qualcosa non va, torna il widget HighLevel.
 (function () {
   var API = 'https://georgematei-api.vercel.app/api/prenota';
-  var WIDGET = 'https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi';
+  var WIDGET = 'https://api.leadconnectorhq.com/widget/booking/cPICakRP00QYGUi5Wyoi', RISERVA = '/calendario/riserva/';
   var SITEKEY = '0x4AAAAAAGPkknbsT4BuvMwP'; // Cloudflare Turnstile (chiave pubblica)
   var tsId = null, tsReady = null;
   function loadTs() {
@@ -169,7 +169,7 @@
         lock(false); btn.textContent = 'Conferma la chiamata'; status.textContent = '';
         var msg = x && x.name === 'AbortError' ? 'Il server non ha risposto in tempo. Controlla la tua email prima di riprovare: la prenotazione potrebbe essere già arrivata.'
           : (x && x.message && x.message.length < 160 && !/fetch|network|load|json|token/i.test(x.message) ? x.message : 'Prenotazione non riuscita.');
-        err.innerHTML = esc(msg) + ' Se il problema resta, <a href="' + WIDGET + '" target="_blank" rel="noopener">prenota da qui</a> o scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.';
+        err.innerHTML = esc(msg) + ' Se il problema resta, <a href="' + RISERVA + '">prenota da qui</a> o scrivimi a <a href="mailto:d.georgematei@gmail.com">d.georgematei@gmail.com</a>.';
         tsReset();
       });
     }
