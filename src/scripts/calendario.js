@@ -21,7 +21,7 @@
       if (!window.turnstile || tsId == null) return res('');
       var n = 0, t = window.turnstile.getResponse(tsId);
       if (t) return res(t);
-      var iv = setInterval(function () { t = window.turnstile.getResponse(tsId); if (t || ++n > 60) { clearInterval(iv); res(t || ''); } }, 250);
+      var iv = setInterval(function () { t = window.turnstile.getResponse(tsId); if (t || ++n > 24) { clearInterval(iv); res(t || ''); } }, 250);
     });
   }
   function tsReset() { try { if (window.turnstile && tsId != null) window.turnstile.reset(tsId); } catch (x) {} }
@@ -136,7 +136,14 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) { err.textContent = "Controlla l'email."; return; }
     if (!/^\+[1-9]\d{6,14}$/.test(data.telefono)) { err.textContent = 'Scrivi il telefono con il prefisso del paese, per esempio +39 o +971.'; return; }
     err.textContent = ''; lock(true); btn.textContent = 'Prenoto…'; status.textContent = 'Prenotazione in corso';
-    tsToken().then(function (cf) { data.cf = cf; send(); });
+    tsToken().then(function (cf) {
+      if (!cf && window.turnstile && tsId != null) {
+        lock(false); btn.textContent = 'Conferma la chiamata'; status.textContent = '';
+        err.textContent = 'Completa il controllo di sicurezza qui sopra, poi premi di nuovo «Conferma la chiamata».';
+        return;
+      }
+      data.cf = cf; send();
+    });
     function send() {
     var ctrl = window.AbortController ? new AbortController() : null, to = ctrl && setTimeout(function () { ctrl.abort(); }, 25000);
     fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), signal: ctrl ? ctrl.signal : undefined })
